@@ -1,12 +1,3 @@
-/*----------------------------------------------------------------------------*/
-/*                                                                            */
-/*    Module:       main.cpp                                                  */
-/*    Author:       yjtsa                                                     */
-/*    Created:      8/24/2023, 5:50:07 PM                                     */
-/*    Description:  V5 project                                                */
-/*                                                                            */
-/*----------------------------------------------------------------------------*/
-
 #include "vex.h"
 #include <all_func.h>
 
@@ -23,15 +14,7 @@ void inertial_calibate() {
   Controller1.rumble("*-*");
 }
 
-/*---------------------------------------------------------------------------*/
-/*                          Pre-Autonomous Functions                         */
-/*                                                                           */
-/*  You may want to perform some actions before the competition starts.      */
-/*  Do them in the following function.  You must return from this function   */
-/*  or the autonomous and usercontrol tasks will not be started.  This       */
-/*  function is only called once after the V5 has been powered on and        */
-/*  not every time that the robot is disabled.                               */
-/*---------------------------------------------------------------------------*/
+// Pre AUTON
 
 void pre_auton(void) {
   inertial_calibate();
@@ -39,15 +22,7 @@ void pre_auton(void) {
   // Example: clearing encoders, setting servo positions, ...
 }
 
-/*---------------------------------------------------------------------------*/
-/*                                                                           */
-/*                              Autonomous Task                              */
-/*                                                                           */
-/*  This task is used to control your robot during the autonomous phase of   */
-/*  a VEX Competition.                                                       */
-/*                                                                           */
-/*  You must modify the code to add your own robot specific commands here.   */
-/*---------------------------------------------------------------------------*/
+// Autonomous Skills
 
 int task1(){
   pto_cata.spin(fwd, 200, rpm);
@@ -66,15 +41,7 @@ void autonomous(void) {
   same_side_15();
 }
 
-/*---------------------------------------------------------------------------*/
-/*                                                                           */
-/*                              User Control Task                            */
-/*                                                                           */
-/*  This task is used to control your robot during the user control phase of */
-/*  a VEX Competition.                                                       */
-/*                                                                           */
-/*  You must modify the code to add your own robot specific commands here.   */
-/*---------------------------------------------------------------------------*/
+//Driver Control
 
 void usercontrol(void) {
   // User control code here, inside the loop
@@ -82,9 +49,7 @@ void usercontrol(void) {
   
 }
 
-//
-// Main will set up the competition functions and callbacks.
-//
+
 int main() {
   // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
