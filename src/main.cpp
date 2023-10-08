@@ -24,21 +24,8 @@ void pre_auton(void) {
 
 // Autonomous Skills
 
-int task1(){
-  pto_cata.spin(fwd, 200, rpm);
-  wait(500, msec);
-  pto_cata.spin(reverse, 200, rpm);
-  wait(300, msec);
-  pto_cata.stop(coast);
-  while(rotation_sensor.angle()<85){
-    pto_cata.spin(reverse, 200, rpm);
-  }
-  pto_cata.stop(coast);
-  return 0;
-}
-
 void autonomous(void) {
-  same_side_15();
+  same_side_awp();
 }
 
 //Driver Control

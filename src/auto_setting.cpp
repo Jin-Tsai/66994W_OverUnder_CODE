@@ -35,11 +35,8 @@ void pidReset() {
 
 double g_heading(double Target) {
   double value = Inertial.heading() - Target;
-  // if (value > 180)
-  //   return 360 - value;
-  // else
-  //   return -value;
-  return value;
+  if(value<180) return -value;
+  return 360-value;
 }
 
 void move_turn(double target, double t_kp) {
@@ -73,4 +70,23 @@ void move_deg(double wanted_deg, double left_speed, double right_speed, double r
   }
   drivertrainStop(brake);
   wait(10, msec);
+}
+
+void move_no_stop(double wanted_deg, double left_speed, double right_speed, double rotate){
+  left_front.resetPosition();
+  left_back.resetPosition();
+  right_front.resetPosition();
+  right_back.resetPosition();
+  
+  double error = g_heading(rotate);
+  double turn_speed = 0;
+  double sum_deg = 0;
+  while (abs(sum_deg) < abs(wanted_deg)) {
+    sum_deg = ((fabs(left_back.position(deg)) + fabs(left_front.position(deg)) +
+               fabs(right_back.position(deg)) + fabs(right_front.position(deg)))
+             / 4);
+    error = g_heading(rotate);
+    turn_speed = error * kp;
+    TankMove(-(left_speed + turn_speed), -(right_speed - turn_speed));
+  }
 }
