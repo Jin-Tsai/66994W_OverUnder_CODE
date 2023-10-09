@@ -45,7 +45,7 @@ void move_turn(double target, double t_kp) {
   while (abs(error) > 1) {
     error = g_heading(target);
     turn_speed = error * t_kp;
-    TankMove(turn_speed, -turn_speed);
+    TankMove(-turn_speed, turn_speed);
   }
   drivertrainStop(brake);
   wait(10, msec);

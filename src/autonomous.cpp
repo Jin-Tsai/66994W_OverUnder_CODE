@@ -105,9 +105,9 @@ void same_side_awp(){
   task open_lwing = task(task_open_lwing);
   move_deg(950, -60, -60, 310);
   move_turn(310, 0.6);
-  // wait(1000, msec); //測試用wait
+  wait(1000, msec); //測試用wait
   task close_lwing = task(task_close_lwing);
-  move_no_stop(400, -65, -65, 310);
+  move_no_stop(400, -65, -65, 307);
   move_no_stop(500, -70, -27, 280);
   // wait(1000, msec); //測試用wait
   TankMove(100, 50);
@@ -119,7 +119,7 @@ void same_side_awp(){
   move_deg(250, 30, 90, 300);
   wait(50, msec);
   // wait(1000, msec); //測試用wait
-  move_turn(105, 0.57);
+  move_turn(105, 0.4);
   // wait(1000, msec); //測試用wait
   wait(50, msec);
   intake.spin(fwd, 400, rpm);
@@ -132,14 +132,14 @@ void same_side_awp(){
   // wait(1000, msec); //測試用wait
 
   //吸左邊的 triball
-  move_deg(670, -50, -50, 95);
+  move_deg(600, -50, -50, 95);
   // wait(1000, msec); //測試用wait
-  move_turn(21, 0.39);
+  move_turn(16, 0.4);
   // wait(1000, msec); //測試用wait
   intake.spin(reverse, 600, rpm);
-  move_no_stop(200, 30, 30, 21);
-  move_no_stop(2000, 80, 80, 21);
-  move_deg(600, 30, 30, 21);
+  move_no_stop(200, 30, 30, 16);
+  move_no_stop(2000, 80, 80, 16);
+  move_deg(600, 30, 30, 16);
   wait(400, msec);
 
   //轉彎開 wing 推下面的
@@ -151,12 +151,12 @@ void same_side_awp(){
   //   TankMove(20, -20);
   // }
   // drivertrainStop(brake);
-  move_turn(300, 0.49);
+  move_turn(-65, 0.49);
   intake.stop(brake);
 
   // wait(1000, msec); //測試用wait
   wait(50, msec);
-  move_deg(720, -40, -40, 300);
+  move_deg(720, -40, -40, 295);
 
   r_wing.set(true);
 
@@ -186,7 +186,7 @@ void same_side_awp(){
 
   r_wing.set(false);
   move_deg(200, 30, 30, 0);
-  move_turn(181, 0.39);//轉 180 放球
+  move_turn(180, 0.39);//轉 180 放球
   // wait(1000, msec); //測試用wait
   intake.spin(fwd, 400, rpm);
   wait(50, msec);
@@ -205,4 +205,10 @@ void diff_side_awp_no_middle(){
 
 void diff_side_awp_middle(){
 
+}
+
+void test(){
+  move_turn(-40, 0.4);
+  move_turn(95, 0.4);
+  move_turn(22, 0.4);
 }

@@ -6,3 +6,5 @@ void diff_side_awp_middle();
 
 int task_open_rwing();
 int task_close_rwing();
+
+void test();

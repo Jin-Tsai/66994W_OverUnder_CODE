@@ -26,6 +26,7 @@ void pre_auton(void) {
 
 void autonomous(void) {
   same_side_awp();
+  // test();
 }
 
 //Driver Control
