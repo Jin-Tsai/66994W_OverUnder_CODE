@@ -88,6 +88,117 @@ int task_close_lwing(){
 }
 
 
+void same_side_awp_no_bar(){
+  // 吸到 bar 下面的球=======
+  intake.spin(reverse, 600, rpm);
+  wait(100, msec);
+  move_deg(200, 10, 10, 0);
+  wait(500, msec); 
+
+  //後退撈 match load + 推進
+  move_no_stop(180, -30, -30, 0);
+  move_no_stop(1000, -70, -70, 0);
+  move_deg(130, -20, -20, 0);
+  intake.stop(brake);
+  wait(100, msec);
+  move_deg(190, -60, 0, 310);
+  task open_lwing = task(task_open_lwing);
+  move_deg(950, -60, -60, 310);
+  move_turn(310, 0.6);
+  // wait(1000, msec); //測試用wait
+  task close_lwing = task(task_close_lwing);
+  move_no_stop(400, -65, -65, 307);
+  move_no_stop(500, -70, -27, 280);
+  // wait(1000, msec); //測試用wait
+  TankMove(100, 50);
+  wait(400, msec);
+  drivertrainStop(brake);
+  wait(10, msec);
+
+  //轉身放intake裡的 triball
+  move_deg(250, 30, 90, 300);
+  wait(50, msec);
+  // wait(1000, msec); //測試用wait
+  move_turn(98, 0.6);
+  // wait(1000, msec); //測試用wait
+  wait(50, msec);
+  intake.spin(fwd, 400, rpm);
+  wait(100, msec);
+  TankMove(-100, -60);
+  wait(450, msec);
+  drivertrainStop(brake);
+  intake.stop(brake);
+  wait(50, msec);
+  // wait(1000, msec); //測試用wait
+
+  //吸左邊的 triball
+  move_deg(600, -50, -50, 95);
+  // wait(1000, msec); //測試用wait
+  move_turn(15, 0.5);
+  // wait(1000, msec); //測試用wait
+  intake.spin(reverse, 600, rpm);
+  move_no_stop(200, 30, 30, 15);
+  move_no_stop(2000, 80, 80, 15);
+  move_deg(600, 30, 30, 15);
+  wait(400, msec);
+
+  //轉彎開 wing 推下面的
+  // wait(1000, msec); //測試用wait
+  // while((Inertial.heading()>0)&&(Inertial.heading()<305)){
+  //   TankMove(50, -50);
+  // }
+  // while(Inertial.heading()>305){
+  //   TankMove(20, -20);
+  // }
+  // drivertrainStop(brake);
+  move_turn(-70, 0.55);
+  intake.stop(brake);
+
+  // wait(1000, msec); //測試用wait
+  wait(50, msec);
+  move_deg(800, -50, -50, 280);
+
+  r_wing.set(true);
+
+  // wait(1000, msec); //測試用wait
+  wait(50, msec);
+
+  // while((Inertial.heading()<358)&&(Inertial.heading()>1)){
+  //   TankMove(-20, 20);
+  // }
+  // drivertrainStop(brake);
+
+  // TankMove(-20, 20);
+  // wait(100, msec);
+  move_turn(358, 0.5);
+
+  wait(100, msec);
+  // wait(1000, msec); //測試用wait
+
+  move_no_stop(200, -30, -30, 358);//開wing往後推
+  move_no_stop(700, -80, -80, 358);
+  move_deg(200, -30, -30, 358);
+  TankMove(50, 50);
+  wait(300, msec);
+  drivertrainStop(brake);
+  wait(50, msec);
+  // wait(1000, msec); //測試用wait
+
+  r_wing.set(false);
+  move_deg(200, 30, 30, 358);
+  move_turn(178, 0.55);//轉 180 放球
+  // wait(1000, msec); //測試用wait
+  intake.spin(fwd, 400, rpm);
+  wait(50, msec);
+  TankMove(-30, -30);
+  wait(500, msec);
+  drivertrainStop(brake);
+  intake.stop(brake);
+
+  
+
+}
+
 void same_side_awp(){
   // 吸到 bar 下面的球=======
   intake.spin(reverse, 600, rpm);
@@ -105,7 +216,7 @@ void same_side_awp(){
   task open_lwing = task(task_open_lwing);
   move_deg(950, -60, -60, 310);
   move_turn(310, 0.6);
-  wait(1000, msec); //測試用wait
+  // wait(1000, msec); //測試用wait
   task close_lwing = task(task_close_lwing);
   move_no_stop(400, -65, -65, 307);
   move_no_stop(500, -70, -27, 280);
@@ -119,7 +230,7 @@ void same_side_awp(){
   move_deg(250, 30, 90, 300);
   wait(50, msec);
   // wait(1000, msec); //測試用wait
-  move_turn(105, 0.4);
+  move_turn(100, 0.6);
   // wait(1000, msec); //測試用wait
   wait(50, msec);
   intake.spin(fwd, 400, rpm);
@@ -134,68 +245,44 @@ void same_side_awp(){
   //吸左邊的 triball
   move_deg(600, -50, -50, 95);
   // wait(1000, msec); //測試用wait
-  move_turn(16, 0.4);
+  move_turn(15, 0.5);
   // wait(1000, msec); //測試用wait
   intake.spin(reverse, 600, rpm);
-  move_no_stop(200, 30, 30, 16);
-  move_no_stop(2000, 80, 80, 16);
-  move_deg(600, 30, 30, 16);
+  move_no_stop(200, 30, 30, 15);
+  move_no_stop(2000, 80, 80, 15);
+  move_deg(600, 30, 30, 15);
   wait(400, msec);
 
-  //轉彎開 wing 推下面的
-  // wait(1000, msec); //測試用wait
-  // while((Inertial.heading()>0)&&(Inertial.heading()<305)){
-  //   TankMove(50, -50);
-  // }
-  // while(Inertial.heading()>305){
-  //   TankMove(20, -20);
-  // }
-  // drivertrainStop(brake);
-  move_turn(-65, 0.49);
-  intake.stop(brake);
+  //放左邊的球
+  move_turn(140, 0.55);
+  move_no_stop(200, 30, 30, 140);
+  move_no_stop(900, 80, 80, 140);
+  move_deg(200, 30, 30, 140);
 
-  // wait(1000, msec); //測試用wait
-  wait(50, msec);
-  move_deg(720, -40, -40, 295);
-
-  r_wing.set(true);
-
-  // wait(1000, msec); //測試用wait
-  wait(50, msec);
-
-  // while((Inertial.heading()<358)&&(Inertial.heading()>1)){
-  //   TankMove(-20, 20);
-  // }
-  // drivertrainStop(brake);
-
-  // TankMove(-20, 20);
-  // wait(100, msec);
-  move_turn(0, 0.5);
-
-  wait(100, msec);
-  // wait(1000, msec); //測試用wait
-
-  move_no_stop(200, -30, -30, 0);//開wing往後推
-  move_no_stop(700, -80, -80, 0);
-  move_deg(200, -30, -30, 0);
-  TankMove(50, 50);
-  wait(300, msec);
-  drivertrainStop(brake);
-  wait(50, msec);
-  // wait(1000, msec); //測試用wait
-
-  r_wing.set(false);
-  move_deg(200, 30, 30, 0);
-  move_turn(180, 0.39);//轉 180 放球
-  // wait(1000, msec); //測試用wait
+  move_turn(180, 0.5);
   intake.spin(fwd, 400, rpm);
   wait(50, msec);
   TankMove(-50, -50);
-  wait(400, msec);
+  wait(550, msec);
   drivertrainStop(brake);
   intake.stop(brake);
+  wait(100, msec);
 
-  move_deg(200, -30, -30, 0);
+  //去碰 elevation bar
+  move_deg(200, -30, -30, 180);
+  // wait(1000, msec); //測試用wait
+  l_wing.set(true);
+  move_deg(1800, -100, -37, 90);
+  // wait(1000, msec); //測試用wait
+  move_deg(830, -100, -90, 85);
+  // wait(1000, msec); //測試用wait
+  TankMove(50, 50);
+  wait(200, msec);
+  drivertrainStop(brake);
+  // wait(1000, msec); //測試用wait
+  TankMove(0, -80);
+  wait(500, msec);
+  drivertrainStop(brake);
 
 }
 
