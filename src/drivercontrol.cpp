@@ -76,10 +76,10 @@ void driver_control(){
     }
     Last_up = up_press;
 
-    if((match_load == true)&&(rotation_sensor.angle()>315)){
+    if((match_load == true)&&(rotation_sensor.angle()>320)){
       pto_cata.spin(reverse, 200, rpm);
     }
-    else if((match_load == true)&&(rotation_sensor.angle()<315)){
+    else if((match_load == true)&&(rotation_sensor.angle()<320)){
       pto_cata.stop(brake);
       pto_cata.spin(fwd, 200, rpm);
       wait(150, msec);
