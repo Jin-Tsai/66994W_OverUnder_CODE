@@ -14,7 +14,7 @@
 #include "vex.h"
 #include <all_func.h>
 
-int chassis_motors = 4;
+int chassis_motors = 6;
 int sum = 0;
 int move = 0;
 bool btn_pressed = false;
@@ -57,25 +57,6 @@ double last_time;
 
 void controller_Down_Pressed(){
   if(Controller1.ButtonDown.pressing()){
-    pto.set(true);
     balance.set(true);
   }
-}
-
-void controller_X_Pressed(){
-  while(1){
-    x_press = Controller1.ButtonX.pressing();
-      
-    if(x_press && !Last_x){
-      pto_switch = true;
-    }
-    Last_x = x_press;
-
-    if(pto_switch == true){
-      pto.set(true);
-      chassis_motors = 7;
-      pto_switch = false;
-    }
-  }
-
 }

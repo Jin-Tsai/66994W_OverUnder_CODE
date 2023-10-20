@@ -2,7 +2,6 @@
 #include <all_func.h>
 
 void driver_control(){
-  Controller1.ButtonX.pressed(controller_X_Pressed);
   Controller1.ButtonDown.pressed(controller_Down_Pressed);
   wait(15,msec);
 
@@ -10,13 +9,9 @@ void driver_control(){
 
   while(true){
 
-    if(chassis_motors==4){
+    if(chassis_motors==6){
       left_base.setVelocity(-(Controller1.Axis3.position()+Controller1.Axis1.position()+move), percent);
       right_base.setVelocity(-(Controller1.Axis3.position()-Controller1.Axis1.position()+move), percent);
-    }
-    else if(chassis_motors==7){
-      left_seven_base.setVelocity(-(Controller1.Axis3.position()+Controller1.Axis1.position()), percent);
-      right_seven_base.setVelocity(-(Controller1.Axis3.position()-Controller1.Axis1.position()), percent);
     }
     
     if(abs(Controller1.Axis3.position())>10){
@@ -27,14 +22,9 @@ void driver_control(){
       left_base.setStopping(brake);
       right_base.setStopping(brake);
     }
-    if(chassis_motors==4){
+    if(chassis_motors==6){
       left_base.spin(forward);
       right_base.spin(forward);
-    }
-    
-    if(chassis_motors==7){
-      left_seven_base.spin(forward);
-      right_seven_base.spin(forward);
     }
 
     //R2 CONTROLLER CODE==============
@@ -76,14 +66,14 @@ void driver_control(){
     }
     Last_up = up_press;
 
-    if((match_load == true)&&(rotation_sensor.angle()>320)){
-      pto_cata.spin(reverse, 200, rpm);
+    if((match_load == true)&&(rotation_sensor.angle()>310)){
+      cata.spin(reverse, 200, rpm);
     }
-    else if((match_load == true)&&(rotation_sensor.angle()<320)){
-      pto_cata.stop(brake);
-      pto_cata.spin(fwd, 200, rpm);
+    else if((match_load == true)&&(rotation_sensor.angle()<310)){
+      cata.stop(brake);
+      cata.spin(fwd, 200, rpm);
       wait(150, msec);
-      pto_cata.stop(brake);
+      cata.stop(brake);
       wait(5, msec);
     }
 
@@ -97,12 +87,11 @@ void driver_control(){
     Last_L2 = L2_press;
 
     if((cata_drop == true)&&(rotation_sensor.angle()>295)){
-      pto.set(false);
       chassis_motors = 4;
-      pto_cata.spin(reverse, 200, rpm);
+      cata.spin(reverse, 200, rpm);
     }
     else if((cata_drop == true)&&(rotation_sensor.angle()<290)){
-      pto_cata.stop(coast);
+      cata.stop(coast);
       cata_drop = false;
     }
 
@@ -115,29 +104,29 @@ void driver_control(){
     }
     Last_L1 = L1_press;
 
-    if((cata_rise == 1)&&(rotation_sensor.angle()<350)){
-      pto.set(false);
+    if((cata_rise == 1)&&(rotation_sensor.angle()<345)){
       chassis_motors = 4;
-      pto_cata.spin(fwd, 200, rpm);
+      cata.spin(fwd, 200, rpm);
       // wait(200, msec);
       // pto_cata.stop(coast);
     }
     else if((cata_rise == 1)&&(rotation_sensor.angle()>340)){
-      pto_cata.stop(coast);
+      cata.stop(coast);
       cata_rise = 2;
     }
     else if((cata_rise == 2)&&(rotation_sensor.angle()>330)){
-      pto_cata.spin(reverse, 200, rpm);
+      cata.spin(reverse, 200, rpm);
     }
-    else if((cata_rise == 2)&&(rotation_sensor.angle()<320)){
-      pto_cata.stop(coast);
+    else if((cata_rise == 2)&&(rotation_sensor.angle()<310)){
+      cata.stop(coast);
       cata_rise = 0;
+      // Controller1.rumble("*-*");
     }
 
     //STOP CATA===================
 
     if((match_load == false)&&(cata_rise==0)&(cata_drop == false)){
-      pto_cata.stop(coast);
+      cata.stop(coast);
     }
 
     //LEFT CONTROLLER_LEFT WING============
@@ -193,23 +182,21 @@ void driver_control(){
     //===================
 
     Brain.Screen.setCursor(1,1);
-    Brain.Screen.print("cata LT temp: %.2f ",LeftTopMotor.temperature(celsius));
-    Brain.Screen.newLine();
-    Brain.Screen.print("cata LB temp: %.2f ",LeftBottomMotor.temperature(celsius));
-    Brain.Screen.newLine();
-    Brain.Screen.print("cata RT temp: %.2f ",RightTopMotor.temperature(celsius));
-    Brain.Screen.newLine();
-    Brain.Screen.print("cata RB temp: %.2f ",RightBottomMotor.temperature(celsius));
+    Brain.Screen.print("cata temp: %.2f ",cata.temperature(celsius));
     Brain.Screen.newLine();
     Brain.Screen.print("intake temp: %.2f ",intake.temperature(celsius));
     Brain.Screen.newLine();
-    Brain.Screen.print("cata LF temp: %.2f ",left_front.temperature(celsius));
+    Brain.Screen.print("LFront temp: %.2f ",left_front.temperature(celsius));
     Brain.Screen.newLine();
-    Brain.Screen.print("cata LBack temp: %.2f ",left_back.temperature(celsius));
+    Brain.Screen.print("LMid temp: %.2f ",left_mid.temperature(celsius));
     Brain.Screen.newLine();
-    Brain.Screen.print("cata RF temp: %.2f ",right_front.temperature(celsius));
+    Brain.Screen.print("LBack temp: %.2f ",left_back.temperature(celsius));
     Brain.Screen.newLine();
-    Brain.Screen.print("cata RBack temp: %.2f ",right_back.temperature(celsius));
+    Brain.Screen.print("RFront temp: %.2f ",right_front.temperature(celsius));
+    Brain.Screen.newLine();
+    Brain.Screen.print("RMid temp: %.2f ",right_mid.temperature(celsius));
+    Brain.Screen.newLine();
+    Brain.Screen.print("RBack temp: %.2f ",right_back.temperature(celsius));
     // Brain.Screen.newLine();
     // Brain.Screen.print("Distance: %.2f", distance_sensor.objectDistance(mm));
     Brain.Screen.newLine();
