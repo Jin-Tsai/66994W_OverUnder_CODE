@@ -87,7 +87,6 @@ void driver_control(){
     Last_L2 = L2_press;
 
     if((cata_drop == true)&&(rotation_sensor.angle()>295)){
-      chassis_motors = 4;
       cata.spin(reverse, 200, rpm);
     }
     else if((cata_drop == true)&&(rotation_sensor.angle()<290)){
@@ -105,7 +104,6 @@ void driver_control(){
     Last_L1 = L1_press;
 
     if((cata_rise == 1)&&(rotation_sensor.angle()<345)){
-      chassis_motors = 4;
       cata.spin(fwd, 200, rpm);
       // wait(200, msec);
       // pto_cata.stop(coast);

@@ -20,7 +20,7 @@ digital_out l_wing = digital_out(Brain.ThreeWirePort.D);
 digital_out balance = digital_out(Brain.ThreeWirePort.C);
 
 motor_group left_base = motor_group(left_front, left_mid, left_back);
-motor_group right_base = motor_group(right_front, left_mid, right_back);
+motor_group right_base = motor_group(right_front, right_mid, right_back);
 motor_group chassis = motor_group(left_front, left_mid, left_back, right_front, right_mid, right_back);
 
 // distance distance_sensor = distance(PORT9);
