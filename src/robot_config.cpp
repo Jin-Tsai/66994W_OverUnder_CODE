@@ -26,5 +26,6 @@ motor_group chassis = motor_group(left_front, left_mid, left_back, right_front, 
 // distance distance_sensor = distance(PORT9);
 rotation rotation_sensor = rotation(PORT3);
 inertial Inertial = inertial(PORT14);
-
+triport Expander = triport(PORT10);
+potV2 auto_selector = potV2(Brain.ThreeWirePort.F);
 controller Controller1 = controller(primary);

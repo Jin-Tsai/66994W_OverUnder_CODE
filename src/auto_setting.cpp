@@ -72,6 +72,37 @@ void move_deg(double wanted_deg, double left_speed, double right_speed, double r
   wait(10, msec);
 }
 
+void move_new_deg(double wanted_deg, double max_speed,double max_turn_speed, double rotate, double kp) {
+  left_front.resetPosition();
+  left_back.resetPosition();
+  right_front.resetPosition();
+  right_back.resetPosition();
+  
+  double error = g_heading(rotate);
+  double turn_speed = 0;
+  double sum_deg = 0;
+  double straight_kp=0.3;
+  double straight_speed=0;
+  double straight_direction = wanted_deg/fabs(wanted_deg);
+  wanted_deg = fabs(wanted_deg);
+  while (sum_deg < wanted_deg) {
+    sum_deg = ((fabs(left_back.position(deg)) + fabs(left_front.position(deg)) +
+               fabs(right_back.position(deg)) + fabs(right_front.position(deg)))
+             / 4);
+    straight_speed = (wanted_deg-straight_speed)*straight_kp;
+    if(fabs(straight_speed) > max_speed) straight_speed = max_speed;
+    straight_speed*= straight_direction;
+    error = g_heading(rotate);
+    turn_speed = error * kp;
+    if(fabs(turn_speed)>fabs(max_turn_speed)){
+      turn_speed = max_turn_speed *turn_speed/fabs(turn_speed);
+    } 
+    TankMove(-(straight_speed + turn_speed), -(straight_speed - turn_speed));
+  }
+  drivertrainStop(brake);
+  wait(10, msec);
+}
+
 void move_no_stop(double wanted_deg, double left_speed, double right_speed, double rotate){
   left_front.resetPosition();
   left_back.resetPosition();

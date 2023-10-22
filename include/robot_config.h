@@ -25,4 +25,6 @@ extern motor_group chassis;
 extern rotation rotation_sensor;
 extern inertial Inertial;
 
+extern potV2 auto_selector;
+extern triport Expander;
 extern controller Controller1;

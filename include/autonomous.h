@@ -5,6 +5,8 @@ void same_side_awp();
 void diff_side_awp_no_middle();
 void diff_side_awp_middle();
 
+void auto_skills();
+
 int task_open_rwing();
 int task_close_rwing();
 
