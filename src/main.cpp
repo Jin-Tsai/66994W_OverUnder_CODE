@@ -37,7 +37,7 @@ void pre_auton(void)
       Brain.Screen.print("auto_skills");
       break;
     case 17 ... 33:
-      Brain.Screen.print("same_side_awp");
+      Brain.Screen.print("diif_side_awp_middle");
       break;
     default:
       Brain.Screen.print("same_side_awp");
@@ -65,8 +65,8 @@ void autonomous(void)
     auto_skills();
     break;
   case 17 ... 33:
-    Brain.Screen.print("same_side_awp");
-    same_side_awp();
+    Brain.Screen.print("diif_side_awp_middle");
+    diff_side_awp_middle();
     break;
   default:
     Brain.Screen.print("same_side_awp");
