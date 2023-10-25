@@ -292,11 +292,11 @@ void diff_side_awp_no_middle(){
 
 void diff_side_awp_middle(){
   intake.spin(reverse, 600, rpm);
-  move_new_deg(2800, 70, 40, 15, 0.5);
-  move_new_deg(250, 20, 40, 15, 0.4);
+  move_new_deg(2550, 70, 40, 17, 0.5);
+  move_new_deg(200, 20, 40, 17, 0.4);
   wait(600, msec);
 
-  move_new_deg(-2600, 70, 40, 45, 0.4);
+  move_new_deg(-2630, 70, 40, 45, 0.4);
   wait(100, msec);
   move_turn(-25, 0.5);
   intake.stop(brake);
@@ -309,9 +309,13 @@ void diff_side_awp_middle(){
 
   move_new_deg(-800, 70, 70, 270, 1.2);
   // wait(1000, msec); //測試用wait
-  move_new_deg(-750, 70, 40, 265, 0.4);
+  move_new_deg(-770, 80, 40, 265, 0.4);
   // wait(1000, msec); //測試用wait
   r_wing.set(true);
+
+  TankMove(-10, 0);
+  wait(400, msec);
+  drivertrainStop(brake);
   wait(1000, msec); //測試用wait
 
 }
