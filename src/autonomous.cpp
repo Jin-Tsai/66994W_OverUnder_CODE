@@ -321,7 +321,7 @@ void diff_side_awp_middle(){
   move_new_deg(-200, 40, 40, 17, 0.4);
   move_turn(-105, 0.55);
   // intake.stop(brake);
-  wait(200, msec);
+  wait(300, msec);
   // intake.stop(brake);
 
   cata.spin(fwd, 200, rpm);
@@ -343,7 +343,7 @@ void diff_side_awp_middle(){
 
   move_new_deg(-800, 70, 70, 270, 1.3);
   wait(100, msec);
-  move_new_deg(-1180, 30, 40, 270, 0.3);
+  move_new_deg(-1185, 30, 40, 270, 0.3);
   // wait(1000, msec); //測試用wait
   r_wing.set(true);
   // wait(1000, msec); //測試用wait
@@ -385,19 +385,19 @@ void auto_skills(){
 
   // wait(100000000, msec); //測試用wait
 
-  while(Brain.Timer.time(seconds)<43){
-    if((rotation_sensor.angle()>310)){
-      cata.spin(reverse, 200, rpm);
-    }
-    else if((rotation_sensor.angle()<310)){
-      cata.stop(brake);
-      cata.spin(fwd, 200, rpm);
-      wait(100, msec);
-      cata.stop(brake);
-      wait(5, msec);
-    }
-  }
-  cata.stop(brake);
+  // while(Brain.Timer.time(seconds)<43){
+  //   if((rotation_sensor.angle()>310)){
+  //     cata.spin(reverse, 200, rpm);
+  //   }
+  //   else if((rotation_sensor.angle()<310)){
+  //     cata.stop(brake);
+  //     cata.spin(fwd, 200, rpm);
+  //     wait(100, msec);
+  //     cata.stop(brake);
+  //     wait(5, msec);
+  //   }
+  // }
+  // cata.stop(brake);
 
   move_turn(222, 0.5);
   // wait(1000, msec); //測試用wait
@@ -464,7 +464,7 @@ void auto_skills(){
   wait(400, msec);
   drivertrainStop(brake);
   // wait(1000, msec); //測試用wait
-  move_new_deg(200, 70, 40, 180, 0.3);
+  move_new_deg(300, 70, 40, 180, 0.3);
 
 }
 
