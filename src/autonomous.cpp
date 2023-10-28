@@ -385,19 +385,19 @@ void auto_skills(){
 
   // wait(100000000, msec); //測試用wait
 
-  // while(Brain.Timer.time(seconds)<43){
-  //   if((rotation_sensor.angle()>310)){
-  //     cata.spin(reverse, 200, rpm);
-  //   }
-  //   else if((rotation_sensor.angle()<310)){
-  //     cata.stop(brake);
-  //     cata.spin(fwd, 200, rpm);
-  //     wait(100, msec);
-  //     cata.stop(brake);
-  //     wait(5, msec);
-  //   }
-  // }
-  // cata.stop(brake);
+  while(Brain.Timer.time(seconds)<43){
+    if((rotation_sensor.angle()>310)){
+      cata.spin(reverse, 200, rpm);
+    }
+    else if((rotation_sensor.angle()<310)){
+      cata.stop(brake);
+      cata.spin(fwd, 200, rpm);
+      wait(100, msec);
+      cata.stop(brake);
+      wait(5, msec);
+    }
+  }
+  cata.stop(brake);
 
   move_turn(222, 0.5);
   // wait(1000, msec); //測試用wait
