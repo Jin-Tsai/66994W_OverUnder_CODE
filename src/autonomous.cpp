@@ -380,17 +380,17 @@ void auto_skills(){
 
   wait(1000, msec); //測試用wait
 
-  while(Brain.Timer.time(seconds)<30){
-    // if((rotation_sensor.angle()>310)){
-    //   cata.spin(reverse, 200, rpm);
-    // }
-    // else if((rotation_sensor.angle()<310)){
-    //   cata.stop(brake);
-    //   cata.spin(fwd, 200, rpm);
-    //   wait(150, msec);
-    //   cata.stop(brake);
-    //   wait(5, msec);
-    // }
+  while(Brain.Timer.time(seconds)<35){
+    if((rotation_sensor.angle()>310)){
+      cata.spin(reverse, 200, rpm);
+    }
+    else if((rotation_sensor.angle()<310)){
+      cata.stop(brake);
+      cata.spin(fwd, 200, rpm);
+      wait(100, msec);
+      cata.stop(brake);
+      wait(5, msec);
+    }
   }
   cata.stop(brake);
 
@@ -401,9 +401,9 @@ void auto_skills(){
   TankMove(0, -30);
   wait(500, msec);
   drivertrainStop(brake);
-  wait(1000, msec); //測試用wait
+  // wait(1000, msec); //測試用wait
 
-  waitUntil(Brain.Timer.time(seconds)<40);
+  waitUntil(Brain.Timer.time(seconds)>40);
 
   move_new_deg(-4300, 70, 40, 180, 0.53); //轉彎到 1200
   // wait(1000, msec); //測試用wait

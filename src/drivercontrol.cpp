@@ -72,7 +72,7 @@ void driver_control(){
     else if((match_load == true)&&(rotation_sensor.angle()<310)){
       cata.stop(brake);
       cata.spin(fwd, 200, rpm);
-      wait(150, msec);
+      wait(100, msec);
       cata.stop(brake);
       wait(5, msec);
     }
