@@ -82,6 +82,7 @@ void autonomous(void)
 void usercontrol(void)
 {
   // User control code here, inside the loop
+  Brain.Screen.clearScreen();
   driver_control();
 }
 
@@ -97,6 +98,7 @@ int main()
   // Prevent main from exiting with an infinite loop.
   while (true)
   {
+    Brain.Screen.clearScreen();
     Brain.Screen.setCursor(1, 1);
     Brain.Screen.print("GyroHeading: %.2f ", Inertial.heading());
     Brain.Screen.newLine();
