@@ -9,5 +9,7 @@ void auto_skills();
 
 int task_open_rwing();
 int task_close_rwing();
+int task_starting();
+int task_lower_cata();
 
 void test();
