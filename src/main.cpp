@@ -56,9 +56,9 @@ void pre_auton(void)
 
 void autonomous(void)
 {
+  auto_bool = false;
   Brain.Screen.clearScreen();
   Brain.Timer.clear();
-  auto_bool = false;
   switch (auto_select)
   {
   case 7 ... 16:

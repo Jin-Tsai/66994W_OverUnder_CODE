@@ -292,9 +292,11 @@ void diff_side_awp_no_middle(){
 
 int task_lower_cata(){
   cata.spin(reverse, 200, rpm);
+  wait(50, msec);
   while(rotation_sensor.angle()>310){
     cata.spin(reverse, 200, rpm);
   }
+  Controller1.rumble(".-.");
   cata.stop(coast);
   return 0;
 }
@@ -313,7 +315,7 @@ void diff_side_awp_middle(){
 
   intake.spin(reverse, 600, rpm);
   move_new_deg(2400, 70, 40, 17, 0.54);
-  move_new_deg(220, 30, 40, 17, 0.4);
+  move_new_deg(210, 25, 40, 17, 0.4);
   wait(800, msec);
   
   move_new_deg(-200, 40, 40, 17, 0.4);
@@ -324,6 +326,7 @@ void diff_side_awp_middle(){
 
   cata.spin(fwd, 200, rpm);
   wait(200, msec);
+  cata.stop(coast);
   intake.stop(brake);
   task lower_cata = task(task_lower_cata);
 
@@ -340,13 +343,13 @@ void diff_side_awp_middle(){
 
   move_new_deg(-800, 70, 70, 270, 1.3);
   wait(100, msec);
-  move_new_deg(-1170, 30, 40, 270, 0.3);
+  move_new_deg(-1180, 30, 40, 270, 0.3);
   // wait(1000, msec); //測試用wait
   r_wing.set(true);
   // wait(1000, msec); //測試用wait
 
   TankMove(-10, 0);
-  wait(500, msec);
+  wait(550, msec);
   drivertrainStop(brake);
   wait(1000, msec); //測試用wait
 
@@ -382,19 +385,19 @@ void auto_skills(){
 
   // wait(100000000, msec); //測試用wait
 
-  // while(Brain.Timer.time(seconds)<45){
-  //   if((rotation_sensor.angle()>310)){
-  //     cata.spin(reverse, 200, rpm);
-  //   }
-  //   else if((rotation_sensor.angle()<310)){
-  //     cata.stop(brake);
-  //     cata.spin(fwd, 200, rpm);
-  //     wait(100, msec);
-  //     cata.stop(brake);
-  //     wait(5, msec);
-  //   }
-  // }
-  // cata.stop(brake);
+  while(Brain.Timer.time(seconds)<43){
+    if((rotation_sensor.angle()>310)){
+      cata.spin(reverse, 200, rpm);
+    }
+    else if((rotation_sensor.angle()<310)){
+      cata.stop(brake);
+      cata.spin(fwd, 200, rpm);
+      wait(100, msec);
+      cata.stop(brake);
+      wait(5, msec);
+    }
+  }
+  cata.stop(brake);
 
   move_turn(222, 0.5);
   // wait(1000, msec); //測試用wait
@@ -452,8 +455,12 @@ void auto_skills(){
   move_turn(180, 0.5);
   // wait(1000, msec); //測試用wait
   
-  move_new_deg(-1000, 70, 40, 180, 0.3);
-  TankMove(70, 70);
+  move_new_deg(-1000, 100, 40, 180, 0.3);
+  TankMove(100, 100);
+  wait(400, msec);
+  drivertrainStop(brake);
+  move_new_deg(400, 100, 40, 180, 0.3);
+  TankMove(100, 100);
   wait(400, msec);
   drivertrainStop(brake);
   // wait(1000, msec); //測試用wait
