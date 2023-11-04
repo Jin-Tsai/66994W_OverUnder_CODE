@@ -53,10 +53,9 @@ bool left_press = Controller1.ButtonLeft.pressing();
 bool Last_left = left_press;
 bool left_wing = false;
 
+bool Down_press = Controller1.ButtonDown.pressing();
+bool Last_Down = Down_press;
+int cata_hang = 0;
+
 double last_time;
 
-void controller_Down_Pressed(){
-  if(Controller1.ButtonDown.pressing()){
-    balance.set(true);
-  }
-}

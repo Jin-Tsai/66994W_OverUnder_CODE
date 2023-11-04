@@ -2,10 +2,9 @@
 #include <all_func.h>
 
 void driver_control(){
-  Controller1.ButtonDown.pressed(controller_Down_Pressed);
-  wait(15,msec);
 
   Brain.Timer.clear();
+  double cata_rot=0;
 
   while(true){
 
@@ -65,16 +64,17 @@ void driver_control(){
       match_load = !match_load;
     }
     Last_up = up_press;
-
-    if((match_load == true)&&(rotation_sensor.angle()>310)){
+    cata_rot =rotation_sensor.angle();
+    cata_rot = cata_rot<30 ?  cata_rot+360 :cata_rot;
+    if((match_load == true)&&(cata_rot>310)){
       cata.spin(reverse, 200, rpm);
     }
-    else if((match_load == true)&&(rotation_sensor.angle()<310)){
-      cata.stop(brake);
-      cata.spin(fwd, 200, rpm);
-      wait(100, msec);
-      cata.stop(brake);
-      wait(5, msec);
+    else if((match_load == true)&&(cata_rot<310)){
+      // cata.stop(brake);
+      cata.spin(reverse, 200, rpm);
+      // wait(100, msec);
+      // cata.stop(brake);
+      // wait(5, msec);
     }
 
     //L2 CONTROLLER CODE===================
@@ -86,11 +86,11 @@ void driver_control(){
     }
     Last_L2 = L2_press;
 
-    if((cata_drop == true)&&(rotation_sensor.angle()>295)){
-      cata.spin(reverse, 200, rpm);
+    if((cata_drop == true)&&(cata_rot>290)){
+      cata.spin(reverse, 100, rpm);
     }
-    else if((cata_drop == true)&&(rotation_sensor.angle()<290)){
-      cata.stop(coast);
+    else if((cata_drop == true)&&(cata_rot<290)){
+      cata.stop(hold);
       cata_drop = false;
     }
 
@@ -103,29 +103,50 @@ void driver_control(){
     }
     Last_L1 = L1_press;
 
-    if((cata_rise == 1)&&(rotation_sensor.angle()<345)){
-      cata.spin(fwd, 200, rpm);
+    if((cata_rise == 1)&&(cata_rot<345)){
+      cata.spin(reverse, 200, rpm);
       // wait(200, msec);
-      // pto_cata.stop(coast);
+      // pto_cata.stop(hold);
     }
-    else if((cata_rise == 1)&&(rotation_sensor.angle()>340)){
-      cata.stop(coast);
+    else if((cata_rise == 1)&&(cata_rot>345)){
+      // cata.stop(hold);
       cata_rise = 2;
     }
-    else if((cata_rise == 2)&&(rotation_sensor.angle()>330)){
+    else if((cata_rise == 2)&&(cata_rot>330)){
       cata.spin(reverse, 200, rpm);
     }
-    else if((cata_rise == 2)&&(rotation_sensor.angle()<310)){
-      cata.stop(coast);
+    else if((cata_rise == 2)&&(cata_rot<305)){
+      cata.stop(hold);
       cata_rise = 0;
       // Controller1.rumble("*-*");
     }
 
+    //CATA HANG
+    Down_press = Controller1.ButtonDown.pressing();
+    
+    if(Down_press && !Last_Down){
+      cata_hang = 1;
+    }
+    Last_Down = Down_press;
+
+    if((cata_hang == 1)&&(cata_rot<350)){
+      cata.spin(reverse, 200, rpm);
+    }
+    else if((cata_hang == 1)&&(cata_rot>350)){
+      cata_hang = 0;
+      cata.stop(hold);
+    }
+    
     //STOP CATA===================
 
-    if((match_load == false)&&(cata_rise==0)&(cata_drop == false)){
-      cata.stop(coast);
+    if((match_load == false)&&(cata_rise==0)&&(cata_drop == false)&&(cata_hang == 0)){
+      cata.stop(hold);
     }
+    // Controller1.Screen.setCursor(1,1);
+    // Controller1.Screen.print(cata_rise);
+    // Controller1.Screen.print("   ");
+    // Controller1.Screen.print(rotation_sensor.angle());
+
 
     //LEFT CONTROLLER_LEFT WING============
 

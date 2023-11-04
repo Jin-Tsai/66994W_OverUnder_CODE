@@ -126,7 +126,7 @@ int main()
     Brain.Screen.print("Rotarion: %.2f", rotation_sensor.angle());
     Brain.Screen.newLine();
     Brain.Screen.print("Rotarion: %.2f", intake.torque());
-
+    
     if(Brain.Battery.capacity()<40){
       Controller1.rumble("*-*");
     }

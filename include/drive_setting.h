@@ -39,8 +39,10 @@ extern bool left_press;
 extern bool Last_left;
 extern bool left_wing;
 
-extern double last_time;
+extern bool Down_press;
+extern bool Last_Down;
+extern int cata_hang;
 
-void controller_Down_Pressed();
+extern double last_time;
 
 void controller_X_Pressed();
