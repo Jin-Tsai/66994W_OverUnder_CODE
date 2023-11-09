@@ -1,6 +1,15 @@
 #include <all_func.h>
 #include "vex.h"
 
+int task_cata_pos(){
+  // if((rotation_sensor.angle()>330)){
+      cata.spin(reverse, 200, rpm);
+      waitUntil(rotation_sensor.angle()<305);
+      cata.stop(hold);
+  // }
+  return 0;
+}
+
 void same_side_no_scoop() {
   // 前進吸桿子底下的之後後退推triball
   // task free_intake = task(task1);
@@ -200,6 +209,10 @@ void same_side_awp_no_bar(){
 }
 
 void same_side_awp(){
+
+  task cata_lower = task(task_cata_pos);
+  wait(200, msec);
+
   // 吸到 bar 下面的球=======
   intake.spin(reverse, 600, rpm);
   wait(100, msec);
@@ -297,15 +310,15 @@ int task_lower_cata(){
     cata.spin(reverse, 200, rpm);
   }
   Controller1.rumble(".-.");
-  cata.stop(coast);
+  cata.stop(hold);
   return 0;
 }
 int task_starting(){
   cata.spin(reverse, 200, rpm);
-  while(rotation_sensor.angle()>295){
+  while(rotation_sensor.angle()>292){
     cata.spin(reverse, 200, rpm);
   }
-  cata.stop(coast);
+  cata.stop(hold);
   return 0;
 }
 
@@ -315,8 +328,8 @@ void diff_side_awp_middle(){
 
   intake.spin(reverse, 600, rpm);
   move_new_deg(2400, 70, 40, 17, 0.54);
-  move_new_deg(210, 25, 40, 17, 0.4);
-  wait(800, msec);
+  move_new_deg(210, 25, 40, 17, 0.35);
+  wait(900, msec);
   
   move_new_deg(-200, 40, 40, 17, 0.4);
   move_turn(-105, 0.55);
@@ -324,14 +337,14 @@ void diff_side_awp_middle(){
   wait(300, msec);
   // intake.stop(brake);
 
-  cata.spin(fwd, 200, rpm);
+  cata.spin(reverse, 200, rpm);
   wait(200, msec);
   cata.stop(coast);
   intake.stop(brake);
   task lower_cata = task(task_lower_cata);
 
   move_turn(17, 0.57);
-  move_new_deg(-2330, 70, 40, 45, 0.8);
+  move_new_deg(-2300, 70, 40, 45, 0.8);
   wait(100, msec);
   move_turn(-23, 0.5);
   // wait(1000, msec); //測試用wait
@@ -343,7 +356,7 @@ void diff_side_awp_middle(){
 
   move_new_deg(-800, 70, 70, 270, 1.2);
   wait(100, msec);
-  move_new_deg(-1220, 35, 40, 270, 0.3);
+  move_new_deg(-1300, 35, 40, 270, 0.3);
   // wait(1000, msec); //測試用wait
   r_wing.set(true);
   // wait(1000, msec); //測試用wait
@@ -360,114 +373,105 @@ void diff_side_awp_middle(){
 
 void auto_skills(){
 
-  move_new_deg(-1700, 70, 40, 90, 0.95);
-
-  TankMove(100, 100);
-  wait(500, msec);
-  drivertrainStop(brake);
-  wait(10, msec);
-
-  // move_deg(200, 60, 60, 90);
-  move_new_deg(200, 60, 40, 85, 0.5);
-  // wait(1000, msec); //測試用wait
-  move_turn(55, 0.8);
-  // wait(1000, msec); //測試用wait
-  // move_deg(400, 60, 60, 55);
-  move_new_deg(400, 60, 40, 55, 0.5);
-  // wait(1000, msec); //測試用wait
-  move_turn(163, 0.53);
-  // wait(1000, msec); //測試用wait
-  
+  move_turn(40, 0.6);
+  move_new_deg(500, 70, 40, 40, 0.4);
+  move_turn(-15, 0.6);
   TankMove(-20, -20);
-  wait(550, msec);
-  drivertrainStop(brake);
-  TankMove(-10, 0);
-  wait(300, msec);
-  drivertrainStop(brake);
-  wait(10, msec);
+  wait(400, msec);
+  drivertrainStop(hold);
+  // wait(1000, msec); //測試用wait
+
 
   // wait(100000000, msec); //測試用wait
 
-  while(Brain.Timer.time(seconds)<43){ //43
-    if((rotation_sensor.angle()>310)){
-      cata.spin(reverse, 200, rpm);
-    }
-    else if((rotation_sensor.angle()<310)){
-      cata.stop(brake);
-      cata.spin(fwd, 200, rpm);
-      wait(100, msec);
-      cata.stop(brake);
-      wait(5, msec);
-    }
-  }     
-  cata.stop(brake);
+  // while(Brain.Timer.time(seconds)<43){ //43
+  //   cata.spin(reverse, 100, rpm);
+  // }     
+  // cata.stop(hold);
+  drivertrainStop(brake);
 
-  move_turn(222, 0.5); 
+  // if(rotation_sensor.angle()>340){
+  //   while(rotation_sensor.angle()>305){
+  //     cata.spin(reverse, 100, rpm);
+  //   }
+  //   cata.stop(hold);
+  // }
+
+  move_turn(42, 0.5); 
   // wait(1000, msec); //測試用wait
-  move_new_deg(-860, 70, 40, 222, 0.45);
+  move_new_deg(-950, 70, 40, 42, 0.45);
   // wait(1000, msec); //測試用wait
   // TankMove(0, -30);
   // wait(450, msec);
   // drivertrainStop(brake);
-  move_turn(190, 0.5);
+  move_turn(10, 0.5);
   // wait(1000, msec); //測試用wait
 
   // waitUntil(Brain.Timer.time(seconds)>40);
 
-  move_new_deg(-4500, 70, 40, 180, 0.53); //轉彎到 1200
+  move_new_deg(-4500, 70, 40, 0, 0.53); //轉彎到 1200
   // wait(1000, msec); //測試用wait
+  cata.stop(coast);
 
-  move_new_deg(-1800, 80, 80, 89, 0.56);
+  move_new_deg(-1800, 80, 80, -90, 0.5);
   // wait(1000, msec); //測試用wait
 
   TankMove(100, 100);
   wait(700, msec);
   drivertrainStop(brake);
   // wait(1000, msec); //測試用wait
-  move_new_deg(500, 100, 40, 90, 0.5);
+  move_new_deg(350, 100, 40, 270, 0.5);
   TankMove(100, 100);
   wait(700, msec);
   drivertrainStop(brake);
   // wait(1000, msec); //測試用wait
 
-  move_new_deg(200, 70, 40, 95, 0.5);
-  // wait(1000, msec); //測試用wait
-  move_turn(180, 0.55);
+  // move_new_deg(200, 70, 40, 275, 0.5);
+  // // wait(1000, msec); //測試用wait
+  // move_turn(0, 0.55);
   // wait(1000, msec); //測試用wait
   // TankMove(30, 30);
   // wait(500, msec);
   // drivertrainStop(brake);
   // wait(1000, msec); //測試用wait
 
-  move_new_deg(1100, 70, 40, 180, 0.5);
+  // move_new_deg(1100, 70, 40, 0, 0.5);
   // wait(1000, msec); //測試用wait
-  move_turn(25, 0.6);
+  move_new_deg(400, 70, 40, 275, 0.5);
   // wait(1000, msec); //測試用wait
-
+  move_turn(195, 0.6);
+  // wait(1000, msec); //測試用wait
+  r_wing.set(true);
+  l_wing.set(true);
+  move_new_deg(-1100, 70, 40, 195, 0.4);
+  // wait(1000, msec); //測試用wait
+  l_wing.set(false);
+  move_new_deg(-2500, 70, 40, 280, 0.4);
+  // wait(1000, msec); //測試用wait
+  
   // move_new_deg(-1500, 70, 40, 20, 0.5);
   // wait(1000, msec); //測試用wait
   // r_wing.set(true);
   // l_wing.set(true);
 
-  move_new_deg(-2600, 70, 40, 100, 0.4);
+  // move_new_deg(-2500, 70, 40, 280, 0.4);
   // wait(1000, msec); //測試用wait
-  r_wing.set(true);
-  l_wing.set(true);
   TankMove(0, 40);
   wait(300, msec);
-  move_turn(180, 0.5);
+  move_turn(0, 0.5);
+  l_wing.set(true);
   // wait(1000, msec); //測試用wait
   
-  move_new_deg(-1000, 100, 40, 180, 0.3);
+  move_new_deg(-1000, 100, 40, 0, 0.3);
   TankMove(100, 100);
   wait(400, msec);
   drivertrainStop(brake);
-  move_new_deg(400, 100, 40, 180, 0.3);
+  move_new_deg(400, 100, 40, 0, 0.3);
   TankMove(100, 100);
-  wait(400, msec);
+  wait(600, msec);
   drivertrainStop(brake);
   // wait(1000, msec); //測試用wait
-  move_new_deg(300, 70, 40, 180, 0.3);
+  move_new_deg(300, 70, 40, 0, 0.3);
 
 }
 
