@@ -286,6 +286,10 @@ void same_side_awp(){
 
   //去碰 elevation bar
 
+  // TankMove(100, 100);
+  // wait(600, msec);
+  // drivertrainStop(brake);
+
   move_new_deg(-2500, 70, 30, 90, 0.35);
   // wait(1000, msec); //測試用wait
   TankMove(30, 30);
@@ -327,7 +331,7 @@ void diff_side_awp_middle(){
   task start_cata = task(task_starting);
   // Inertial.setHeading(45,deg);
   intake.spin(reverse, 600, rpm);
-  move_new_deg(2340, 80, 40, 17, 0.65);
+  move_new_deg(2240, 80, 40, 17, 0.65);
   move_new_deg(300, 23, 40, 17, 0.35);
   wait(700, msec);
   
@@ -344,8 +348,8 @@ void diff_side_awp_middle(){
   intake.stop(brake);
   // task lower_cata = task(task_lower_cata);
 
-  move_turn(30, 0.57);
-  move_new_deg(-1600, 70, 40, 45, 0.9);
+  move_turn(35, 0.57);
+  move_new_deg(-1530, 70, 40, 45, 0.9);
   wait(50, msec);
   move_turn(-23, 0.5);
   // wait(1000, msec); //測試用wait
@@ -401,7 +405,7 @@ void auto_skills(){
 
   while(Brain.Timer.time(seconds)<44){ //43
     cata.spin(reverse, 12, volt);
-  }     
+  }
   cata.stop(hold);
 
   if(rotation_sensor.angle()>340){
@@ -422,8 +426,9 @@ void auto_skills(){
   // wait(1000, msec); //測試用wait
 
   // waitUntil(Brain.Timer.time(seconds)>40);
+  // wait(1000000000, msec); //測試用wait
 
-  move_new_deg(-4500, 90, 40, -1, 0.6); //轉彎到 1200
+  move_new_deg(-4400, 90, 40, -1, 0.6); //轉彎到 1200
   // wait(1000000000, msec); //測試用wait
   cata.stop(coast);
 
