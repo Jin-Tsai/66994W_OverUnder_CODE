@@ -23,29 +23,29 @@ void pre_auton(void)
 
   inertial_calibate();
   Brain.Screen.setFont(mono60);
-  // while (auto_bool)
-  // {
-  //   auto_select = auto_selector.value(pct);
-  //   Brain.Screen.setCursor(1, 1);
-  //   Brain.Screen.print("Rotarion: %.2f", rotation_sensor.angle());
-  //   Brain.Screen.newLine();
-  //   Brain.Screen.print(auto_selector.value(pct));
-  //   Brain.Screen.print("   ");
-  //   Brain.Screen.newLine();
-  //   switch (auto_select)
-  //   {
-  //   case 7 ... 16:
-  //     Brain.Screen.print("auto_skills");
-  //     break;
-  //   case 17 ... 33:
-  //     Brain.Screen.print("diif_side_awp_middle");
-  //     break;
-  //   default:
-  //     Brain.Screen.print("same_side_awp");
-  //     break;
-  //   }
-  //   wait(5, msec);
-  // }
+  while (auto_bool)
+  {
+    auto_select = auto_selector.value(pct);
+    Brain.Screen.setCursor(1, 1);
+    Brain.Screen.print("Rotarion: %.2f", rotation_sensor.angle());
+    Brain.Screen.newLine();
+    Brain.Screen.print(auto_selector.value(pct));
+    Brain.Screen.print("   ");
+    Brain.Screen.newLine();
+    switch (auto_select)
+    {
+    case 7 ... 16:
+      Brain.Screen.print("auto_skills");
+      break;
+    case 17 ... 33:
+      Brain.Screen.print("diif_side_awp_middle");
+      break;
+    default:
+      Brain.Screen.print("same_side_awp");
+      break;
+    }
+    wait(5, msec);
+  }
   Brain.Screen.setCursor(1, 1);
   Brain.Screen.setFont(mono20);
   // All activities that occur before the competition starts
@@ -56,25 +56,25 @@ void pre_auton(void)
 
 void autonomous(void)
 {
-  // auto_bool = false;
+  auto_bool = false;
   Brain.Screen.clearScreen();
   Brain.Timer.clear();
-  // switch (auto_select)
-  // {
-  // case 7 ... 16:
-  //   Brain.Screen.print("auto_skills");
+  switch (auto_select)
+  {
+  case 7 ... 16:
+    Brain.Screen.print("auto_skills");
   auto_skills();
-  //   break;
-  // case 17 ... 33:
-  //   Brain.Screen.print("diif_side_awp_middle");
-  //   diff_side_awp_middle();
-  //   break;
-  // default:
-  //   Brain.Screen.print("same_side_awp");
-  //   same_side_awp();
-  //   break;
-  // }
-  // test();
+    break;
+  case 17 ... 33:
+    Brain.Screen.print("diif_side_final_simple");
+    diff_side_final_simple();
+    break;
+  default:
+    Brain.Screen.print("same_side_awp");
+    same_side_awp();
+    break;
+  }
+  test();
 }
 
 // Driver Control

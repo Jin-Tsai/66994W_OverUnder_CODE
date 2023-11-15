@@ -303,8 +303,11 @@ void same_side_awp(){
 
 }
 
-void diff_side_awp_no_middle(){
-  
+void same_side_final(){
+  task cata_lower = task(task_cata_pos);
+  intake.spin(reverse, 600, rpm);
+
+
 }
 
 int task_lower_cata(){
@@ -374,6 +377,34 @@ void diff_side_awp_middle(){
   wait(550, msec);
   drivertrainStop(brake);
   wait(1000, msec); //測試用wait
+
+}
+
+void diff_side_final_simple(){
+
+  Inertial.setHeading(40,deg);
+  move_new_deg(450, 70, 40, 40, 0.4);
+  // wait(1000, msec); //測試用wait
+  l_wing.set(true);
+  move_new_deg(-300, 70, 70, 10, 1.2);
+  // wait(1000, msec); //測試用wait
+  wait(100, msec);
+  l_wing.set(false);
+  // wait(1000, msec); //測試用wait
+
+  move_new_deg(-800, 50, 70, 0, 0.6);
+  // move_turn(0, 0.5);
+  // wait(1000, msec); //測試用wait
+  wait(100, msec);
+  move_new_deg(-1300, 80, 40, 0, 0.4);
+
+  wait(100, msec);
+  move_new_deg(2500, 70, 40, 35, 0.4);
+  // wait(1000, msec); //測試用wait
+  move_turn(-19, 0.5);
+  TankMove(-17, -17);
+  wait(300, msec);
+  drivertrainStop(brake);
 
 }
 

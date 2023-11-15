@@ -2,8 +2,10 @@
 void same_side_no_scoop();
 void same_side_awp_no_bar();
 void same_side_awp();
+void same_side_final();
 void diff_side_awp_no_middle();
 void diff_side_awp_middle();
+void diff_side_final_simple();
 
 void auto_skills();
 
