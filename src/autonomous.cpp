@@ -4,7 +4,7 @@
 int task_cata_pos(){
   // if((rotation_sensor.angle()>330)){
       cata.spin(reverse, 200, rpm);
-      waitUntil(rotation_sensor.angle()<305);
+      waitUntil(rotation_sensor.angle()>45);
       cata.stop(hold);
   // }
   return 0;
@@ -313,7 +313,7 @@ void same_side_final(){
 int task_lower_cata(){
   cata.spin(reverse, 200, rpm);
   wait(100, msec);
-  while(rotation_sensor.angle()>310){
+  while(rotation_sensor.angle()<40){
     cata.spin(reverse, 200, rpm);
   }
   Controller1.rumble(".-.");
@@ -322,7 +322,7 @@ int task_lower_cata(){
 }
 int task_starting(){
   cata.spin(reverse, 200, rpm);
-  while(rotation_sensor.angle()>290){
+  while(rotation_sensor.angle()<60){
     cata.spin(reverse, 200, rpm);
   }
   cata.stop(hold);
@@ -408,10 +408,67 @@ void diff_side_final_simple(){
 
 }
 
+void diff_side_final_middle(){
+  Inertial.setHeading(270,deg);
+  move_new_deg(-2070, 70, 40, 290, 0.4);
+  // wait(1000, msec); //測試用wait
+  r_wing.set(true);
+  while(Inertial.heading()<330){
+    TankMove(0, 60);
+  }
+  drivertrainStop(brake);
+  wait(100, msec);
+  move_turn(359, 0.5);
+  wait(100, msec);
+  TankMove(70, 70);
+  wait(400, msec);
+  TankMove(30, 30);
+  wait(300, msec);
+  drivertrainStop(brake);
+  // wait(1000, msec); //測試用wait
+  r_wing.set(false);
+
+  move_new_deg(400, 50, 75, -90, 0.8);
+  wait(1000, msec); //測試用wait
+  move_turn(-90, 0.55);
+  wait(1000, msec); //測試用wait
+  move_new_deg(1500, 70, 40, -90, 0.4);
+  wait(1000, msec); //測試用wait
+  TankMove(-30, -30);
+  wait(300, msec);
+  drivertrainStop(brake);
+
+  move_new_deg(-400, 50, 30, -90, 0.4);
+  move_turn(65, 0.55);
+  move_new_deg(-400, 50, 30, 65, 0.4);
+  wait(1000, msec); //測試用wait
+  l_wing.set(true);
+  move_new_deg(-700, 70, 70, 15, 1.2);
+  // wait(1000, msec); //測試用wait
+  wait(100, msec);
+  l_wing.set(false);
+  wait(1000, msec); //測試用wait
+
+  move_new_deg(-800, 50, 70, 0, 0.6);
+  // move_turn(0, 0.5);
+  // wait(1000, msec); //測試用wait
+  wait(100, msec);
+  move_new_deg(-1150, 80, 40, 0, 0.4);
+
+  wait(100, msec);
+  move_new_deg(2500, 70, 40, 30, 0.4);
+  // wait(1000, msec); //測試用wait
+  move_turn(-19, 0.5);
+  TankMove(-17, -17);
+  wait(300, msec);
+  drivertrainStop(brake);
+
+}
+
 // int task_lower_cata(){
 //   cata.spin(reverse, 200, rpm);
 //   wait(100, msec);
-//   while(rotation_sensor.angle()>310){
+//   while(rotation_sensor.angle()<50){
 //     cata.spin(reverse, 200, rpm);
 //   }
 //   // Controller1.rumble(".-.");
@@ -440,7 +497,7 @@ void auto_skills(){
   cata.stop(hold);
 
   if(rotation_sensor.angle()>340){
-    while(rotation_sensor.angle()>305){
+    while(rotation_sensor.angle()<55){
       cata.spin(reverse, 12.0, volt);
     }
     cata.stop(hold);

@@ -64,12 +64,12 @@ void driver_control(){
       match_load = !match_load;
     }
     Last_up = up_press;
-    cata_rot =rotation_sensor.angle();
-    cata_rot = cata_rot<30 ?  cata_rot+360 :cata_rot;
-    if((match_load == true)&&(cata_rot>310)){
+    cata_rot = rotation_sensor.angle();
+    cata_rot = cata_rot>330 ?  cata_rot-360 :cata_rot;
+    if((match_load == true)&&(cata_rot<45)){
       cata.spin(reverse, 200, rpm);
     }
-    else if((match_load == true)&&(cata_rot<310)){
+    else if((match_load == true)&&(cata_rot>45)){
       // cata.stop(brake);
       cata.spin(reverse, 200, rpm);
       // wait(100, msec);
@@ -86,10 +86,10 @@ void driver_control(){
     }
     Last_L2 = L2_press;
 
-    if((cata_drop == true)&&(cata_rot>290)){
+    if((cata_drop == true)&&(cata_rot<60)){
       cata.spin(reverse, 100, rpm);
     }
-    else if((cata_drop == true)&&(cata_rot<290)){
+    else if((cata_drop == true)&&(cata_rot>60)){
       cata.stop(hold);
       cata_drop = false;
     }
@@ -103,19 +103,19 @@ void driver_control(){
     }
     Last_L1 = L1_press;
 
-    if((cata_rise == 1)&&(cata_rot<345)){
+    if((cata_rise == 1)&&(cata_rot>45)){
       cata.spin(reverse, 200, rpm);
       // wait(200, msec);
       // pto_cata.stop(hold);
     }
-    else if((cata_rise == 1)&&(cata_rot>345)){
+    else if((cata_rise == 1)&&(cata_rot<15)){
       // cata.stop(hold);
       cata_rise = 2;
     }
-    else if((cata_rise == 2)&&(cata_rot>330)){
+    else if((cata_rise == 2)&&(cata_rot<30)){
       cata.spin(reverse, 200, rpm);
     }
-    else if((cata_rise == 2)&&(cata_rot<305)){
+    else if((cata_rise == 2)&&(cata_rot>45)){
       cata.stop(hold);
       cata_rise = 0;
       // Controller1.rumble("*-*");
@@ -129,10 +129,10 @@ void driver_control(){
     }
     Last_Down = Down_press;
 
-    if((cata_hang == 1)&&(cata_rot<350)){
+    if((cata_hang == 1)&&(cata_rot>10)){
       cata.spin(reverse, 200, rpm);
     }
-    else if((cata_hang == 1)&&(cata_rot>350)){
+    else if((cata_hang == 1)&&(cata_rot<10)){
       cata_hang = 0;
       cata.stop(hold);
     }

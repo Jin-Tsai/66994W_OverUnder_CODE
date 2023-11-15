@@ -41,7 +41,7 @@ void pre_auton(void)
       Brain.Screen.print("diif_side_awp_middle");
       break;
     default:
-      Brain.Screen.print("same_side_awp");
+      Brain.Screen.print("diff_side_final_middle");
       break;
     }
     wait(5, msec);
@@ -63,15 +63,15 @@ void autonomous(void)
   {
   case 7 ... 16:
     Brain.Screen.print("auto_skills");
-  auto_skills();
+    auto_skills();
     break;
   case 17 ... 33:
     Brain.Screen.print("diif_side_final_simple");
     diff_side_final_simple();
     break;
   default:
-    Brain.Screen.print("same_side_awp");
-    same_side_awp();
+    Brain.Screen.print("diff_side_final_middle");
+    diff_side_final_middle();
     break;
   }
   test();

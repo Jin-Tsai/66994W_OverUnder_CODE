@@ -6,6 +6,7 @@ void same_side_final();
 void diff_side_awp_no_middle();
 void diff_side_awp_middle();
 void diff_side_final_simple();
+void diff_side_final_middle();
 
 void auto_skills();
 
