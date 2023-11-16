@@ -115,7 +115,7 @@ void driver_control(){
     else if((cata_rise == 2)&&(cata_rot<30)){
       cata.spin(reverse, 200, rpm);
     }
-    else if((cata_rise == 2)&&(cata_rot>45)){
+    else if((cata_rise == 2)&&(cata_rot>40)){
       cata.stop(hold);
       cata_rise = 0;
       // Controller1.rumble("*-*");

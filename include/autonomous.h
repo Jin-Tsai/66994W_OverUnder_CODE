@@ -3,6 +3,7 @@ void same_side_no_scoop();
 void same_side_awp_no_bar();
 void same_side_awp();
 void same_side_final();
+void same_side_5final();
 void diff_side_awp_no_middle();
 void diff_side_awp_middle();
 void diff_side_final_simple();

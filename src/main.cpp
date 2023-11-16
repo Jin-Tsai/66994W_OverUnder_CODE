@@ -40,6 +40,12 @@ void pre_auton(void)
     case 17 ... 33:
       Brain.Screen.print("diif_side_awp_middle");
       break;
+    case 34 ... 50:
+      Brain.Screen.print("same_side_final");
+      break;
+    case 61 ... 76:
+      Brain.Screen.print("same_side_5final");
+      break;
     default:
       Brain.Screen.print("diff_side_final_middle");
       break;
@@ -68,6 +74,14 @@ void autonomous(void)
   case 17 ... 33:
     Brain.Screen.print("diif_side_final_simple");
     diff_side_final_simple();
+    break;
+  case 34 ... 60:
+    Brain.Screen.print("same_side_final");
+    same_side_final();
+    break;
+  case 61 ... 76:
+    Brain.Screen.print("same_side_5final");
+    same_side_5final();
     break;
   default:
     Brain.Screen.print("diff_side_final_middle");
