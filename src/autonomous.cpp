@@ -401,7 +401,7 @@ void diff_side_final_simple(){
   wait(100, msec);
   move_new_deg(2500, 70, 40, 35, 0.4);
   // wait(1000, msec); //測試用wait
-  move_turn(-19, 0.5);
+  move_turn(-16, 0.5);
   TankMove(-17, -17);
   wait(300, msec);
   drivertrainStop(brake);
@@ -410,55 +410,65 @@ void diff_side_final_simple(){
 
 void diff_side_final_middle(){
   Inertial.setHeading(270,deg);
-  move_new_deg(-2070, 70, 40, 290, 0.4);
+  move_new_deg(-1900, 90, 70, 290, 0.6);
   // wait(1000, msec); //測試用wait
-  r_wing.set(true);
   while(Inertial.heading()<330){
-    TankMove(0, 60);
+    TankMove(0, 70);
   }
   drivertrainStop(brake);
+  r_wing.set(true);
+  // wait(1000, msec); //測試用wait
   wait(100, msec);
-  move_turn(359, 0.5);
+  move_turn(0, 0.75);
   wait(100, msec);
-  TankMove(70, 70);
-  wait(400, msec);
+  // move_new_deg(-800, 90, 35, 0, 0.4);
+  // wait(1000, msec); //測試用wait
+  TankMove(90, 90);
+  wait(500, msec);
   TankMove(30, 30);
   wait(300, msec);
   drivertrainStop(brake);
-  // wait(1000, msec); //測試用wait
+  wait(100, msec);
   r_wing.set(false);
 
-  move_new_deg(400, 50, 75, -90, 0.8);
-  wait(1000, msec); //測試用wait
-  move_turn(-90, 0.55);
-  wait(1000, msec); //測試用wait
-  move_new_deg(1500, 70, 40, -90, 0.4);
-  wait(1000, msec); //測試用wait
-  TankMove(-30, -30);
-  wait(300, msec);
-  drivertrainStop(brake);
-
-  move_new_deg(-400, 50, 30, -90, 0.4);
-  move_turn(65, 0.55);
-  move_new_deg(-400, 50, 30, 65, 0.4);
-  wait(1000, msec); //測試用wait
-  l_wing.set(true);
-  move_new_deg(-700, 70, 70, 15, 1.2);
+  move_new_deg(1000, 50, 65, -30, 0.65);
   // wait(1000, msec); //測試用wait
+  // while(Inertial.heading()>335){
+  //   TankMove(60, 0);
+  // }
+  // drivertrainStop(brake);
+  // wait(1000, msec); //測試用wait
+  move_turn(306, 0.7);
+  // wait(1000, msec); //測試用wait
+  move_new_deg(2500, 70, 40, 306, 0.4);
   wait(100, msec);
-  l_wing.set(false);
-  wait(1000, msec); //測試用wait
+  // wait(1000000, msec); //測試用wait
+  // TankMove(-30, -30);
+  // wait(300, msec);
+  // drivertrainStop(brake);
 
-  move_new_deg(-800, 50, 70, 0, 0.6);
-  // move_turn(0, 0.5);
+  // move_new_deg(-400, 50, 30, -90, 0.4);
+  move_turn(50, 0.55);
+  // wait(1000, msec); //測試用wait
+  move_new_deg(300, 50, 30, 50, 0.4);
+  // wait(1000, msec); //測試用wait
+  l_wing.set(true);
+  move_new_deg(-500, 70, 70, 15, 1.2);
+  // wait(1000, msec); //測試用wait
+  wait(300, msec);
+  l_wing.set(false);
+  // wait(1000, msec); //測試用wait
+
+  move_new_deg(-800, 50, 55, 0, 0.58);
+  // move_turn(10, 0.5);
   // wait(1000, msec); //測試用wait
   wait(100, msec);
   move_new_deg(-1150, 80, 40, 0, 0.4);
 
-  wait(100, msec);
-  move_new_deg(2500, 70, 40, 30, 0.4);
+  wait(500, msec);
+  move_new_deg(2700, 70, 50, 29, 0.5);
   // wait(1000, msec); //測試用wait
-  move_turn(-19, 0.5);
+  move_turn(-9, 0.5);
   TankMove(-17, -17);
   wait(300, msec);
   drivertrainStop(brake);

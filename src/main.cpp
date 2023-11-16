@@ -27,7 +27,7 @@ void pre_auton(void)
   {
     auto_select = auto_selector.value(pct);
     Brain.Screen.setCursor(1, 1);
-    Brain.Screen.print("Rotarion: %.2f", rotation_sensor.angle());
+    Brain.Screen.print("Gyro: %.2f", Inertial.angle());
     Brain.Screen.newLine();
     Brain.Screen.print(auto_selector.value(pct));
     Brain.Screen.print("   ");
