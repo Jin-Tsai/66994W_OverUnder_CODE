@@ -43,14 +43,14 @@ void driver_control(){
       intake.spin(reverse, 600 , rpm);
       wait(5, msec);
     }
-    else if((intake.torque()>=0.3)&&(last_time == 0.0)){
-      last_time = Brain.Timer.time();
-    }
-    else if((intake.torque()>=0.3)&&((Brain.Timer.time(msec)-last_time)>1000)){
-      intake_spin = false;
-      intake.stop(brake);
-      last_time = 0.0;
-    }
+    // else if((intake.torque()>=0.3)&&(last_time == 0.0)){
+    //   last_time = Brain.Timer.time();
+    // }
+    // else if((intake.torque()>=0.3)&&((Brain.Timer.time(msec)-last_time)>1000)){
+    //   intake_spin = false;
+    //   intake.stop(brake);
+    //   last_time = 0.0;
+    // }
     else if((intake_spin == false)){
       intake.stop(brake);
       last_time = 0.0;

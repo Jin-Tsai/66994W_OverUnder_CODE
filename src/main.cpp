@@ -21,7 +21,7 @@ bool auto_bool = true;
 void pre_auton(void)
 {
 
-  inertial_calibate();
+  // inertial_calibate();
   Brain.Screen.setFont(mono60);
   while (auto_bool)
   {
@@ -38,7 +38,7 @@ void pre_auton(void)
       Brain.Screen.print("auto_skills");
       break;
     case 17 ... 33:
-      Brain.Screen.print("diif_side_awp_middle");
+      Brain.Screen.print("diif_side_simple");
       break;
     case 34 ... 50:
       Brain.Screen.print("same_side_final");
@@ -72,7 +72,7 @@ void autonomous(void)
     auto_skills();
     break;
   case 17 ... 33:
-    Brain.Screen.print("diif_side_final_simple");
+    Brain.Screen.print("diif_side_simple");
     diff_side_final_simple();
     break;
   case 34 ... 60:
