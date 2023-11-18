@@ -17,6 +17,7 @@ motor right_back = motor(PORT1, ratio6_1, true);
 
 digital_out r_wing = digital_out(Brain.ThreeWirePort.A);
 digital_out l_wing = digital_out(Brain.ThreeWirePort.D);
+digital_out balance = digital_out(Brain.ThreeWirePort.B);
 
 motor_group left_base = motor_group(left_front, left_mid, left_back);
 motor_group right_base = motor_group(right_front, right_mid, right_back);

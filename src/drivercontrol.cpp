@@ -38,6 +38,7 @@ void driver_control(){
     if((Controller1.ButtonR1.pressing())){
       intake.spin(fwd, 600, rpm);
       wait(5, msec);
+      intake_spin = false;
     }
     else if((intake_spin == true)&&(intake.torque()<0.3)){
       intake.spin(reverse, 600 , rpm);
@@ -50,8 +51,8 @@ void driver_control(){
     //   intake_spin = false;
     //   intake.stop(brake);
     //   last_time = 0.0;
-    // }
-    else if((intake_spin == false)){
+    // }                                                            
+    else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)){
       intake.stop(brake);
       last_time = 0.0;
     }
@@ -115,7 +116,7 @@ void driver_control(){
     else if((cata_rise == 2)&&(cata_rot<30)){
       cata.spin(reverse, 200, rpm);
     }
-    else if((cata_rise == 2)&&(cata_rot>40)){
+    else if((cata_rise == 2)&&(cata_rot>45)){
       cata.stop(hold);
       cata_rise = 0;
       // Controller1.rumble("*-*");
@@ -135,6 +136,19 @@ void driver_control(){
     else if((cata_hang == 1)&&(cata_rot<10)){
       cata_hang = 0;
       cata.stop(hold);
+    }
+
+    //CATA SIDE HANG
+
+    Right_press = Controller1.ButtonRight.pressing();
+    
+    if(Right_press && !Last_Right){
+      cata_side_hang = 1;
+    }
+    Last_Right = Right_press;
+
+    if((cata_side_hang == 1)){
+      balance.set(true);
     }
     
     //STOP CATA===================

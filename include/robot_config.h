@@ -15,6 +15,7 @@ extern motor right_back;
 
 extern digital_out r_wing;
 extern digital_out l_wing;
+extern digital_out balance;
 
 extern motor_group left_base;
 extern motor_group right_base;

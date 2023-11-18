@@ -57,5 +57,9 @@ bool Down_press = Controller1.ButtonDown.pressing();
 bool Last_Down = Down_press;
 int cata_hang = 0;
 
+bool Right_press = Controller1.ButtonRight.pressing();
+bool Last_Right = Right_press;
+int cata_side_hang = 0;
+
 double last_time;
 
