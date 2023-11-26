@@ -80,20 +80,20 @@ void driver_control(){
 
     //L2 CONTROLLER CODE===================
 
-    L2_press = Controller1.ButtonL2.pressing();
+    // L2_press = Controller1.ButtonL2.pressing();
     
-    if(L2_press && !Last_L2){
-      cata_drop = true;
-    }
-    Last_L2 = L2_press;
+    // if(L2_press && !Last_L2){
+    //   cata_drop = true;
+    // }
+    // Last_L2 = L2_press;
 
-    if((cata_drop == true)&&(cata_rot<60)){
-      cata.spin(reverse, 100, rpm);
-    }
-    else if((cata_drop == true)&&(cata_rot>60)){
-      cata.stop(hold);
-      cata_drop = false;
-    }
+    // if((cata_drop == true)&&(cata_rot<60)){
+    //   cata.spin(reverse, 100, rpm);
+    // }
+    // else if((cata_drop == true)&&(cata_rot>60)){
+    //   cata.stop(coast);
+    //   cata_drop = false;
+    // }
 
     //L1 CONTROLLER CODE================
 
@@ -107,17 +107,16 @@ void driver_control(){
     if((cata_rise == 1)&&(cata_rot>45)){
       cata.spin(reverse, 200, rpm);
       // wait(200, msec);
-      // pto_cata.stop(hold);
     }
     else if((cata_rise == 1)&&(cata_rot<15)){
-      // cata.stop(hold);
+      // cata.stop(coast);
       cata_rise = 2;
     }
     else if((cata_rise == 2)&&(cata_rot<30)){
       cata.spin(reverse, 200, rpm);
     }
     else if((cata_rise == 2)&&(cata_rot>45)){
-      cata.stop(hold);
+      cata.stop(coast);
       cata_rise = 0;
       // Controller1.rumble("*-*");
     }
@@ -135,7 +134,7 @@ void driver_control(){
     }
     else if((cata_hang == 1)&&(cata_rot<10)){
       cata_hang = 0;
-      cata.stop(hold);
+      cata.stop(coast);
     }
 
     //CATA SIDE HANG
@@ -154,7 +153,7 @@ void driver_control(){
     //STOP CATA===================
 
     if((match_load == false)&&(cata_rise==0)&&(cata_drop == false)&&(cata_hang == 0)){
-      cata.stop(hold);
+      cata.stop(coast);
     }
     // Controller1.Screen.setCursor(1,1);
     // Controller1.Screen.print(cata_rise);
@@ -196,12 +195,12 @@ void driver_control(){
 
     //Y CONTROLLER_BOTH WING================
 
-    y_press = Controller1.ButtonY.pressing();
+    L2_press = Controller1.ButtonL2.pressing();
 
-    if(y_press && !Last_y){
+    if(L2_press && !Last_L2){
       both_wing = !both_wing;
     }
-    Last_y = y_press;
+    Last_L2 = L2_press;
 
     if(both_wing == true){
       l_wing.set(true);

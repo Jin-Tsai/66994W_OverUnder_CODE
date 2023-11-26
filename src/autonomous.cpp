@@ -487,7 +487,7 @@ int task_lower_cata(){
     cata.spin(reverse, 200, rpm);
   }
   Controller1.rumble(".-.");
-  cata.stop(hold);
+  cata.stop(coast);
   return 0;
 }
 int task_starting(){
@@ -495,7 +495,7 @@ int task_starting(){
   while(rotation_sensor.angle()<60){
     cata.spin(reverse, 200, rpm);
   }
-  cata.stop(hold);
+  cata.stop(coast);
   return 0;
 }
 
@@ -652,7 +652,7 @@ void diff_side_final_middle(){
 //     cata.spin(reverse, 200, rpm);
 //   }
 //   // Controller1.rumble(".-.");
-//   cata.stop(hold);
+//   cata.stop(coast);
 //   return 0;
 // }
 
@@ -674,13 +674,13 @@ void auto_skills(){
   while(Brain.Timer.time(seconds)<44){ //43
     cata.spin(reverse, 12, volt);
   }
-  cata.stop(hold);
+  cata.stop(coast);
 
   if(rotation_sensor.angle()>340){
     while(rotation_sensor.angle()<55){
       cata.spin(reverse, 12.0, volt);
     }
-    cata.stop(hold);
+    cata.stop(coast);
   }
 
   move_turn(40, 0.5); 
