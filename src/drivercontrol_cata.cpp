@@ -36,12 +36,12 @@ void driver_control(){
     Last_R2 = R2_press;
 
     if((Controller1.ButtonR1.pressing())){
-      intake.spin(fwd, 600, rpm);
+      intake.spin(reverse, 600, rpm);
       wait(5, msec);
       intake_spin = false;
     }
     else if((intake_spin == true)&&(intake.torque()<0.3)){
-      intake.spin(reverse, 600 , rpm);
+      intake.spin(fwd, 600 , rpm);
       wait(5, msec);
     }
     // else if((intake.torque()>=0.3)&&(last_time == 0.0)){
@@ -52,7 +52,7 @@ void driver_control(){
     //   intake.stop(brake);
     //   last_time = 0.0;
     // }                                                            
-    else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)){
+    else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)&&(cata_drop==false)){
       intake.stop(brake);
       last_time = 0.0;
     }
@@ -80,20 +80,21 @@ void driver_control(){
 
     //L2 CONTROLLER CODE===================
 
-    // L2_press = Controller1.ButtonL2.pressing();
+    L2_press = Controller1.ButtonL2.pressing();
     
-    // if(L2_press && !Last_L2){
-    //   cata_drop = true;
-    // }
-    // Last_L2 = L2_press;
+    if(L2_press && !Last_L2){
+      cata_drop = !cata_drop;
+    }
+    Last_L2 = L2_press;
 
-    // if((cata_drop == true)&&(cata_rot<60)){
-    //   cata.spin(reverse, 100, rpm);
-    // }
-    // else if((cata_drop == true)&&(cata_rot>60)){
-    //   cata.stop(coast);
-    //   cata_drop = false;
-    // }
+    if((cata_drop == true)){
+      intake.spin(fwd, 600, rpm);
+      cata.spin(fwd, 600, rpm);
+    }
+    else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)&&(cata_drop==false)){
+      intake.stop(coast);
+      cata.stop(coast);
+    }
 
     //L1 CONTROLLER CODE================
 
@@ -139,16 +140,16 @@ void driver_control(){
 
     //CATA SIDE HANG
 
-    Right_press = Controller1.ButtonRight.pressing();
+    // Right_press = Controller1.ButtonRight.pressing();
     
-    if(Right_press && !Last_Right){
-      cata_side_hang = 1;
-    }
-    Last_Right = Right_press;
+    // if(Right_press && !Last_Right){
+    //   cata_side_hang = 1;
+    // }
+    // Last_Right = Right_press;
 
-    if((cata_side_hang == 1)){
-      balance.set(true);
-    }
+    // if((cata_side_hang == 1)){
+    //   balance.set(true);
+    // }
     
     //STOP CATA===================
 
