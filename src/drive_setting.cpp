@@ -27,7 +27,7 @@ bool pto_switch = false;
 
 bool R2_press = Controller1.ButtonR2.pressing();
 bool Last_R2 = R2_press;
-bool intake_spin = false;
+int intake_spin = 0;
 
 bool up_press = Controller1.ButtonUp.pressing();
 bool match_load = false;

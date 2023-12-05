@@ -26,59 +26,7 @@ void driver_control(){
       right_base.spin(forward);
     }
 
-    //R2 CONTROLLER CODE==============
-
-    R2_press = Controller1.ButtonR2.pressing();
-    
-    if(R2_press && !Last_R2){
-      intake_spin = !intake_spin;
-    }
-    Last_R2 = R2_press;
-
-    if((Controller1.ButtonR1.pressing())){
-      intake.spin(reverse, 600, rpm);
-      wait(5, msec);
-      intake_spin = false;
-    }
-    else if((intake_spin == true)&&(intake.torque()<0.3)){
-      intake.spin(fwd, 600 , rpm);
-      wait(5, msec);
-    }
-    // else if((intake.torque()>=0.3)&&(last_time == 0.0)){
-    //   last_time = Brain.Timer.time();
-    // }
-    // else if((intake.torque()>=0.3)&&((Brain.Timer.time(msec)-last_time)>1000)){
-    //   intake_spin = false;
-    //   intake.stop(brake);
-    //   last_time = 0.0;
-    // }                                                            
-    else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)&&(cata_drop==false)){
-      intake.stop(brake);
-      last_time = 0.0;
-    }
-
-    //MATCH LOAD CODE===========================
-
-    up_press = Controller1.ButtonUp.pressing();
-    
-    if(up_press && !Last_up){
-      match_load = !match_load;
-    }
-    Last_up = up_press;
-    cata_rot = rotation_sensor.angle();
-    cata_rot = cata_rot>330 ?  cata_rot-360 :cata_rot;
-    if((match_load == true)&&(cata_rot<45)){
-      cata.spin(reverse, 200, rpm);
-    }
-    else if((match_load == true)&&(cata_rot>45)){
-      // cata.stop(brake);
-      cata.spin(reverse, 200, rpm);
-      // wait(100, msec);
-      // cata.stop(brake);
-      // wait(5, msec);
-    }
-
-    //L2 CONTROLLER CODE===================
+    //L2 R1 R2 CONTROLLER CODE===================
 
     L2_press = Controller1.ButtonL2.pressing();
     
@@ -87,9 +35,37 @@ void driver_control(){
     }
     Last_L2 = L2_press;
 
+    R2_press = Controller1.ButtonR2.pressing();
+    
+    if(R2_press && !Last_R2){
+      intake_spin = !intake_spin;
+    }
+    Last_R2 = R2_press;
+
     if((cata_drop == true)){
-      intake.spin(fwd, 600, rpm);
       cata.spin(fwd, 600, rpm);
+    }
+    else if((Controller1.ButtonR1.pressing())){
+      intake.spin(reverse, 600, rpm);
+      wait(5, msec);
+      intake_spin = false;
+    }
+    else if((cata_drop == false)&&(intake_spin == true)&&(distance_sensor.objectDistance(mm)>70)){
+      intake.spin(fwd, 600 , rpm);
+      wait(5, msec);
+    }
+    else if((cata_drop == false)&&(intake_spin == true)&&(distance_sensor.objectDistance(mm)<70)){
+      intake_spin = false;
+      intake.stop(hold);
+    }                                                        
+    else if((cata_drop == true)&&(intake_spin == true)){
+      intake.spin(fwd, 600, rpm);
+    }
+    else if((cata_drop == false)){
+      intake_spin = false;
+    }
+    else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)&&(cata_drop==true)){
+      intake.stop(coast);
     }
     else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)&&(cata_drop==false)){
       intake.stop(coast);
@@ -98,29 +74,29 @@ void driver_control(){
 
     //L1 CONTROLLER CODE================
 
-    L1_press = Controller1.ButtonL1.pressing();
+    // L1_press = Controller1.ButtonL1.pressing();
     
-    if(L1_press && !Last_L1){
-      cata_rise = 1;
-    }
-    Last_L1 = L1_press;
+    // if(L1_press && !Last_L1){
+    //   cata_rise = 1;
+    // }
+    // Last_L1 = L1_press;
 
-    if((cata_rise == 1)&&(cata_rot>45)){
-      cata.spin(reverse, 200, rpm);
-      // wait(200, msec);
-    }
-    else if((cata_rise == 1)&&(cata_rot<15)){
-      // cata.stop(coast);
-      cata_rise = 2;
-    }
-    else if((cata_rise == 2)&&(cata_rot<30)){
-      cata.spin(reverse, 200, rpm);
-    }
-    else if((cata_rise == 2)&&(cata_rot>45)){
-      cata.stop(coast);
-      cata_rise = 0;
-      // Controller1.rumble("*-*");
-    }
+    // if((cata_rise == 1)&&(cata_rot>45)){
+    //   cata.spin(reverse, 200, rpm);
+    //   // wait(200, msec);
+    // }
+    // else if((cata_rise == 1)&&(cata_rot<15)){
+    //   // cata.stop(coast);
+    //   cata_rise = 2;
+    // }
+    // else if((cata_rise == 2)&&(cata_rot<30)){
+    //   cata.spin(reverse, 200, rpm);
+    // }
+    // else if((cata_rise == 2)&&(cata_rot>45)){
+    //   cata.stop(coast);
+    //   cata_rise = 0;
+    //   // Controller1.rumble("*-*");
+    // }
 
     //CATA HANG
     Down_press = Controller1.ButtonDown.pressing();
@@ -153,9 +129,9 @@ void driver_control(){
     
     //STOP CATA===================
 
-    if((match_load == false)&&(cata_rise==0)&&(cata_drop == false)&&(cata_hang == 0)){
-      cata.stop(coast);
-    }
+    // if((match_load == false)&&(cata_rise==0)&&(cata_drop == false)&&(cata_hang == 0)){
+    //   cata.stop(coast);
+    // }
     // Controller1.Screen.setCursor(1,1);
     // Controller1.Screen.print(cata_rise);
     // Controller1.Screen.print("   ");

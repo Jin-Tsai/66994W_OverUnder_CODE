@@ -13,7 +13,7 @@ extern bool pto_switch;
 
 extern bool R2_press;
 extern bool Last_R2;
-extern bool intake_spin;
+extern int intake_spin;
 
 extern bool up_press;
 extern bool match_load;

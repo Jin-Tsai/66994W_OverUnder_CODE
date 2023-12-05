@@ -28,6 +28,7 @@ extern motor_group chassis;
 // distance distance_sensor = distance(PORT9);
 extern rotation rotation_sensor;
 extern inertial Inertial;
+extern distance distance_sensor;
 
 extern potV2 auto_selector;
 extern triport Expander;
