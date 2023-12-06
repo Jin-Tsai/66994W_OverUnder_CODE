@@ -45,32 +45,38 @@ void driver_control(){
     if((cata_drop == true)){
       cata.spin(fwd, 600, rpm);
     }
+    else if((cata_drop == false)){
+      // intake_spin = false;
+      cata.stop(coast);
+    }
+    if((intake_spin == true)){
+      if((cata_drop == true)){
+        intake.spin(fwd, 600, rpm);
+      }
+      else if((intake_spin == true)&&(distance_sensor.objectDistance(mm)>70)){
+        intake.spin(fwd, 600 , rpm);
+        wait(5, msec);
+      }
+      else if((intake_spin == true)&&(distance_sensor.objectDistance(mm)<70)){
+        intake_spin = false;
+        intake.stop(hold);
+      }  
+    }
     else if((Controller1.ButtonR1.pressing())){
       intake.spin(reverse, 600, rpm);
       wait(5, msec);
       intake_spin = false;
     }
-    else if((cata_drop == false)&&(intake_spin == true)&&(distance_sensor.objectDistance(mm)>70)){
-      intake.spin(fwd, 600 , rpm);
-      wait(5, msec);
-    }
-    else if((cata_drop == false)&&(intake_spin == true)&&(distance_sensor.objectDistance(mm)<70)){
-      intake_spin = false;
-      intake.stop(hold);
-    }                                                        
-    else if((cata_drop == true)&&(intake_spin == true)){
-      intake.spin(fwd, 600, rpm);
-    }
-    else if((cata_drop == false)){
-      intake_spin = false;
-    }
-    else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)&&(cata_drop==true)){
+    else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)){
       intake.stop(coast);
     }
-    else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)&&(cata_drop==false)){
-      intake.stop(coast);
-      cata.stop(coast);
-    }
+    // else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)&&(cata_drop==true)){
+    //   intake.stop(coast);
+    // }
+    // else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)&&(cata_drop==false)){
+    //   intake.stop(coast);
+    //   cata.stop(coast);
+    // }
 
     //L1 CONTROLLER CODE================
 
@@ -172,21 +178,21 @@ void driver_control(){
 
     //Y CONTROLLER_BOTH WING================
 
-    L2_press = Controller1.ButtonL2.pressing();
+    // L2_press = Controller1.ButtonL2.pressing();
 
-    if(L2_press && !Last_L2){
-      both_wing = !both_wing;
-    }
-    Last_L2 = L2_press;
+    // if(L2_press && !Last_L2){
+    //   both_wing = !both_wing;
+    // }
+    // Last_L2 = L2_press;
 
-    if(both_wing == true){
-      l_wing.set(true);
-      r_wing.set(true);
-    }
-    else if((both_wing == false)&&(left_wing == false)&&(right_wing == false)){
-      l_wing.set(false);
-      r_wing.set(false);
-    }
+    // if(both_wing == true){
+    //   l_wing.set(true);
+    //   r_wing.set(true);
+    // }
+    // else if((both_wing == false)&&(left_wing == false)&&(right_wing == false)){
+    //   l_wing.set(false);
+    //   r_wing.set(false);
+    // }
 
     //===================
 
