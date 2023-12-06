@@ -23,7 +23,7 @@ int rot_angle;
 
 bool x_press = Controller1.ButtonX.pressing();
 bool Last_x = !x_press;
-bool pto_switch = false;
+bool x_switch = false;
 
 bool R2_press = Controller1.ButtonR2.pressing();
 bool Last_R2 = R2_press;

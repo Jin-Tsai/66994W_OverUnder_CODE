@@ -70,13 +70,6 @@ void driver_control(){
     else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)){
       intake.stop(coast);
     }
-    // else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)&&(cata_drop==true)){
-    //   intake.stop(coast);
-    // }
-    // else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)&&(cata_drop==false)){
-    //   intake.stop(coast);
-    //   cata.stop(coast);
-    // }
 
     //L1 CONTROLLER CODE================
 
@@ -178,12 +171,12 @@ void driver_control(){
 
     //Y CONTROLLER_BOTH WING================
 
-    // L2_press = Controller1.ButtonL2.pressing();
+    // y_press = Controller1.ButtonY.pressing();
 
-    // if(L2_press && !Last_L2){
+    // if(y_press && !Last_y){
     //   both_wing = !both_wing;
     // }
-    // Last_L2 = L2_press;
+    // Last_y = y_press;
 
     // if(both_wing == true){
     //   l_wing.set(true);
