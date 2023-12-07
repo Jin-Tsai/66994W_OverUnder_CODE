@@ -29,7 +29,7 @@ motor_group chassis = motor_group(left_front, left_mid, left_back, right_front, 
 
 // distance distance_sensor = distance(PORT9);
 rotation rotation_sensor = rotation(PORT4);
-inertial Inertial = inertial(PORT14);
+inertial Inertial = inertial(PORT19);
 distance distance_sensor = distance(PORT3);
 
 triport Expander = triport(PORT10);

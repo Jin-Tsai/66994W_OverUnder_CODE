@@ -81,7 +81,7 @@ void move_new_deg(double wanted_deg, double max_speed,double max_turn_speed, dou
   double error = g_heading(rotate);
   double turn_speed = 0;
   double sum_deg = 0;
-  double straight_kp=0.3;
+  double straight_kp=0.2;
   double straight_speed=0;
   double straight_direction = wanted_deg/fabs(wanted_deg);
   wanted_deg = fabs(wanted_deg);

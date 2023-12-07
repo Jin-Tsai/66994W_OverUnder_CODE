@@ -10,6 +10,7 @@ void diff_side_final_simple();
 void diff_side_final_middle();
 
 void auto_skills();
+void auto_skills_middle();
 
 int task_open_rwing();
 int task_close_rwing();

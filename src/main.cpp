@@ -65,30 +65,30 @@ void autonomous(void)
   auto_bool = false;
   Brain.Screen.clearScreen();
   Brain.Timer.clear();
-  switch (auto_select)
-  {
-  case 7 ... 16:
-    Brain.Screen.print("auto_skills");
-    auto_skills();
-    break;
-  case 17 ... 33:
-    Brain.Screen.print("diif_side_simple");
-    diff_side_final_simple();
-    break;
-  case 34 ... 60:
-    Brain.Screen.print("same_side_final");
-    same_side_final();
-    break;
-  case 61 ... 76:
-    Brain.Screen.print("same_side_5final");
-    same_side_5final();
-    break;
-  default:
-    Brain.Screen.print("diff_side_final_middle");
-    diff_side_final_middle();
-    break;
-  }
-  test();
+  auto_skills_middle();
+  // switch (auto_select)
+  // {
+  // case 7 ... 16:
+  //   Brain.Screen.print("auto_skills");
+  //   auto_skills();
+  //   break;
+  // case 17 ... 33:
+  //   Brain.Screen.print("diif_side_simple");
+  //   diff_side_final_simple();
+  //   break;
+  // case 34 ... 60:
+  //   Brain.Screen.print("same_side_final");
+  //   same_side_final();
+  //   break;
+  // case 61 ... 76:
+  //   Brain.Screen.print("same_side_5final");
+  //   same_side_5final();
+  //   break;
+  // default:
+  //   Brain.Screen.print("diff_side_final_middle");
+  //   diff_side_final_middle();
+  //   break;
+  // }
 }
 
 // Driver Control

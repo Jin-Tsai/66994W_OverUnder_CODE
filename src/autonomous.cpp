@@ -656,6 +656,16 @@ void diff_side_final_middle(){
 //   return 0;
 // }
 
+void auto_skills_middle(){
+  Inertial.setHeading(40,deg);
+  cata.spin(fwd, 300, rpm);
+  // // move_turn(40, 0.6);
+  move_new_deg(-500, 30, 40, 40, 0.4);
+  wait(1000, msec);
+  move_turn(-19, 0.6);
+  // r_wing.set(true);
+}
+
 void auto_skills(){
   task start_cata = task(task_lower_cata);
 
