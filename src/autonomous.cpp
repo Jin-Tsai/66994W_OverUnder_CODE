@@ -658,12 +658,74 @@ void diff_side_final_middle(){
 
 void auto_skills_middle(){
   Inertial.setHeading(40,deg);
-  cata.spin(fwd, 300, rpm);
+  // cata.spin(fwd, 300, rpm);
   // // move_turn(40, 0.6);
-  move_new_deg(-500, 30, 40, 40, 0.4);
+  move_new_deg(-500, 30, 40, 40, 0.45);
+  // wait(3000, msec);
+  move_turn(-23, 0.5);
+  r_wing.set(true);
+
+  // while(Brain.Timer.time(seconds)<44){ //43
+  //   cata.spin(fwd, 300, rpm);
+  // }
+  // cata.stop(coast);
+  wait(1000, msec); //測試用wait
+  move_new_deg(4500, 90, 70, 275, 0.9);
+  move_turn(0, 0.5);
+  chassis.spin(reverse, 500, rpm);
+  wait(1650, msec);
+  chassis.stop(brake);
+  wait(100, msec);
+  chassis.spin(fwd, 40, pct);
+  wait(700, msec);
+  drivertrainStop(brake);
+  wait(100, msec);
+  TankMove(-20, 0);
+  wait(200, msec);
+  drivertrainStop(brake);
+  // while(Inertial.heading()<9){
+  //   TankMove(-20, 0);
+  // }
+  // drivertrainStop(brake);
+
+  // front_wing.set(true);
+  // intake_piston.set(true);
+
+  // wait(1000, msec); //測試用wait
+  // move_new_deg(700, 75, 40, 5, 0.4);
+  // wait(1000, msec); //測試用wait
+  TankMove(-80, -80);
   wait(1000, msec);
-  move_turn(-19, 0.6);
-  // r_wing.set(true);
+  drivertrainStop(brake);
+  wait(100, msec);
+
+  move_new_deg(-2150, 80, 70, -80, 0.65);
+  // wait(1000, msec); //測試用wait
+  move_turn(340, 0.5);
+  // wait(1000, msec); //測試用wait
+  move_new_deg(700, 75, 40, 340, 0.4);
+  // wait(1000, msec); //測試用wait
+  TankMove(-80, -80);
+  wait(600, msec);
+  drivertrainStop(brake);
+  wait(100, msec);
+
+  move_new_deg(-3000, 70, 55, -130, 0.5);
+  // move_new_deg(-500, 50, 40, 230, 0.4);
+  while(Inertial.heading()>150){
+    TankMove(40, 0);
+  }
+  drivertrainStop(brake);
+  move_new_deg(-1000, 70, 60, 90, 0.37);
+  TankMove(80, 80);
+  wait(600, msec);
+  drivertrainStop(brake);
+  move_new_deg(400, 60, 40, 90, 0.4);
+  TankMove(80, 80);
+  wait(600, msec);
+  drivertrainStop(brake);
+  move_new_deg(200, 60, 40, 90, 0.4);
+
 }
 
 void auto_skills(){

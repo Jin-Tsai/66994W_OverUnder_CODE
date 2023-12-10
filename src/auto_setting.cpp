@@ -12,20 +12,16 @@ double transfer_y(double input, double imin, double iMax) {
 }
 
 void TankMove(double left_speed, double right_speed) {
-  left_front.spin(fwd, left_speed, pct);
-  left_back.spin(fwd, left_speed, pct);
+  left_base.spin(fwd, left_speed, pct);
 
-  right_front.spin(fwd, right_speed, pct);
-  right_back.spin(fwd, right_speed, pct);
+  right_base.spin(fwd, right_speed, pct);
  
 }
 
 void drivertrainStop(brakeType _brake) {
-  left_front.stop(_brake);
-  left_back.stop(_brake);
+  left_base.stop(_brake);
 
-  right_front.stop(_brake);
-  right_back.stop(_brake);
+  right_base.stop(_brake);
 }
 
 void pidReset() {
@@ -81,7 +77,7 @@ void move_new_deg(double wanted_deg, double max_speed,double max_turn_speed, dou
   double error = g_heading(rotate);
   double turn_speed = 0;
   double sum_deg = 0;
-  double straight_kp=0.2;
+  double straight_kp=0.18;
   double straight_speed=0;
   double straight_direction = wanted_deg/fabs(wanted_deg);
   wanted_deg = fabs(wanted_deg);

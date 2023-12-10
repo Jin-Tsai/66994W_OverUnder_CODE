@@ -16,9 +16,7 @@ extern motor right_back;
 extern digital_out front_wing;
 extern digital_out l_wing;
 extern digital_out r_wing;
-extern digital_out l_rise;
-extern digital_out r_rise;
-extern digital_out loading;
+extern digital_out rise;
 extern digital_out intake_piston;
 
 extern motor_group left_base;
