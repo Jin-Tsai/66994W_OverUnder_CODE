@@ -20,7 +20,7 @@ triport Expander = triport(PORT1);
 digital_out r_wing = digital_out(Expander.A);
 digital_out l_wing = digital_out(Expander.B);
 digital_out front_wing = digital_out(Expander.C);
-digital_out rise = digital_out(Expander.G);
+digital_out rise = digital_out(Expander.D);
 digital_out intake_piston = digital_out(Expander.H);
 
 motor_group left_base = motor_group(left_front, left_mid, left_back);

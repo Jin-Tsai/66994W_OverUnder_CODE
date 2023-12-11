@@ -43,7 +43,7 @@ void driver_control(){
     Last_R2 = R2_press;
 
     if((cata_drop == true)){
-      cata.spin(fwd, 240, rpm);
+      cata.spin(fwd, 600, rpm);
     }
     else if((cata_drop == false)){
       // intake_spin = false;
@@ -123,7 +123,7 @@ void driver_control(){
     // Last_Right = Right_press;
 
     // if((cata_side_hang == 1)){
-    //   balance.set(true);
+    //   rise.set(true);
     // }
     
     //STOP CATA===================

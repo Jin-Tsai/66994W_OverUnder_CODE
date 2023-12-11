@@ -9,6 +9,7 @@ void diff_side_awp_middle();
 void diff_side_final_stealmid();
 void diff_side_final_simple();
 void diff_side_final_middle();
+void diff_side_shoot_opp();
 
 void auto_skills();
 void auto_skills_middle();
