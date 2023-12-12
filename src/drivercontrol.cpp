@@ -71,6 +71,23 @@ void driver_control(){
       intake.stop(coast);
     }
 
+    // Right CONTROLLER CODE============
+
+    Right_press = Controller1.ButtonRight.pressing();
+    
+    if(Right_press && !Last_Right){
+      cata_rise = 1;
+    }
+    Last_Right = Right_press;
+
+    if((cata_rise == 1)){
+      intake.spin(reverse, 600, rpm);
+      wait(130, msec);
+      intake.stop(hold);
+      intake.spin(fwd, 600, rpm);
+      cata_rise == 0;
+    }
+
     //L1 CONTROLLER CODE================
 
     // L1_press = Controller1.ButtonL1.pressing();
@@ -98,33 +115,38 @@ void driver_control(){
     // }
 
     //CATA HANG
-    Down_press = Controller1.ButtonDown.pressing();
+    // Down_press = Controller1.ButtonDown.pressing();
     
-    if(Down_press && !Last_Down){
-      cata_hang = 1;
-    }
-    Last_Down = Down_press;
+    // if(Down_press && !Last_Down){
+    //   cata_hang = 1;
+    // }
+    // Last_Down = Down_press;
 
-    if((cata_hang == 1)&&(cata_rot>10)){
-      cata.spin(reverse, 200, rpm);
-    }
-    else if((cata_hang == 1)&&(cata_rot<10)){
-      cata_hang = 0;
-      cata.stop(coast);
-    }
+    // if((cata_hang == 1)&&(cata_rot>10)){
+    //   cata.spin(reverse, 200, rpm);
+    // }
+    // else if((cata_hang == 1)&&(cata_rot<10)){
+    //   cata_hang = 0;
+    //   cata.stop(coast);
+    // }
 
     //CATA SIDE HANG
 
-    // Right_press = Controller1.ButtonRight.pressing();
+    L1_press = Controller1.ButtonL1.pressing();
     
-    // if(Right_press && !Last_Right){
-    //   cata_side_hang = 1;
-    // }
-    // Last_Right = Right_press;
+    if(L1_press && !Last_L1){
+      cata_side_hang = !cata_side_hang;
+    }
+    Last_L1 = L1_press;
 
-    // if((cata_side_hang == 1)){
-    //   rise.set(true);
-    // }
+    if((cata_side_hang == true)){
+      front_wing.set(true);
+      intake_piston.set(true);
+    }
+    if((cata_side_hang == false)){
+      front_wing.set(false);
+      intake_piston.set(false);
+    }
     
     //STOP CATA===================
 
@@ -171,21 +193,21 @@ void driver_control(){
 
     //Y CONTROLLER_BOTH WING================
 
-    // y_press = Controller1.ButtonY.pressing();
+    y_press = Controller1.ButtonY.pressing();
 
-    // if(y_press && !Last_y){
-    //   both_wing = !both_wing;
-    // }
-    // Last_y = y_press;
+    if(y_press && !Last_y){
+      both_wing = !both_wing;
+    }
+    Last_y = y_press;
 
-    // if(both_wing == true){
-    //   l_wing.set(true);
-    //   r_wing.set(true);
-    // }
-    // else if((both_wing == false)&&(left_wing == false)&&(right_wing == false)){
-    //   l_wing.set(false);
-    //   r_wing.set(false);
-    // }
+    if(both_wing == true){
+      l_wing.set(true);
+      r_wing.set(true);
+    }
+    else if((both_wing == false)&&(left_wing == false)&&(right_wing == false)){
+      l_wing.set(false);
+      r_wing.set(false);
+    }
 
     //===================
 
