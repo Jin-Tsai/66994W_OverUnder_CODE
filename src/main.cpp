@@ -65,7 +65,7 @@ void autonomous(void)
   auto_bool = false;
   Brain.Screen.clearScreen();
   Brain.Timer.clear();
-  same_side_5final();
+  diff_side_shoot_opp();
   // switch (auto_select)
   // {
   // case 7 ... 16:

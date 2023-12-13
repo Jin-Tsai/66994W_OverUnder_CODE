@@ -115,21 +115,19 @@ void driver_control(){
     // }
 
     //CATA HANG
-    // Down_press = Controller1.ButtonDown.pressing();
+    up_press = Controller1.ButtonUp.pressing();
     
-    // if(Down_press && !Last_Down){
-    //   cata_hang = 1;
-    // }
-    // Last_Down = Down_press;
+    if(up_press && !Last_up){
+      match_load = !match_load;
+    }
+    Last_up = up_press;
 
-    // if((cata_hang == 1)&&(cata_rot>10)){
-    //   cata.spin(reverse, 200, rpm);
-    // }
-    // else if((cata_hang == 1)&&(cata_rot<10)){
-    //   cata_hang = 0;
-    //   cata.stop(coast);
-    // }
-
+    if((match_load == true)){
+      fourbar.set(true);
+    }
+    if((match_load == false)){
+      fourbar.set(false);
+    }
     //CATA SIDE HANG
 
     L1_press = Controller1.ButtonL1.pressing();
