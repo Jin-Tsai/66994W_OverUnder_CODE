@@ -38,16 +38,16 @@ void pre_auton(void)
       Brain.Screen.print("auto_skills");
       break;
     case 17 ... 33:
-      Brain.Screen.print("diif_side_simple");
+      Brain.Screen.print("diif_side_awp");
       break;
-    case 34 ... 50:
-      Brain.Screen.print("same_side_final");
+    case 34 ... 60:
+      Brain.Screen.print("same_side_5_qual");
       break;
     case 61 ... 76:
-      Brain.Screen.print("same_side_5final");
+      Brain.Screen.print("same_side_6final");
       break;
     default:
-      Brain.Screen.print("diff_side_final_middle");
+      Brain.Screen.print("diff_side_final");
       break;
     }
     wait(5, msec);
@@ -65,30 +65,30 @@ void autonomous(void)
   auto_bool = false;
   Brain.Screen.clearScreen();
   Brain.Timer.clear();
-  diff_side_shoot_opp();
-  // switch (auto_select)
-  // {
-  // case 7 ... 16:
-  //   Brain.Screen.print("auto_skills");
-  //   auto_skills();
-  //   break;
-  // case 17 ... 33:
-  //   Brain.Screen.print("diif_side_simple");
-  //   diff_side_final_simple();
-  //   break;
-  // case 34 ... 60:
-  //   Brain.Screen.print("same_side_final");
-  //   same_side_final();
-  //   break;
-  // case 61 ... 76:
-  //   Brain.Screen.print("same_side_5final");
-  //   same_side_5final();
-  //   break;
-  // default:
-  //   Brain.Screen.print("diff_side_final_middle");
-  //   diff_side_final_middle();
-  //   break;
-  // }
+  // auto_skills_middle();
+  switch (auto_select)
+  {
+  case 7 ... 16:
+    // Brain.Screen.print("auto_skills");
+    auto_skills_middle();
+    break;
+  case 17 ... 33:
+    // Brain.Screen.print("diif_side_awp");
+    diff_side_awp_middle();
+    break;
+  case 34 ... 60:
+    // Brain.Screen.print("same_side_5_qual");
+    same_side_5final();
+    break;
+  case 61 ... 76:
+    // Brain.Screen.print("same_side_6final");
+    same_side_final();
+    break;
+  default:
+    // Brain.Screen.print("diff_side_final");
+    diff_side_shoot_opp();
+    break;
+  }
 }
 
 // Driver Control

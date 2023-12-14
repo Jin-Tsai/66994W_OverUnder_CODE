@@ -556,7 +556,7 @@ void diff_side_awp_middle(){
 
   // wait(10000000, msec); //測試用wait
 
-  move_new_deg(1000, 60, 40, 223, 0.6);
+  move_new_deg(1000, 60, 42, 223, 0.7);
   cata.stop(brake);
   cata.spin(fwd, 200, rpm);
   wait(500, msec);
@@ -685,7 +685,7 @@ void diff_side_shoot_opp(){
 
   // wait(10000000, msec); //測試用wait
 
-  move_new_deg(1000, 60, 40, 223, 0.6);
+  move_new_deg(1000, 60, 42, 223, 0.7);
   cata.stop(brake);
   cata.spin(fwd, 200, rpm);
   wait(500, msec);
@@ -841,15 +841,17 @@ void auto_skills_middle(){
   // // move_turn(40, 0.6);
   move_new_deg(-500, 30, 40, 40, 0.45);
   // wait(3000, msec);
-  move_turn(-23, 0.5);
+  move_turn(-20, 0.5);
   r_wing.set(true);
 
-  // while(Brain.Timer.time(seconds)<44){ //43
-  //   cata.spin(fwd, 300, rpm);
-  // }
-  // cata.stop(coast);
-  wait(1000, msec); //測試用wait
-  move_new_deg(4500, 90, 70, 275, 0.9);
+  while(Brain.Timer.time(seconds)<38){ //43
+    cata.spin(fwd, 10.2, volt);
+  }
+  cata.stop(coast);
+  // wait(1000, msec); //測試用wait
+  r_wing.set(false);
+  intake.spin(reverse, 600, rpm);
+  move_new_deg(4200, 90, 70, 275, 0.9);
   move_turn(0, 0.55);
   chassis.spin(reverse, 400, rpm);
   wait(1650, msec);
@@ -897,7 +899,9 @@ void auto_skills_middle(){
   front_wing.set(false);
   intake_piston.set(false);
 
-  move_new_deg(-3000, 70, 55, -130, 0.7);
+  r_wing.set(true);
+
+  move_new_deg(-3000, 70, 60, -130, 0.7);
   // move_new_deg(-500, 50, 40, 230, 0.4);
   while(Inertial.heading()>150){
     TankMove(40, 0);

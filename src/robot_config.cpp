@@ -33,5 +33,5 @@ rotation rotation_sensor = rotation(PORT4);
 inertial Inertial = inertial(PORT19);
 distance distance_sensor = distance(PORT3);
 
-potV2 auto_selector = potV2(Expander.D);
+potV2 auto_selector = potV2(Brain.ThreeWirePort.D);
 controller Controller1 = controller(primary);
