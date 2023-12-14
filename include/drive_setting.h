@@ -7,9 +7,9 @@ extern bool btn_pressed;
 extern int num_pressed;
 extern int rot_angle;
 
-extern bool x_press;
-extern bool Last_x;
-extern bool x_switch;
+extern bool b_press;
+extern bool Last_b;
+extern bool b_switch;
 
 extern bool R2_press;
 extern bool Last_R2;

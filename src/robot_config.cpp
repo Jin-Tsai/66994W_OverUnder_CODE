@@ -17,11 +17,12 @@ motor right_back = motor(PORT8, ratio6_1, true);
 
 triport Expander = triport(PORT1);
 
-digital_out r_wing = digital_out(Expander.A);
-digital_out l_wing = digital_out(Expander.B);
-digital_out front_wing = digital_out(Expander.C);
+digital_out r_wing = digital_out(Expander.E);
+digital_out l_wing = digital_out(Expander.A);
+digital_out front_wing = digital_out(Expander.H);
 digital_out fourbar = digital_out(Brain.ThreeWirePort.A);
-digital_out intake_piston = digital_out(Expander.H);
+digital_out intake_piston = digital_out(Expander.C);
+digital_out balance = digital_out(Brain.ThreeWirePort.C);
 
 motor_group left_base = motor_group(left_front, left_mid, left_back);
 motor_group right_base = motor_group(right_front, right_mid, right_back);

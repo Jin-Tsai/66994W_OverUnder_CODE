@@ -18,6 +18,7 @@ extern digital_out l_wing;
 extern digital_out r_wing;
 extern digital_out fourbar;
 extern digital_out intake_piston;
+extern digital_out balance;
 
 extern motor_group left_base;
 extern motor_group right_base;

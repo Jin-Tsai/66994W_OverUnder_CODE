@@ -21,9 +21,9 @@ bool btn_pressed = false;
 int num_pressed = 0;
 int rot_angle;
 
-bool x_press = Controller1.ButtonX.pressing();
-bool Last_x = !x_press;
-bool x_switch = false;
+bool b_press = Controller1.ButtonB.pressing();
+bool Last_b = !b_press;
+bool b_switch = false;
 
 bool R2_press = Controller1.ButtonR2.pressing();
 bool Last_R2 = R2_press;

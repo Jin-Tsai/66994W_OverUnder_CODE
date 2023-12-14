@@ -42,8 +42,25 @@ void driver_control(){
     }
     Last_R2 = R2_press;
 
+    L1_press = Controller1.ButtonL1.pressing();
+    
+    if(L1_press && !Last_L1){
+      cata_side_hang = !cata_side_hang;
+    }
+    Last_L1 = L1_press;
+
+    if((cata_side_hang == true)){
+      intake.spin(reverse, 600, rpm);
+      front_wing.set(true);
+      intake_piston.set(true);
+    }
+    else if((cata_side_hang == false)){
+      front_wing.set(false);
+      intake_piston.set(false);
+    }
+
     if((cata_drop == true)){
-      cata.spin(fwd, 600, rpm);
+      cata.spin(fwd, 9, volt);
     }
     else if((cata_drop == false)){
       // intake_spin = false;
@@ -51,10 +68,10 @@ void driver_control(){
     }
     if((intake_spin == true)){
       if((cata_drop == true)){
-        intake.spin(fwd, 600, rpm);
+        intake.spin(fwd, 12, volt);
       }
       else if((intake_spin == true)&&(distance_sensor.objectDistance(mm)>70)){
-        intake.spin(fwd, 600 , rpm);
+        intake.spin(fwd, 12 , volt);
         wait(5, msec);
       }
       else if((intake_spin == true)&&(distance_sensor.objectDistance(mm)<70)){
@@ -63,30 +80,30 @@ void driver_control(){
       }  
     }
     else if((Controller1.ButtonR1.pressing())){
-      intake.spin(reverse, 600, rpm);
+      intake.spin(reverse, 12, volt);
       wait(5, msec);
       intake_spin = false;
     }
-    else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)){
+    else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)&&(cata_rise == 0)&&(cata_side_hang == false)){
       intake.stop(coast);
     }
 
     // Right CONTROLLER CODE============
 
-    Right_press = Controller1.ButtonRight.pressing();
+    b_press = Controller1.ButtonB.pressing();
     
-    if(Right_press && !Last_Right){
-      cata_rise = 1;
+    if(b_press && !Last_b){
+      b_switch = !b_switch;
     }
-    Last_Right = Right_press;
+    Last_b = b_press;
 
-    if((cata_rise == 1)){
-      intake.spin(reverse, 600, rpm);
-      wait(130, msec);
-      intake.stop(hold);
-      intake.spin(fwd, 600, rpm);
-      cata_rise == 0;
+    if((b_switch == true)){
+      intake_piston.set(true);
     }
+    else if((b_switch == false)){
+      intake_piston.set(false);
+    }
+
 
     //L1 CONTROLLER CODE================
 
@@ -130,21 +147,7 @@ void driver_control(){
     }
     //CATA SIDE HANG
 
-    L1_press = Controller1.ButtonL1.pressing();
     
-    if(L1_press && !Last_L1){
-      cata_side_hang = !cata_side_hang;
-    }
-    Last_L1 = L1_press;
-
-    if((cata_side_hang == true)){
-      front_wing.set(true);
-      intake_piston.set(true);
-    }
-    if((cata_side_hang == false)){
-      front_wing.set(false);
-      intake_piston.set(false);
-    }
     
     //STOP CATA===================
 
