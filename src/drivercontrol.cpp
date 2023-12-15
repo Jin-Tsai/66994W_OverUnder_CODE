@@ -132,12 +132,12 @@ void driver_control(){
     // }
 
     //CATA HANG
-    up_press = Controller1.ButtonUp.pressing();
+    Down_press = Controller1.ButtonDown.pressing();
     
-    if(up_press && !Last_up){
+    if(Down_press && !Last_Down){
       match_load = !match_load;
     }
-    Last_up = up_press;
+    Last_Down = Down_press;
 
     if((match_load == true)){
       fourbar.set(true);
