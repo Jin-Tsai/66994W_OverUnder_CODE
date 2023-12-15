@@ -317,16 +317,16 @@ void same_side_final(){
   wait(100, msec);
   r_wing.set(true);
   l_wing.set(true);
-  move_new_deg(-1550, 80, 50, 270, 0.4);
+  move_new_deg(-1500, 80, 50, 270, 0.4);
   l_wing.set(false);
   r_wing.set(false);
   TankMove(70, 70);
-  wait(250, msec);
+  wait(300, msec);
   drivertrainStop(brake);
 
   move_new_deg(200, 70, 40, 270, 0.35);
-  move_turn(236, 0.56);
-  move_new_deg(1500, 70, 40, 236, 0.35);
+  move_turn(237, 0.56);
+  move_new_deg(1500, 70, 40, 237, 0.35);
   cata.stop(brake);
 
   TankMove(-50, 0);
