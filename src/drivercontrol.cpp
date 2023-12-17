@@ -60,7 +60,7 @@ void driver_control(){
     }
 
     if((cata_drop == true)){
-      cata.spin(fwd, 10.2, volt);
+      cata.spin(fwd, 10.2, volt);//10.2
     }
     else if((cata_drop == false)){
       // intake_spin = false;
