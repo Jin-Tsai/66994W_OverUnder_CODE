@@ -50,6 +50,9 @@ void driver_control(){
     Last_L1 = L1_press;
 
     if((cata_side_hang == true)){
+      if((intake_spin == true)&&(intake.velocity(rpm)>0)){
+        intake_spin = false;
+      }
       intake.spin(reverse, 600, rpm);
       front_wing.set(true);
       intake_piston.set(true);
@@ -57,6 +60,9 @@ void driver_control(){
     else if((cata_side_hang == false)){
       front_wing.set(false);
       intake_piston.set(false);
+    }
+    else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)&&(cata_rise == 0)&&(cata_side_hang == false)){
+      intake.stop(coast);
     }
 
     if((cata_drop == true)){
@@ -67,14 +73,17 @@ void driver_control(){
       cata.stop(coast);
     }
     if((intake_spin == true)){
+      if((cata_side_hang == true)&&(intake.velocity(rpm)<0)){
+        cata_side_hang = false;
+      }
       if((cata_drop == true)){
         intake.spin(fwd, 12, volt);
       }
-      else if((intake_spin == true)&&(distance_sensor.objectDistance(mm)>70)){
+      else if((intake_spin == true)&&(distance_sensor.objectDistance(mm)>75)){
         intake.spin(fwd, 12 , volt);
         wait(5, msec);
       }
-      else if((intake_spin == true)&&(distance_sensor.objectDistance(mm)<70)){
+      else if((intake_spin == true)&&(distance_sensor.objectDistance(mm)<75)){
         intake_spin = false;
         intake.stop(hold);
       }  
