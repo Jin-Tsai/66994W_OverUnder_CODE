@@ -150,13 +150,28 @@ void driver_control(){
 
     if((match_load == true)){
       fourbar.set(true);
+      balance.set(true);
     }
     if((match_load == false)){
       fourbar.set(false);
+      balance.set(false);
+      // intake_piston.set(true);
     }
     //CATA SIDE HANG
 
+    Right_press = Controller1.ButtonRight.pressing();
     
+    if(Right_press && !Last_Right){
+      cata_side_hang = !cata_side_hang;
+    }
+    Last_Right = Right_press;
+
+    if((cata_side_hang == true)){
+      balance.set(true);
+    }
+    if((cata_side_hang == false)){
+      balance.set(false);
+    }
     
     //STOP CATA===================
 
