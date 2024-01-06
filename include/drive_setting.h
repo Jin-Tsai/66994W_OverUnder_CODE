@@ -47,6 +47,3 @@ extern bool Right_press;
 extern bool Last_Right;
 extern int cata_side_hang;
 
-extern double last_time;
-
-void controller_X_Pressed();

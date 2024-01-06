@@ -5,6 +5,7 @@ using namespace vex;
 
 // A global instance of competition
 competition Competition;
+
 void inertial_calibate()
 {
   Inertial.calibrate();
@@ -100,6 +101,8 @@ void usercontrol(void)
   driver_control();
 }
 
+double last_time;
+
 double y_mapping(double input, double max_in, double min_in)
 {
   double output = 240 + ((input - min_in) * (-240)) / (max_in - min_in);
@@ -111,26 +114,29 @@ int count = 1;
 
 int display_PID()
 {
-  double y_velocity = y_mapping(cata.velocity(rpm), 800, 0);
+  Brain.Screen.drawLine(0, y_mapping(530,800,0), 480, y_mapping(530,800,0));
 
-  Brain.Screen.drawLine(count - 1, last_y_velocity, count, y_velocity);
-  if (count > 480)
-  {
-    count = 1;
-    Brain.Screen.clearScreen();
-  }
-  last_y_velocity = y_velocity;
-  count++;
+    double y_velocity = y_mapping(cata.velocity(rpm), 800, 0);
+
+    Brain.Screen.drawLine(count - 1, last_y_velocity, count, y_velocity);
+    Brain.Screen.setCursor(1, 1);
+    Brain.Screen.print("rpm: %.2f ",cata.velocity(rpm));
+    if (count > 480)
+    {
+      count = 1;
+      Brain.Screen.clearScreen();
+    }
+    last_y_velocity = y_velocity;
+    count++;
 
   return 0;
 }
-
 double error_pid;
-  double integral_pid;
-  double derivative_pid;
-  double base_rpm = 530;
-  double last_error = 0;
-  double speed_rpm = error_pid*kp+integral_pid*ki+derivative_pid*kd+base_rpm;
+double integral_pid;
+double derivative_pid;
+double base_rpm = 530;
+double last_error = 0;
+double speed_rpm = error_pid*kp+integral_pid*ki+derivative_pid*kd+base_rpm;
 
 void PID_adjust(double target_rpm, double kp, double ki, double kd){
 
@@ -140,14 +146,14 @@ void PID_adjust(double target_rpm, double kp, double ki, double kd){
   integral_pid = integral_pid + error_pid;
   derivative_pid = error_pid + last_error;
 
-  if((error_pid<8)&&(error_pid>4)){
+  if((error_pid<10)&&(error_pid>5)){
     speed_rpm = error_pid*kp+integral_pid*ki+derivative_pid*kd+base_rpm;
   }
   else{
     speed_rpm = error_pid*kp+derivative_pid*kd+base_rpm;
   }
   double speed_volt = (speed_rpm/620)*12;
-  if(cata.velocity(rpm)<400){
+  if(cata.velocity(rpm)<350){
     cata.spin(fwd, 12, volt);
   }
   else{
@@ -162,36 +168,22 @@ void PID_adjust(double target_rpm, double kp, double ki, double kd){
 int main()
 {
   // Set up callbacks for autonomous and driver control periods.
-  Competition.autonomous(autonomous);
-  Competition.drivercontrol(usercontrol);
+  // Competition.autonomous(autonomous);
+  // Competition.drivercontrol(usercontrol);
 
   // Run the pre-autonomous function.
-  pre_auton();
+  // pre_auton();
 
-  // Brain.Screen.clearScreen();
-  // double last_y_velocity = 0;
-  // int count = 1;
+  Brain.Screen.clearScreen();
 
   // Prevent main from exiting with an infinite loop.
   while (true)
   {
-    // PID_adjust(530, 2.2, 0.7, 2.0);
+    // PID_adjust(530, 2.0, 0.4, 0.7);//2.0 0.4 0.7
     // // cata.spin(fwd, 10.2, volt);
-    // Brain.Screen.drawLine(0, y_mapping(530,800,0), 480, y_mapping(530,800,0));
-
-    // double y_velocity = y_mapping(cata.velocity(rpm), 800, 0);
-
-    // Brain.Screen.drawLine(count - 1, last_y_velocity, count, y_velocity);
-    // Brain.Screen.setCursor(1, 1);
-    // Brain.Screen.print("rpm: %.2f ",cata.velocity(rpm));
-    // if (count > 480)
-    // {
-    //   count = 1;
-    //   Brain.Screen.clearScreen();
-    // }
-    // last_y_velocity = y_velocity;
-    // count++;
-    // wait(5, msec);
+    // display_PID();
+    
+    wait(5, msec);
 
     Brain.Screen.clearScreen();
     Brain.Screen.setCursor(1, 1);
@@ -226,6 +218,6 @@ int main()
       Controller1.rumble("*-*");
     }
 
-    wait(100, msec);
+    // wait(100, msec);
   }
 }

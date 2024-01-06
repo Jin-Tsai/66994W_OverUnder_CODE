@@ -61,5 +61,5 @@ bool Right_press = Controller1.ButtonRight.pressing();
 bool Last_Right = Right_press;
 int cata_side_hang = 0;
 
-double last_time;
+
 

@@ -1,6 +1,67 @@
 #include "vex.h"
 #include <all_func.h>
 
+// double last_time;
+
+// double y_mapping(double input, double max_in, double min_in)
+// {
+//   double output = 240 + ((input - min_in) * (-240)) / (max_in - min_in);
+//   return output;
+// }
+
+// double last_y_velocity = 0;
+// int count = 1;
+
+// int display_PID()
+// {
+//   y_velocity = y_mapping(cata.velocity(rpm), 800, 0);
+
+//   Brain.Screen.drawLine(count - 1, last_y_velocity, count, y_velocity);
+//   if (count > 480)
+//   {
+//     count = 1;
+//     Brain.Screen.clearScreen();
+//   }
+//   last_y_velocity = y_velocity;
+//   count++;
+
+//   return 0;
+// }
+
+// double error_pid;
+// double integral_pid;
+// double derivative_pid;
+// double base_rpm = 530;
+// double last_error = 0;
+// double speed_rpm = error_pid*kp+integral_pid*ki+derivative_pid*kd+base_rpm;
+
+// void PID_adjust(double target_rpm, double kp, double ki, double kd){
+
+//   // while(1){
+
+//   error_pid = abs(target_rpm-cata.velocity(rpm));
+//   integral_pid = integral_pid + error_pid;
+//   derivative_pid = error_pid + last_error;
+
+//   if((error_pid<8)&&(error_pid>4)){
+//     speed_rpm = error_pid*kp+integral_pid*ki+derivative_pid*kd+base_rpm;
+//   }
+//   else{
+//     speed_rpm = error_pid*kp+derivative_pid*kd+base_rpm;
+//   }
+//   double speed_volt = (speed_rpm/620)*12;
+//   if(cata.velocity(rpm)<400){
+//     cata.spin(fwd, 12, volt);
+//   }
+//   else{
+//     cata.spin(fwd, speed_volt, volt);
+//   }
+
+//   last_error = error_pid;
+//   // }
+
+// }
+
 void driver_control(){
 
   Brain.Timer.clear();
@@ -66,7 +127,8 @@ void driver_control(){
     }
 
     if((cata_drop == true)){
-      cata.spin(fwd, 12, volt);//10.2
+      // PID_adjust(530, 2.2, 0.7, 2.0);
+      cata.spin(fwd, 10.2, volt);//10.2
     }
     else if((cata_drop == false)){
       // intake_spin = false;
@@ -79,11 +141,11 @@ void driver_control(){
       if((cata_drop == true)){
         intake.spin(fwd, 12, volt);
       }
-      else if((intake_spin == true)&&(distance_sensor.objectDistance(mm)>70)){
+      else if((intake_spin == true)&&(distance_sensor.objectDistance(mm)>65)){
         intake.spin(fwd, 12 , volt);
         wait(5, msec);
       }
-      else if((intake_spin == true)&&(distance_sensor.objectDistance(mm)<70)){
+      else if((intake_spin == true)&&(distance_sensor.objectDistance(mm)<65)){
         intake_spin = false;
         intake.stop(hold);
       }
