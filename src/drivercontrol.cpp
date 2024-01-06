@@ -66,7 +66,7 @@ void driver_control(){
     }
 
     if((cata_drop == true)){
-      cata.spin(fwd, 10.2, volt);//10.2
+      cata.spin(fwd, 12, volt);//10.2
     }
     else if((cata_drop == false)){
       // intake_spin = false;
@@ -79,14 +79,14 @@ void driver_control(){
       if((cata_drop == true)){
         intake.spin(fwd, 12, volt);
       }
-      else if((intake_spin == true)&&(distance_sensor.objectDistance(mm)>75)){
+      else if((intake_spin == true)&&(distance_sensor.objectDistance(mm)>70)){
         intake.spin(fwd, 12 , volt);
         wait(5, msec);
       }
-      else if((intake_spin == true)&&(distance_sensor.objectDistance(mm)<75)){
+      else if((intake_spin == true)&&(distance_sensor.objectDistance(mm)<70)){
         intake_spin = false;
         intake.stop(hold);
-      }  
+      }
     }
     else if((Controller1.ButtonR1.pressing())){
       intake.spin(reverse, 12, volt);

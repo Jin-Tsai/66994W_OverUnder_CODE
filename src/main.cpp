@@ -100,6 +100,65 @@ void usercontrol(void)
   driver_control();
 }
 
+double y_mapping(double input, double max_in, double min_in)
+{
+  double output = 240 + ((input - min_in) * (-240)) / (max_in - min_in);
+  return output;
+}
+
+double last_y_velocity = 0;
+int count = 1;
+
+int display_PID()
+{
+  double y_velocity = y_mapping(cata.velocity(rpm), 800, 0);
+
+  Brain.Screen.drawLine(count - 1, last_y_velocity, count, y_velocity);
+  if (count > 480)
+  {
+    count = 1;
+    Brain.Screen.clearScreen();
+  }
+  last_y_velocity = y_velocity;
+  count++;
+
+  return 0;
+}
+
+double error_pid;
+  double integral_pid;
+  double derivative_pid;
+  double base_rpm = 530;
+  double last_error = 0;
+  double speed_rpm = error_pid*kp+integral_pid*ki+derivative_pid*kd+base_rpm;
+
+void PID_adjust(double target_rpm, double kp, double ki, double kd){
+
+  // while(1){
+
+  error_pid = abs(target_rpm-cata.velocity(rpm));
+  integral_pid = integral_pid + error_pid;
+  derivative_pid = error_pid + last_error;
+
+  if((error_pid<8)&&(error_pid>4)){
+    speed_rpm = error_pid*kp+integral_pid*ki+derivative_pid*kd+base_rpm;
+  }
+  else{
+    speed_rpm = error_pid*kp+derivative_pid*kd+base_rpm;
+  }
+  double speed_volt = (speed_rpm/620)*12;
+  if(cata.velocity(rpm)<400){
+    cata.spin(fwd, 12, volt);
+  }
+  else{
+    cata.spin(fwd, speed_volt, volt);
+  }
+
+  last_error = error_pid;
+  // }
+
+}
+
 int main()
 {
   // Set up callbacks for autonomous and driver control periods.
@@ -109,9 +168,31 @@ int main()
   // Run the pre-autonomous function.
   pre_auton();
 
+  // Brain.Screen.clearScreen();
+  // double last_y_velocity = 0;
+  // int count = 1;
+
   // Prevent main from exiting with an infinite loop.
   while (true)
   {
+    // PID_adjust(530, 2.2, 0.7, 2.0);
+    // // cata.spin(fwd, 10.2, volt);
+    // Brain.Screen.drawLine(0, y_mapping(530,800,0), 480, y_mapping(530,800,0));
+
+    // double y_velocity = y_mapping(cata.velocity(rpm), 800, 0);
+
+    // Brain.Screen.drawLine(count - 1, last_y_velocity, count, y_velocity);
+    // Brain.Screen.setCursor(1, 1);
+    // Brain.Screen.print("rpm: %.2f ",cata.velocity(rpm));
+    // if (count > 480)
+    // {
+    //   count = 1;
+    //   Brain.Screen.clearScreen();
+    // }
+    // last_y_velocity = y_velocity;
+    // count++;
+    // wait(5, msec);
+
     Brain.Screen.clearScreen();
     Brain.Screen.setCursor(1, 1);
     Brain.Screen.print("GyroHeading: %.2f ", Inertial.heading());
@@ -140,7 +221,7 @@ int main()
     Brain.Screen.print("Rotarion: %.2f", rotation_sensor.angle());
     Brain.Screen.newLine();
     Brain.Screen.print("Rotarion: %.2f", intake.torque());
-    
+
     if(Brain.Battery.capacity()<40){
       Controller1.rumble("*-*");
     }

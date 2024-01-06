@@ -6,7 +6,7 @@ brain Brain;
 
 motor intake = motor(PORT7, ratio6_1, true);
 
-motor cata = motor(PORT20, ratio36_1, false);
+motor cata = motor(PORT20, ratio6_1, false);
 
 motor left_front = motor(PORT6, ratio6_1, false);
 motor left_mid = motor(PORT4, ratio6_1, false);
