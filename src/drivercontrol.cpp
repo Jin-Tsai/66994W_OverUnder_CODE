@@ -127,8 +127,8 @@ void driver_control(){
     }
 
     if((cata_drop == true)){
-      // PID_adjust(530, 2.2, 0.7, 2.0);
-      cata.spin(fwd, 10.2, volt);//10.2
+      PID_adjust(530, 2.2, 0.7, 2.0);
+      // cata.spin(fwd, 10.2, volt);//10.2
     }
     else if((cata_drop == false)){
       // intake_spin = false;

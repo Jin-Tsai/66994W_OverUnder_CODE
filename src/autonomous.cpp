@@ -920,7 +920,7 @@ void auto_skills_middle(){
   r_wing.set(true);
 
   while(Brain.Timer.time(seconds)<37){ //43
-    // PID_adjust(530, 2.2, 0.7, 2.0);
+    PID_adjust(530, 2.2, 0.7, 2.0);
   }
   cata.stop(coast);
   // wait(1000, msec); //測試用wait

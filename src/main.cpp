@@ -131,48 +131,48 @@ int display_PID()
 
   return 0;
 }
-double error_pid;
-double integral_pid;
-double derivative_pid;
-double base_rpm = 530;
-double last_error = 0;
-double speed_rpm = error_pid*kp+integral_pid*ki+derivative_pid*kd+base_rpm;
+// double error_pid;
+// double integral_pid;
+// double derivative_pid;
+// double base_rpm = 530;
+// double last_error = 0;
+// double speed_rpm = error_pid*kp+integral_pid*ki+derivative_pid*kd+base_rpm;
 
-void PID_adjust(double target_rpm, double kp, double ki, double kd){
+// void PID_adjust(double target_rpm, double kp, double ki, double kd){
 
-  // while(1){
+//   // while(1){
 
-  error_pid = abs(target_rpm-cata.velocity(rpm));
-  integral_pid = integral_pid + error_pid;
-  derivative_pid = error_pid + last_error;
+//   error_pid = abs(target_rpm-cata.velocity(rpm));
+//   integral_pid = integral_pid + error_pid;
+//   derivative_pid = error_pid + last_error;
 
-  if((error_pid<10)&&(error_pid>5)){
-    speed_rpm = error_pid*kp+integral_pid*ki+derivative_pid*kd+base_rpm;
-  }
-  else{
-    speed_rpm = error_pid*kp+derivative_pid*kd+base_rpm;
-  }
-  double speed_volt = (speed_rpm/620)*12;
-  if(cata.velocity(rpm)<350){
-    cata.spin(fwd, 12, volt);
-  }
-  else{
-    cata.spin(fwd, speed_volt, volt);
-  }
+//   if((error_pid<10)&&(error_pid>5)){
+//     speed_rpm = error_pid*kp+integral_pid*ki+derivative_pid*kd+base_rpm;
+//   }
+//   else{
+//     speed_rpm = error_pid*kp+derivative_pid*kd+base_rpm;
+//   }
+//   double speed_volt = (speed_rpm/620)*12;
+//   if(cata.velocity(rpm)<350){
+//     cata.spin(fwd, 12, volt);
+//   }
+//   else{
+//     cata.spin(fwd, speed_volt, volt);
+//   }
 
-  last_error = error_pid;
-  // }
+//   last_error = error_pid;
+//   // }
 
-}
+// }
 
 int main()
 {
   // Set up callbacks for autonomous and driver control periods.
-  // Competition.autonomous(autonomous);
-  // Competition.drivercontrol(usercontrol);
+  Competition.autonomous(autonomous);
+  Competition.drivercontrol(usercontrol);
 
   // Run the pre-autonomous function.
-  // pre_auton();
+  pre_auton();
 
   Brain.Screen.clearScreen();
 
