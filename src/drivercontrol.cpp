@@ -298,28 +298,28 @@ void driver_control(){
 
     //===================
 
-    Brain.Screen.setCursor(1,1);
-    Brain.Screen.print("cata temp: %.2f ",cata.temperature(celsius));
-    Brain.Screen.newLine();
-    Brain.Screen.print("intake temp: %.2f ",intake.temperature(celsius));
-    Brain.Screen.newLine();
-    Brain.Screen.print("LFront temp: %.2f ",left_front.temperature(celsius));
-    Brain.Screen.newLine();
-    Brain.Screen.print("LMid temp: %.2f ",left_mid.temperature(celsius));
-    Brain.Screen.newLine();
-    Brain.Screen.print("LBack temp: %.2f ",left_back.temperature(celsius));
-    Brain.Screen.newLine();
-    Brain.Screen.print("RFront temp: %.2f ",right_front.temperature(celsius));
-    Brain.Screen.newLine();
-    Brain.Screen.print("RMid temp: %.2f ",right_mid.temperature(celsius));
-    Brain.Screen.newLine();
-    Brain.Screen.print("RBack temp: %.2f ",right_back.temperature(celsius));
+    // Brain.Screen.setCursor(1,1);
+    // Brain.Screen.print("cata temp: %.2f ",cata.temperature(celsius));
     // Brain.Screen.newLine();
-    // Brain.Screen.print("Distance: %.2f", distance_sensor.objectDistance(mm));
-    Brain.Screen.newLine();
-    Brain.Screen.print("Rotarion: %.2f", rotation_sensor.angle());
-    Brain.Screen.newLine();
-    Brain.Screen.print("Rotarion: %.2f", intake.torque());
+    // Brain.Screen.print("intake temp: %.2f ",intake.temperature(celsius));
+    // Brain.Screen.newLine();
+    // Brain.Screen.print("LFront temp: %.2f ",left_front.temperature(celsius));
+    // Brain.Screen.newLine();
+    // Brain.Screen.print("LMid temp: %.2f ",left_mid.temperature(celsius));
+    // Brain.Screen.newLine();
+    // Brain.Screen.print("LBack temp: %.2f ",left_back.temperature(celsius));
+    // Brain.Screen.newLine();
+    // Brain.Screen.print("RFront temp: %.2f ",right_front.temperature(celsius));
+    // Brain.Screen.newLine();
+    // Brain.Screen.print("RMid temp: %.2f ",right_mid.temperature(celsius));
+    // Brain.Screen.newLine();
+    // Brain.Screen.print("RBack temp: %.2f ",right_back.temperature(celsius));
+    // // Brain.Screen.newLine();
+    // // Brain.Screen.print("Distance: %.2f", distance_sensor.objectDistance(mm));
+    // Brain.Screen.newLine();
+    // Brain.Screen.print("Rotarion: %.2f", rotation_sensor.angle());
+    // Brain.Screen.newLine();
+    // Brain.Screen.print("Rotarion: %.2f", intake.torque());
 
     wait(5, msec);
   }

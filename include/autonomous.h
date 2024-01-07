@@ -1,18 +1,35 @@
 #include "vex.h"
-void same_side_no_scoop();
-void same_side_awp_no_bar();
-void same_side_awp();
-void same_side_final();
-void same_side_5final();
-void diff_side_awp_no_middle();
-void diff_side_awp_middle();
-void diff_side_final_stealmid();
-void diff_side_final_simple();
-void diff_side_final_middle();
-void diff_side_shoot_opp();
 
-void auto_skills();
-void auto_skills_middle();
+//  name                go middle first   shoot to opp    awp_mission     stops at matchload
+//  near_awp_only       ✖                 ✖               ✔              ✖
+//  near_final_simple   ✖                 ✖               ✖              ✔
+//  near_final_shoot    ✔(turn->shoot)    ✔               ✖              ✔
+//  near_awp_shoot      ✔(turn->shoot)    ✔               ✔              ✖
+//  near_final_stealmid ✔(shoot->turn)    ✔               ✔              ✔
+
+void near_awp_only();
+void near_final_simple();
+void near_final_shoot();
+void near_awp_shoot();
+void near_final_stealmid();
+
+//  name                middle first   touch elev.   elev. ball  ball_num    uturn  awp_scoop
+//  far_6_elevation     ✖              ✖            ✔           5           _      ✖
+//  far_awp_no_bar      ✖              ✖            ✔           5           _      ✔
+//  far_4_bar           ✖              ✔            ✔           4           _      ✔
+//  far_5_middle        ✔              ✖            ✔           5           ✔      ✔
+//  far_6_middle        ✔              ✖            ✔           6           ✔      ✔
+//  
+
+void far_6_elevation();
+void far_awp_no_bar();
+void far_4_bar();
+void far_6_middle();
+void far_5_middle();
+
+void auto_skills();//tunnel
+void auto_skills_cross();//cross_long_barrier
+
 
 int task_open_rwing();
 int task_close_rwing();

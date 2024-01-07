@@ -16,6 +16,13 @@ void inertial_calibate()
   Controller1.rumble("*-*");
 }
 
+// 0  darkest brown   96-06
+// 13 lightest brown  07-21
+// 29 green           22-38
+// 46 yellow          39-55
+// 63 blue            56-72
+// 83 middle brown    73-95
+
 // Pre AUTON
 int auto_select;
 bool auto_bool = true;
@@ -35,24 +42,29 @@ void pre_auton(void)
     Brain.Screen.newLine();
     switch (auto_select)
     {
-    case 7 ... 16:
+    case 7 ... 21:
+      Brain.Screen.print("near_awp_shoot");
+      break;
+    case 22 ... 38:
+      Brain.Screen.print("near_awp_only");
+      break;
+    case 39 ... 55:
+      Brain.Screen.print("near_final_simple");
+      break;
+    case 56 ... 72:
+      Brain.Screen.print("far_6_elevation");
+      break;
+    case 73 ... 95:
       Brain.Screen.print("auto_skills");
       break;
-    case 17 ... 33:
-      Brain.Screen.print("diif_side_awp");
-      break;
-    case 34 ... 60:
-      Brain.Screen.print("same_side_5_qual");
-      break;
-    case 61 ... 76:
-      Brain.Screen.print("same_side_6final");
-      break;
     default:
-      Brain.Screen.print("diff_side_final");
+      Brain.Screen.print("near_stop_middle");
       break;
     }
+    Brain.Screen.print("              ");
     wait(5, msec);
   }
+  Brain.Screen.clearScreen();
   Brain.Screen.setCursor(1, 1);
   Brain.Screen.setFont(mono20);
   // All activities that occur before the competition starts
@@ -69,25 +81,28 @@ void autonomous(void)
   // auto_skills();
   switch (auto_select)
   {
-  case 7 ... 16:
+  case 7 ... 21:
+    // Brain.Screen.print("near_awp_shoot");
+    near_awp_shoot();
+    break;
+  case 22 ... 38:
+    // Brain.Screen.print("near_awp_only");
+    near_awp_only();
+    break;
+  case 39 ... 55:
+    // Brain.Screen.print("near_final_simple");
+    near_final_simple();
+    break;
+  case 56 ... 72:
+    // Brain.Screen.print("far_6_elevation");
+    far_6_elevation();
+    break;
+  case 73 ... 95:
     // Brain.Screen.print("auto_skills");
-    auto_skills_middle();
-    break;
-  case 17 ... 33:
-    // Brain.Screen.print("diif_side_awp");
-    diff_side_final_simple();
-    break;
-  case 34 ... 60:
-    // Brain.Screen.print("same_side_5_qual");
-    same_side_5final();
-    break;
-  case 61 ... 76:
-    // Brain.Screen.print("same_side_6final");
-    same_side_final();
+    auto_skills();
     break;
   default:
-    // Brain.Screen.print("diff_side_final");
-    diff_side_shoot_opp();
+    // Brain.Screen.print("near_stop_middle");
     break;
   }
 }
@@ -96,6 +111,7 @@ void autonomous(void)
 
 void usercontrol(void)
 {
+  auto_bool = false;
   // User control code here, inside the loop
   Brain.Screen.clearScreen();
   driver_control();
@@ -131,39 +147,6 @@ int display_PID()
 
   return 0;
 }
-// double error_pid;
-// double integral_pid;
-// double derivative_pid;
-// double base_rpm = 530;
-// double last_error = 0;
-// double speed_rpm = error_pid*kp+integral_pid*ki+derivative_pid*kd+base_rpm;
-
-// void PID_adjust(double target_rpm, double kp, double ki, double kd){
-
-//   // while(1){
-
-//   error_pid = abs(target_rpm-cata.velocity(rpm));
-//   integral_pid = integral_pid + error_pid;
-//   derivative_pid = error_pid + last_error;
-
-//   if((error_pid<10)&&(error_pid>5)){
-//     speed_rpm = error_pid*kp+integral_pid*ki+derivative_pid*kd+base_rpm;
-//   }
-//   else{
-//     speed_rpm = error_pid*kp+derivative_pid*kd+base_rpm;
-//   }
-//   double speed_volt = (speed_rpm/620)*12;
-//   if(cata.velocity(rpm)<350){
-//     cata.spin(fwd, 12, volt);
-//   }
-//   else{
-//     cata.spin(fwd, speed_volt, volt);
-//   }
-
-//   last_error = error_pid;
-//   // }
-
-// }
 
 int main()
 {
@@ -185,39 +168,33 @@ int main()
     
     wait(5, msec);
 
-    Brain.Screen.clearScreen();
+    // Brain.Screen.clearScreen();
     Brain.Screen.setCursor(1, 1);
     Brain.Screen.print("GyroHeading: %.2f ", Inertial.heading());
     Brain.Screen.newLine();
-    Brain.Screen.print("Battery: %.2f ", Brain.Battery.capacity());
+    Brain.Screen.print("Battery: %d pct", Brain.Battery.capacity(pct));
 
     Brain.Screen.newLine();
-    Brain.Screen.print("cata temp: %.2f ",cata.temperature(celsius));
+    Brain.Screen.print("flywheel temp: %.0f˙C",cata.temperature(celsius));
     Brain.Screen.newLine();
-    Brain.Screen.print("intake temp: %.2f ",intake.temperature(celsius));
+    Brain.Screen.print("intake temp: %.0f˙C",intake.temperature(celsius));
     Brain.Screen.newLine();
-    Brain.Screen.print("LFront temp: %.2f ",left_front.temperature(celsius));
+    Brain.Screen.print("LFront temp: %.0f˙C",left_front.temperature(celsius));
     Brain.Screen.newLine();
-    Brain.Screen.print("LMid temp: %.2f ",left_mid.temperature(celsius));
+    Brain.Screen.print("LMid temp: %.0f˙C",left_mid.temperature(celsius));
     Brain.Screen.newLine();
-    Brain.Screen.print("LBack temp: %.2f ",left_back.temperature(celsius));
+    Brain.Screen.print("LBack temp: %.0f˙C",left_back.temperature(celsius));
     Brain.Screen.newLine();
-    Brain.Screen.print("RFront temp: %.2f ",right_front.temperature(celsius));
+    Brain.Screen.print("RFront temp: %.0f˙C",right_front.temperature(celsius));
     Brain.Screen.newLine();
-    Brain.Screen.print("RMid temp: %.2f ",right_mid.temperature(celsius));
+    Brain.Screen.print("RMid temp: %.0f˙C",right_mid.temperature(celsius));
     Brain.Screen.newLine();
-    Brain.Screen.print("RBack temp: %.2f ",right_back.temperature(celsius));
-    // Brain.Screen.newLine();
-    // Brain.Screen.print("Distance: %.2f", distance_sensor.objectDistance(mm));
+    Brain.Screen.print("RBack temp: %.0f˙C",right_back.temperature(celsius));
     Brain.Screen.newLine();
-    Brain.Screen.print("Rotarion: %.2f", rotation_sensor.angle());
-    Brain.Screen.newLine();
-    Brain.Screen.print("Rotarion: %.2f", intake.torque());
+    Brain.Screen.print("Distance: %.1f", distance_sensor.objectDistance(mm));
 
     if(Brain.Battery.capacity()<40){
       Controller1.rumble("*-*");
     }
-
-    // wait(100, msec);
   }
 }
