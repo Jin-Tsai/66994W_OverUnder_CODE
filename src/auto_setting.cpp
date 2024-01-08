@@ -42,6 +42,7 @@ void move_turn(double target, double t_kp) {
     error = g_heading(target);
     turn_speed = error * t_kp;
     TankMove(-turn_speed, turn_speed);
+    wait(5, msec);
   }
   drivertrainStop(brake);
   wait(10, msec);
