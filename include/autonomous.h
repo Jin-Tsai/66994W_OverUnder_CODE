@@ -6,12 +6,14 @@
 //  near_final_shoot    ✔(turn->shoot)    ✔               ✖              ✔
 //  near_awp_shoot      ✔(turn->shoot)    ✔               ✔              ✖
 //  near_final_stealmid ✔(shoot->turn)    ✔               ✔              ✔
+//  near_stop_middle    ✔                 ✖               ✖              ✖
 
 void near_awp_only();
 void near_final_simple();
 void near_final_shoot();
 void near_awp_shoot();
 void near_final_stealmid();
+void near_stop_middle();
 
 //  name                middle first   touch elev.   elev. ball  ball_num    uturn  awp_scoop
 //  far_6_elevation     ✖              ✖            ✔           5           _      ✖

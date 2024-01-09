@@ -102,6 +102,7 @@ void autonomous(void)
     auto_skills();
     break;
   default:
+    near_stop_middle();
     // Brain.Screen.print("near_stop_middle");
     break;
   }
