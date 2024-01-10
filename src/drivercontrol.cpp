@@ -66,12 +66,13 @@ void driver_control(){
 
   Brain.Timer.clear();
   double cata_rot=0;
+  double speed_slow;
 
   while(true){
 
     if(chassis_motors==6){
-      left_base.setVelocity(-(Controller1.Axis3.position()+Controller1.Axis1.position()+move), percent);
-      right_base.setVelocity(-(Controller1.Axis3.position()-Controller1.Axis1.position()+move), percent);
+      left_base.setVelocity((-(Controller1.Axis3.position()+Controller1.Axis1.position()+move))*speed_slow, percent);
+      right_base.setVelocity((-(Controller1.Axis3.position()-Controller1.Axis1.position()+move))*speed_slow, percent);
     }
     
     if(abs(Controller1.Axis3.position())>10){
@@ -125,6 +126,9 @@ void driver_control(){
     else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)&&(cata_rise == 0)&&(cata_side_hang == false)){
       intake.stop(coast);
     }
+    // else if((intake_spin == false)&&(cata_rise == 0)&&(cata_side_hang == false)){
+    //   intake.stop(coast);
+    // }
 
     if((cata_drop == true)){
       PID_adjust(530, 2.2, 0.7, 2.0);
@@ -158,6 +162,16 @@ void driver_control(){
     else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)&&(cata_rise == 0)&&(cata_side_hang == false)){
       intake.stop(coast);
     }
+    // else if((intake_spin == false)&&(cata_rise == 0)&&(cata_side_hang == false)){
+    //   intake.stop(coast);
+    // }
+
+    // if((Controller1.ButtonR1.pressing()==true)){
+    //   speed_slow = 0.5;
+    // }
+    // else{
+    //   speed_slow = 1;
+    // }
 
     // Right CONTROLLER CODE============
 
