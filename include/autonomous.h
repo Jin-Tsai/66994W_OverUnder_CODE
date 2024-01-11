@@ -29,7 +29,8 @@ void far_4_bar();
 void far_6_middle();
 void far_5_middle();
 
-void auto_skills();//tunnel
+void auto_skills();//new
+void auto_skills_old_side();//tunnel
 void auto_skills_cross();//cross_long_barrier
 
 
