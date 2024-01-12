@@ -66,14 +66,13 @@ void driver_control(){
 
   Brain.Timer.clear();
   double cata_rot=0;
-  double speed_slow;
+  double speed_slow=1;
 
   while(true){
 
-    if(chassis_motors==6){
-      left_base.setVelocity((-(Controller1.Axis3.position()+Controller1.Axis1.position()+move))*speed_slow, percent);
-      right_base.setVelocity((-(Controller1.Axis3.position()-Controller1.Axis1.position()+move))*speed_slow, percent);
-    }
+    left_base.setVelocity((-(Controller1.Axis3.position()+Controller1.Axis1.position()+move))*speed_slow, percent);
+    right_base.setVelocity((-(Controller1.Axis3.position()-Controller1.Axis1.position()+move))*speed_slow, percent);
+ 
     
     if(abs(Controller1.Axis3.position())>10){
       left_base.setStopping(coast);
@@ -83,10 +82,10 @@ void driver_control(){
       left_base.setStopping(brake);
       right_base.setStopping(brake);
     }
-    if(chassis_motors==6){
-      left_base.spin(forward);
-      right_base.spin(forward);
-    }
+
+    left_base.spin(forward);
+    right_base.spin(forward);
+    
 
     //L2 R1 R2 CONTROLLER CODE===================
 
@@ -131,8 +130,8 @@ void driver_control(){
     // }
 
     if((cata_drop == true)){
-      PID_adjust(530, 2.2, 0.7, 2.0);
-      // cata.spin(fwd, 10.2, volt);//10.2
+      // PID_adjust(530, 2.2, 0.7, 2.0);
+      cata.spin(fwd, speed_volt, volt);//10.2
     }
     else if((cata_drop == false)){
       // intake_spin = false;

@@ -21,6 +21,8 @@ void drivertrainStop(brakeType _brake);
 
 void move_no_stop(double wanted_deg, double left_speed, double right_speed, double rotate);
 
+extern double speed_volt;
+
 extern double error_pid;
 extern double integral_pid;
 extern double derivative_pid;
@@ -28,4 +30,4 @@ extern double base_rpm;
 extern double last_error;
 extern double speed_rpm;
 
-void PID_adjust(double target_rpm, double kp, double ki, double kd);
+int PID_adjust();

@@ -14,7 +14,6 @@
 #include "vex.h"
 #include <all_func.h>
 
-int chassis_motors = 6;
 int sum = 0;
 int move = 0;
 bool btn_pressed = false;

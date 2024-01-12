@@ -30,6 +30,7 @@ void pre_auton(void)
 {
 
   // inertial_calibate();
+  
   Brain.Screen.setFont(mono60);
   while (auto_bool)
   {
@@ -67,6 +68,7 @@ void pre_auton(void)
   Brain.Screen.clearScreen();
   Brain.Screen.setCursor(1, 1);
   Brain.Screen.setFont(mono20);
+  task PID = task(PID_adjust);
   // All activities that occur before the competition starts
   // Example: clearing encoders, setting servo positions, ...
 }
@@ -167,7 +169,7 @@ int main()
     // // cata.spin(fwd, 10.2, volt);
     // display_PID();
     
-    wait(5, msec);
+    wait(20, msec);
 
     // Brain.Screen.clearScreen();
     Brain.Screen.setCursor(1, 1);
