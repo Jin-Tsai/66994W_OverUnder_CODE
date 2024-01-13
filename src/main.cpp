@@ -75,50 +75,66 @@ void pre_auton(void)
 
 // Autonomous Skills
 
-// void autonomous(void)
-// {
-//   auto_bool = false;
-//   Brain.Screen.clearScreen();
-//   Brain.Timer.clear();
-//   // auto_skills();
-//   switch (auto_select)
-//   {
-//   case 7 ... 21:
-//     // Brain.Screen.print("near_awp_shoot");
-//     near_awp_shoot();
-//     break;
-//   case 22 ... 38:
-//     // Brain.Screen.print("near_awp_only");
-//     near_awp_only();
-//     break;
-//   case 39 ... 55:
-//     // Brain.Screen.print("near_final_simple");
-//     near_final_simple();
-//     break;
-//   case 56 ... 72:
-//     // Brain.Screen.print("far_6_elevation");
-//     far_6_elevation();
-//     break;
-//   case 73 ... 95:
-//     // Brain.Screen.print("auto_skills");
-//     auto_skills();
-//     break;
-//   default:
-//     near_stop_middle();
-//     // Brain.Screen.print("near_stop_middle");
-//     break;
-//   }
-// }
+void autonomous(void)
+{
+  auto_bool = false;
+  Brain.Screen.clearScreen();
+  Brain.Timer.clear();
+  // auto_skills();
+  switch (auto_select)
+  {
+  case 7 ... 21:
+    // Brain.Screen.print("near_awp_shoot");
+    near_awp_shoot();
+    break;
+  case 22 ... 38:
+    // Brain.Screen.print("near_awp_only");
+    near_awp_only();
+    break;
+  case 39 ... 55:
+    // Brain.Screen.print("near_final_simple");
+    near_final_simple();
+    break;
+  case 56 ... 72:
+    // Brain.Screen.print("far_6_elevation");
+    far_6_elevation();
+    break;
+  case 73 ... 95:
+    // Brain.Screen.print("auto_skills");
+    auto_skills();
+    break;
+  default:
+    near_stop_middle();
+    // Brain.Screen.print("near_stop_middle");
+    break;
+  }
+}
 
 // Driver Control
 
-// void usercontrol(void)
-// {
-//   auto_bool = false;
-//   // User control code here, inside the loop
-//   Brain.Screen.clearScreen();
-//   driver_control();
-// }
+int rumble(){
+  Controller1.rumble(".....");
+  return 0;
+}
+
+void usercontrol(void)
+{
+  auto_bool = false;
+
+  // Inertial.setHeading(43,deg);
+  // move_new_deg(-500, 30, 40, 43, 0.45);
+  // move_turn(-22, 0.37);
+  // r_wing.set(true);
+  // while(Brain.Timer.time(seconds)<30){ //最快24秒
+  //   cata.spin(fwd, speed_volt, volt);
+  // }
+  // task shake = task(rumble);
+  // r_wing.set(false);
+  // cata.stop(coast);
+
+  Brain.Screen.clearScreen();
+  driver_control();
+}
 
 // double last_time;
 
@@ -158,52 +174,71 @@ int display_PID()
 int main()
 {
   // Set up callbacks for autonomous and driver control periods.
-  // Competition.autonomous(autonomous);
-  // Competition.drivercontrol(usercontrol);
+  Competition.autonomous(autonomous);
+  Competition.drivercontrol(usercontrol);
 
-  // // Run the pre-autonomous function.
-  // pre_auton();
+  // Run the pre-autonomous function.
+  pre_auton();
 
-  task PID = task(PID_adjust);
+  // task PID = task(PID_adjust);
   Brain.Screen.clearScreen();
 
   // Prevent main from exiting with an infinite loop.
   while (true)
   {
-    cata.spin(fwd, speed_volt, volt);
-    display_PID();
+    // cata.spin(fwd, speed_volt, volt);
+    // display_PID();
     
-    wait(5, msec);
+    wait(1, sec);
 
-    // Brain.Screen.clearScreen();
-    // Brain.Screen.setCursor(1, 1);
-    // Brain.Screen.print("GyroHeading: %.2f ", Inertial.heading());
-    // Brain.Screen.newLine();
-    // Brain.Screen.print("Battery: %d pct", Brain.Battery.capacity(pct));
+    Brain.Screen.clearScreen();
+    Brain.Screen.setCursor(1, 1);
+    Brain.Screen.setPenColor(yellow);
+    Brain.Screen.print("GyroHeading: %.2f ", Inertial.heading());
+    Brain.Screen.newLine();
+    Brain.Screen.setPenColor(white);
+    Brain.Screen.print("Battery: %d pct", Brain.Battery.capacity(pct));
+    Brain.Screen.newLine();
+    Brain.Screen.setPenColor(white);
+    Brain.Screen.print("intake temp: %.0f˙C",intake.temperature(celsius));
+    Brain.Screen.newLine();
 
-    // Brain.Screen.newLine();
-    // Brain.Screen.print("flywheel temp: %.0f˙C",cata.temperature(celsius));
-    // Brain.Screen.newLine();
-    // Brain.Screen.print("intake temp: %.0f˙C",intake.temperature(celsius));
-    // Brain.Screen.newLine();
+    Brain.Screen.setPenColor(ClrPink);
+    Brain.Screen.print("flywheel temp: %.0f˙C",cata.temperature(celsius));
+    Brain.Screen.newLine();
+
+    double sumchassistmp = left_front.temperature(celsius) + left_mid.temperature(celsius) + left_back.temperature(celsius) + right_front.temperature(celsius) + right_mid.temperature(celsius) + right_back.temperature(celsius);
+    double advchassistmp = sumchassistmp / 6;
+    Brain.Screen.setPenColor(ClrPink);
+    Brain.Screen.print("chassis temp: %.1f˙C",advchassistmp);
+    Brain.Screen.newLine();
+
+    // Brain.Screen.setPenColor(ClrPink);
     // Brain.Screen.print("LFront temp: %.0f˙C",left_front.temperature(celsius));
     // Brain.Screen.newLine();
+    // Brain.Screen.setPenColor(ClrPink);
     // Brain.Screen.print("LMid temp: %.0f˙C",left_mid.temperature(celsius));
     // Brain.Screen.newLine();
+    // Brain.Screen.setPenColor(ClrPink);
     // Brain.Screen.print("LBack temp: %.0f˙C",left_back.temperature(celsius));
     // Brain.Screen.newLine();
+    // Brain.Screen.setPenColor(ClrPink);
     // Brain.Screen.print("RFront temp: %.0f˙C",right_front.temperature(celsius));
     // Brain.Screen.newLine();
+    // Brain.Screen.setPenColor(ClrPink);
     // Brain.Screen.print("RMid temp: %.0f˙C",right_mid.temperature(celsius));
     // Brain.Screen.newLine();
+    // Brain.Screen.setPenColor(ClrPink);
     // Brain.Screen.print("RBack temp: %.0f˙C",right_back.temperature(celsius));
     // Brain.Screen.newLine();
-    // Brain.Screen.print("Distance: %.1f", distance_sensor.objectDistance(mm));
-    // Brain.Screen.newLine();
-    // Brain.Screen.print("Flywheel rpm: %.1f", cata.velocity(rpm));
+    Brain.Screen.setPenColor(white);
+    Brain.Screen.print("Distance: %.1f", distance_sensor.objectDistance(mm));
+    Brain.Screen.newLine();
+    Brain.Screen.setPenColor(white);
+    Brain.Screen.print("Flywheel rpm: %.0f", cata.velocity(rpm));
 
-    // if(Brain.Battery.capacity()<40){
-    //   Controller1.rumble("*-*");
-    // }
+    if(Brain.Battery.capacity()<40){
+      Controller1.rumble("*-*");
+    }
   }
 }
