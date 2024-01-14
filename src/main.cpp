@@ -86,18 +86,22 @@ void autonomous(void)
   case 7 ... 21:
     // Brain.Screen.print("near_awp_shoot");
     near_awp_shoot();
+    // gyro_auto = 180;
     break;
   case 22 ... 38:
     // Brain.Screen.print("near_awp_only");
     near_awp_only();
+    // gyro_auto = 180;
     break;
   case 39 ... 55:
     // Brain.Screen.print("near_final_simple");
     near_final_simple();
+    // gyro_auto = 0;
     break;
   case 56 ... 72:
     // Brain.Screen.print("far_6_elevation");
     far_6_elevation();
+    // gyro_auto = 180;
     break;
   case 73 ... 95:
     // Brain.Screen.print("auto_skills");
@@ -105,6 +109,7 @@ void autonomous(void)
     break;
   default:
     near_stop_middle();
+    // gyro_auto = 150;
     // Brain.Screen.print("near_stop_middle");
     break;
   }
@@ -117,20 +122,28 @@ int rumble(){
   return 0;
 }
 
+int auto_skillsdriver(){
+  r_wing.set(true);
+  while(Brain.Timer.time(seconds)<30){ //最快24秒
+    cata.spin(fwd, speed_volt, volt);
+  }
+  task shake = task(rumble);
+  r_wing.set(false);
+  cata.stop(coast);
+
+  return 0;
+}
+
 void usercontrol(void)
 {
+  Brain.Timer.clear();
   auto_bool = false;
-
   // Inertial.setHeading(43,deg);
   // move_new_deg(-500, 30, 40, 43, 0.45);
   // move_turn(-22, 0.37);
   // r_wing.set(true);
-  // while(Brain.Timer.time(seconds)<30){ //最快24秒
-  //   cata.spin(fwd, speed_volt, volt);
-  // }
-  // task shake = task(rumble);
-  // r_wing.set(false);
-  // cata.stop(coast);
+
+  // task auto_start = task(auto_skillsdriver);
 
   Brain.Screen.clearScreen();
   driver_control();

@@ -148,7 +148,7 @@ int PID_adjust(){
     else{
       speed_rpm = error_pid*kp+derivative_pid*kd+base_rpm;
     }
-    if(cata.velocity(rpm)<400){
+    if(abs(cata.velocity(rpm))<400){
       speed_volt = 12;
     }
     else{

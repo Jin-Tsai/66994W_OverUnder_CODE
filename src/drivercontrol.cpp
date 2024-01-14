@@ -1,6 +1,8 @@
 #include "vex.h"
 #include <all_func.h>
 
+// double gyro_auto = 0;
+
 // double last_time;
 
 // double y_mapping(double input, double max_in, double min_in)
@@ -131,7 +133,12 @@ void driver_control(){
 
     if((cata_drop == true)){
       // PID_adjust(530, 2.2, 0.7, 2.0);
-      cata.spin(fwd, speed_volt, volt);//10.2
+      // if((Inertial.heading()<90)or(Inertial.heading()>270)){
+        cata.spin(fwd, speed_volt, volt);//10.2
+      // }
+      // else{
+        // cata.spin(reverse, speed_volt, volt);//10.2
+      // }
     }
     else if((cata_drop == false)){
       // intake_spin = false;
@@ -144,11 +151,11 @@ void driver_control(){
       if((cata_drop == true)){
         intake.spin(fwd, 12, volt);
       }
-      else if((intake_spin == true)&&(distance_sensor.objectDistance(mm)>65)){
+      else if((intake_spin == true)&&(distance_sensor.objectDistance(mm)>55)){
         intake.spin(fwd, 12 , volt);
         wait(5, msec);
       }
-      else if((intake_spin == true)&&(distance_sensor.objectDistance(mm)<65)){
+      else if((intake_spin == true)&&(distance_sensor.objectDistance(mm)<55)){
         intake_spin = false;
         intake.stop(hold);
       }

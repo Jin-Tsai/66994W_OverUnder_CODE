@@ -1,4 +1,5 @@
 #include "vex.h"
+extern double gyro_auto;
 
 // extern double last_time;
 
