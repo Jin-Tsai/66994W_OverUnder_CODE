@@ -23,7 +23,7 @@ void far_6_elevation() {
   wait(300, msec);
 
   move_no_stop(180, -30, -30, 0);
-  move_new_deg(-400, 50, 40, 0, 0.4);
+  move_new_deg(-430, 40, 30, 0, 0.4);
   wait(500, msec);
   // move_no_stop(750, -70, -70, 0);
   move_new_deg(-900, 60, 40, -50, 0.45);
@@ -47,7 +47,7 @@ void far_6_elevation() {
   wait(400, msec);
   drivertrainStop(brake);
   move_new_deg(200, 70, 40, 270, 0.4);
-  TankMove(80, 80);
+  TankMove(85, 80);
   wait(400, msec);
   drivertrainStop(brake);
   wait(100, msec);
@@ -62,11 +62,11 @@ void far_6_elevation() {
   wait(100, msec);
   // wait(1000, msec); //測試用wait
   move_new_deg(2100, 80, 30, 42, 0.4);
-  cata.spin(fwd, 8.6, volt);
+  cata.spin(fwd, 8.4, volt);
   intake.spin(fwd, 12, volt);
-  move_turn(-26, 0.4);
+  move_turn(-26, 0.41);
   // wait(1000, msec); //測試用wait
-  move_new_deg(270, 70, 30, 334, 0.4);
+  move_new_deg(250, 70, 30, 334, 0.4);
   wait(400, msec);
   // wait(1000000000, msec); //測試用wait
 
@@ -729,11 +729,12 @@ void near_awp_only(){
   wait(100, msec); //測試用wait
   // wait(1000, msec); //測試用wait
 
-  move_new_deg(-800, 50, 70, 0, 0.6);
-  // move_turn(0, 0.5);
+  // move_new_deg(-800, 50, 70, 0, 0.6);
+  move_new_deg(-350, 30, 30, 10, 1.2);
+  move_turn(0, 0.5);
   // wait(1000, msec); //測試用wait
   wait(100, msec);
-  move_new_deg(-1150, 30, 20, 0, 0.4);
+  move_new_deg(-1480, 30, 20, 0, 0.4);//1150
 
 }
 
