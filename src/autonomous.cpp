@@ -892,12 +892,12 @@ void auto_skills(){
   move_turn(-22, 0.37);
   r_wing.set(true);
 
-  // while(Brain.Timer.time(seconds)<28){ //33
-  //   // PID_adjust(530, 2.2, 0.7, 2.0);
-  //   cata.spin(fwd, speed_volt, volt);
-  // }
-  // cata.stop(coast);
-  wait(1000, msec); //測試用wait
+  while(Brain.Timer.time(seconds)<28){ //33
+    // PID_adjust(530, 2.2, 0.7, 2.0);
+    cata.spin(fwd, speed_volt, volt);
+  }
+  cata.stop(coast);
+  // wait(1000, msec); //測試用wait
   r_wing.set(false);
 
   move_turn(220, 0.4);
