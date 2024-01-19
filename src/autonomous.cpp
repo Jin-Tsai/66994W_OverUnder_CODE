@@ -892,7 +892,7 @@ void auto_skills(){
   move_turn(-22, 0.37);
   r_wing.set(true);
 
-  while(Brain.Timer.time(seconds)<28){ //33
+  while(Brain.Timer.time(seconds)<26){ //33
     // PID_adjust(530, 2.2, 0.7, 2.0);
     cata.spin(fwd, speed_volt, volt);
   }
@@ -900,7 +900,7 @@ void auto_skills(){
   // wait(1000, msec); //測試用wait
   r_wing.set(false);
 
-  move_turn(220, 0.4);
+  move_turn(220, 0.42);
   // wait(1000, msec); //測試用wait
   move_new_deg(-800, 75, 30, 220, 0.4);
   wait(100, msec);
@@ -936,10 +936,10 @@ void auto_skills(){
   wait(700, msec);
   drivertrainStop(brake);
 
-  move_new_deg(1450, 60, 70, 180, 0.5);
+  move_new_deg(1410, 60, 70, 180, 0.5);
   // wait(10000000, msec); //測試用wait
   wait(100, msec);
-  move_turn(89, 0.37);
+  move_turn(89, 0.4);
 
   l_wing.set(true);
   r_wing.set(true);
@@ -1005,7 +1005,7 @@ void auto_skills(){
   // wait(300, msec);
   // drivertrainStop(brake);
 
-  move_turn(117, 0.38);
+  move_turn(117, 0.4);
   // wait(1000, msec); //測試用wait
   r_wing.set(true);
   l_wing.set(true);
