@@ -124,10 +124,10 @@ void driver_control(){
       front_wing.set(false);
       intake_piston.set(false);
     }
-    else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)&&(cata_rise == 0)&&(cata_side_hang == false)){
+    else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)&&(cata_side_hang == false)){
       intake.stop(coast);
     }
-    // else if((intake_spin == false)&&(cata_rise == 0)&&(cata_side_hang == false)){
+    // else if((intake_spin == false)&&(cata_side_hang == false)){
     //   intake.stop(coast);
     // }
 
@@ -165,7 +165,7 @@ void driver_control(){
       wait(5, msec);
       intake_spin = false;
     }
-    else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)&&(cata_rise == 0)&&(cata_side_hang == false)){
+    else if((intake_spin == false)&&(Controller1.ButtonR1.pressing()==false)&&(cata_side_hang == false)){
       intake.stop(coast);
     }
     // else if((intake_spin == false)&&(cata_rise == 0)&&(cata_side_hang == false)){
@@ -244,14 +244,14 @@ void driver_control(){
     Right_press = Controller1.ButtonRight.pressing();
     
     if(Right_press && !Last_Right){
-      cata_side_hang = !cata_side_hang;
+      cata_rise = !cata_rise;
     }
     Last_Right = Right_press;
 
-    if((cata_side_hang == true)){
+    if((cata_rise == true)){
       balance.set(true);
     }
-    if((cata_side_hang == false)){
+    if((cata_rise == false)){
       balance.set(false);
     }
     
