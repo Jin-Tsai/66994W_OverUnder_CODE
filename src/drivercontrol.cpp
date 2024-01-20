@@ -232,11 +232,11 @@ void driver_control(){
 
     if((match_load == true)){
       fourbar.set(true);
-      balance.set(true);
+      // balance.set(true);
     }
     if((match_load == false)){
       fourbar.set(false);
-      balance.set(false);
+      // balance.set(false);
       // intake_piston.set(true);
     }
     //CATA SIDE HANG
