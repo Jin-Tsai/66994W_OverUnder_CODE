@@ -56,14 +56,15 @@ void far_6_elevation() {
 
   //轉彎吸中左
   move_new_deg(900, 65, 80, 320, 0.85);
+  wait(10000000, msec);
   r_wing.set(false);
   wait(100, msec);
-  move_turn(42, 0.34);
+  move_turn(39, 0.33);
   wait(100, msec);
   // wait(1000, msec); //測試用wait
-  move_new_deg(2100, 80, 30, 42, 0.4);
+  move_new_deg(2100, 80, 30, 39, 0.4);
   cata.spin(fwd, 8.4, volt);
-  intake.spin(fwd, 12, volt);
+  // intake.spin(fwd, 12, volt);
   move_turn(-26, 0.41);
   // wait(1000, msec); //測試用wait
   move_new_deg(250, 70, 30, 334, 0.4);
@@ -71,8 +72,9 @@ void far_6_elevation() {
   // wait(1000000000, msec); //測試用wait
 
   //吸中間上面那顆
-  move_new_deg(-500, 50, 30, 350, 0.4);
+  move_new_deg(-470, 50, 30, 350, 0.4);
   // wait(1000, msec); //測試用wait
+  intake.spin(fwd, 12, volt);
   move_turn(38, 0.45);
   // wait(1000, msec); //測試用wait
   move_new_deg(500, 70, 30, 38, 0.4);
@@ -734,7 +736,7 @@ void near_awp_only(){
   move_turn(0, 0.5);
   // wait(1000, msec); //測試用wait
   wait(100, msec);
-  move_new_deg(-1460, 30, 20, 0, 0.4);//1150
+  move_new_deg(-1420, 30, 20, 0, 0.4);//1150
 
 }
 
@@ -892,12 +894,12 @@ void auto_skills(){
   move_turn(-22, 0.37);
   r_wing.set(true);
 
-  // while(Brain.Timer.time(seconds)<25){ //33
-  //   // PID_adjust(530, 2.2, 0.7, 2.0);
-  //   cata.spin(fwd, speed_volt, volt);
-  // }
-  // cata.stop(coast);
-  wait(1000, msec); //測試用wait
+  while(Brain.Timer.time(seconds)<26){ //33
+    // PID_adjust(530, 2.2, 0.7, 2.0);
+    cata.spin(fwd, speed_volt, volt);
+  }
+  cata.stop(coast);
+  // wait(1000, msec); //測試用wait
   r_wing.set(false);
 
   move_turn(220, 0.43);
@@ -952,7 +954,7 @@ void auto_skills(){
   move_new_deg(600, 70, 30, 90, 0.3);
   // wait(1000, msec); //測試用wait
 
-  move_turn(0, 0.42);
+  move_turn(0, 0.43);
   // r_wing.set(true);
   // move_new_deg(-600, 80, 40, 16, 0.4);
   // wait(1000, msec); //測試用wait
@@ -988,7 +990,7 @@ void auto_skills(){
   //   TankMove(0, 40);
   // }
   // drivertrainStop(brake);
-  move_turn(200, 0.37);
+  move_turn(200, 0.39);
   // wait(1000, msec); //測試用wait
   l_wing.set(true);
   r_wing.set(true);

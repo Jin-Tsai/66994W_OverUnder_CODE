@@ -80,39 +80,39 @@ void autonomous(void)
   auto_bool = false;
   Brain.Screen.clearScreen();
   Brain.Timer.clear();
-  auto_skills();
-  // switch (auto_select)
-  // {
-  // case 7 ... 21:
-  //   // Brain.Screen.print("near_awp_shoot");
-  //   near_awp_shoot();
-  //   // gyro_auto = 180;
-  //   break;
-  // case 22 ... 38:
-  //   // Brain.Screen.print("near_awp_only");
-  //   near_awp_only();
-  //   // gyro_auto = 180;
-  //   break;
-  // case 39 ... 55:
-  //   // Brain.Screen.print("near_final_simple");
-  //   near_final_simple();
-  //   // gyro_auto = 0;
-  //   break;
-  // case 56 ... 72:
-  //   // Brain.Screen.print("far_6_elevation");
-  //   far_6_elevation();
-  //   // gyro_auto = 180;
-  //   break;
-  // case 73 ... 95:
-  //   // Brain.Screen.print("auto_skills");
-  //   auto_skills();
-  //   break;
-  // default:
-  //   near_stop_middle();
-  //   // gyro_auto = 150;
-  //   // Brain.Screen.print("near_stop_middle");
-  //   break;
-  // }
+  // auto_skills();
+  switch (auto_select)
+  {
+  case 7 ... 21:
+    // Brain.Screen.print("near_awp_shoot");
+    near_awp_shoot();
+    // gyro_auto = 180;
+    break;
+  case 22 ... 38:
+    // Brain.Screen.print("near_awp_only");
+    near_awp_only();
+    // gyro_auto = 180;
+    break;
+  case 39 ... 55:
+    // Brain.Screen.print("near_final_simple");
+    near_final_simple();
+    // gyro_auto = 0;
+    break;
+  case 56 ... 72:
+    // Brain.Screen.print("far_6_elevation");
+    far_6_elevation();
+    // gyro_auto = 180;
+    break;
+  case 73 ... 95:
+    // Brain.Screen.print("auto_skills");
+    auto_skills();
+    break;
+  default:
+    near_stop_middle();
+    // gyro_auto = 150;
+    // Brain.Screen.print("near_stop_middle");
+    break;
+  }
 }
 
 // Driver Control
