@@ -4,18 +4,19 @@
 // define your global instances of motors and other devices here
 brain Brain; 
 
-motor intake = motor(PORT7, ratio6_1, true);
+motor intake = motor(PORT2, ratio6_1, true);
 
-motor cata = motor(PORT20, ratio6_1, false);
+motor cata = motor(PORT1, ratio18_1, false);
+motor right_cata = motor(PORT10, ratio18_1, false);
 
-motor left_front = motor(PORT6, ratio6_1, false);
-motor left_mid = motor(PORT4, ratio6_1, false);
-motor left_back = motor(PORT2, ratio6_1, false);
-motor right_front = motor(PORT5, ratio6_1, true);
-motor right_mid = motor(PORT9, ratio6_1, true);
-motor right_back = motor(PORT8, ratio6_1, true);
+motor left_front = motor(PORT11, ratio6_1, false);
+motor left_mid = motor(PORT12, ratio6_1, true);
+motor left_back = motor(PORT13, ratio6_1, false);
+motor right_front = motor(PORT18, ratio6_1, false);
+motor right_mid = motor(PORT19, ratio6_1, true);
+motor right_back = motor(PORT20, ratio6_1, true);
 
-triport Expander = triport(PORT1);
+triport Expander = triport(PORT3);
 
 digital_out r_wing = digital_out(Expander.G);
 digital_out l_wing = digital_out(Expander.H);
@@ -30,7 +31,7 @@ motor_group chassis = motor_group(left_front, left_mid, left_back, right_front, 
 
 // distance distance_sensor = distance(PORT9);
 rotation rotation_sensor = rotation(PORT4);
-inertial Inertial = inertial(PORT19);
+inertial Inertial = inertial(PORT9);
 distance distance_sensor = distance(PORT3);
 
 potV2 auto_selector = potV2(Brain.ThreeWirePort.D);

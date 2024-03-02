@@ -900,7 +900,7 @@ void auto_skills(){
   }
   cata.stop(coast);
   // wait(1000, msec); //測試用wait
-  r_wing.set(false);
+  r_wing.set(false);\
 
   move_turn(220, 0.43);
   // wait(1000, msec); //測試用wait
