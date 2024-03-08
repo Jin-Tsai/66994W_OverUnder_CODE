@@ -168,37 +168,37 @@ double last_error = 0;
 double speed_rpm = error_pid*kp+integral_pid*ki+derivative_pid*kd+base_rpm;
 double speed_volt;
 
-int PID_adjust(){
-  double target_rpm = 500;
-  double kp =1.8;//2.3
-  double ki =0.0007;//0.0012
-  double kd =0.2;//0.1
+// int PID_adjust(){
+//   double target_rpm = 500;
+//   double kp =1.8;//2.3
+//   double ki =0.0007;//0.0012
+//   double kd =0.2;//0.1
 
-  while(1){
+//   while(1){
 
-    error_pid = target_rpm-abs(cata.velocity(rpm));
-    derivative_pid = error_pid + last_error;
+//     error_pid = target_rpm-abs(cata.velocity(rpm));
+//     derivative_pid = error_pid + last_error;
 
-    if((abs(error_pid)<20)&&(abs(error_pid)>3)){
-      integral_pid = integral_pid + error_pid;
-      if(integral_pid>30000){
-        integral_pid = 30000;
-      }
-      speed_rpm = error_pid*kp+integral_pid*ki+derivative_pid*kd+base_rpm;
-    }
-    else{
-      speed_rpm = error_pid*kp+derivative_pid*kd+base_rpm;
-    }
-    if(abs(cata.velocity(rpm))<400){
-      speed_volt = 12;
-    }
-    else{
-      speed_volt = (speed_rpm/620)*12;
-    }
+//     if((abs(error_pid)<20)&&(abs(error_pid)>3)){
+//       integral_pid = integral_pid + error_pid;
+//       if(integral_pid>30000){
+//         integral_pid = 30000;
+//       }
+//       speed_rpm = error_pid*kp+integral_pid*ki+derivative_pid*kd+base_rpm;
+//     }
+//     else{
+//       speed_rpm = error_pid*kp+derivative_pid*kd+base_rpm;
+//     }
+//     if(abs(cata.velocity(rpm))<400){
+//       speed_volt = 12;
+//     }
+//     else{
+//       speed_volt = (speed_rpm/620)*12;
+//     }
 
-    last_error = error_pid;
-    wait(5, msec);
-  }
-  return 0;
+//     last_error = error_pid;
+//     wait(5, msec);
+//   }
+//   return 0;
 
-}
+// }

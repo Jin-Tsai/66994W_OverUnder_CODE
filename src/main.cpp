@@ -68,7 +68,7 @@ void pre_auton(void)
   Brain.Screen.clearScreen();
   Brain.Screen.setCursor(1, 1);
   Brain.Screen.setFont(mono20);
-  task PID = task(PID_adjust);
+  // task PID = task(PID_adjust);
   // All activities that occur before the competition starts
   // Example: clearing encoders, setting servo positions, ...
 }
@@ -123,12 +123,12 @@ int rumble(){
 }
 
 int auto_skillsdriver(){
-  r_wing.set(true);
+  r_back.set(true);
   while(Brain.Timer.time(seconds)<30){ //最快24秒
-    cata.spin(fwd, speed_volt, volt);
+    cata.spin(fwd, 12, volt);
   }
   task shake = task(rumble);
-  r_wing.set(false);
+  r_back.set(false);
   cata.stop(coast);
 
   return 0;
@@ -152,38 +152,38 @@ void usercontrol(void)
 
 // double last_time;
 
-double y_mapping(double input, double max_in, double min_in)
-{
-  double output = 240 + ((input - min_in) * (-240)) / (max_in - min_in);
-  return output;
-}
+// double y_mapping(double input, double max_in, double min_in)
+// {
+//   double output = 240 + ((input - min_in) * (-240)) / (max_in - min_in);
+//   return output;
+// }
 
-double last_y_velocity = 0;
-int count = 1;
+// double last_y_velocity = 0;
+// int count = 1;
 
-int display_PID()
-{
-  Brain.Screen.drawLine(0, y_mapping(530,800,0), 480, y_mapping(530,800,0));
+// int display_PID()
+// {
+//   Brain.Screen.drawLine(0, y_mapping(530,800,0), 480, y_mapping(530,800,0));
 
-    double y_velocity = y_mapping(cata.velocity(rpm), 800, 0);
+//     double y_velocity = y_mapping(cata.velocity(rpm), 800, 0);
 
-    Brain.Screen.drawLine(count - 1, last_y_velocity, count, y_velocity);
-    Brain.Screen.setCursor(1, 1);
-    Brain.Screen.print("rpm: %.2f ",cata.velocity(rpm));
-    Brain.Screen.newLine();
-    Brain.Screen.print("flywheel temp: %.0f˙C",cata.temperature(celsius));
-    Brain.Screen.newLine();
-    Brain.Screen.print("integral: %.4f", integral_pid);
-    if (count > 480)
-    {
-      count = 1;
-      Brain.Screen.clearScreen();
-    }
-    last_y_velocity = y_velocity;
-    count++;
+//     Brain.Screen.drawLine(count - 1, last_y_velocity, count, y_velocity);
+//     Brain.Screen.setCursor(1, 1);
+//     Brain.Screen.print("rpm: %.2f ",cata.velocity(rpm));
+//     Brain.Screen.newLine();
+//     Brain.Screen.print("flywheel temp: %.0f˙C",cata.temperature(celsius));
+//     Brain.Screen.newLine();
+//     Brain.Screen.print("integral: %.4f", integral_pid);
+//     if (count > 480)
+//     {
+//       count = 1;
+//       Brain.Screen.clearScreen();
+//     }
+//     last_y_velocity = y_velocity;
+//     count++;
 
-  return 0;
-}
+//   return 0;
+// }
 
 int main()
 {
@@ -218,7 +218,8 @@ int main()
     Brain.Screen.newLine();
 
     Brain.Screen.setPenColor(ClrPink);
-    Brain.Screen.print("flywheel temp: %.0f˙C",cata.temperature(celsius));
+    Brain.Screen.print("cata_left temp: %.0f˙C",cata_left.temperature(celsius));
+    Brain.Screen.print("cata_right temp: %.0f˙C",cata_right.temperature(celsius));
     Brain.Screen.newLine();
 
     double sumchassistmp = left_front.temperature(celsius) + left_mid.temperature(celsius) + left_back.temperature(celsius) + right_front.temperature(celsius) + right_mid.temperature(celsius) + right_back.temperature(celsius);
@@ -248,8 +249,6 @@ int main()
     Brain.Screen.setPenColor(white);
     Brain.Screen.print("Distance: %.1f", distance_sensor.objectDistance(mm));
     Brain.Screen.newLine();
-    Brain.Screen.setPenColor(white);
-    Brain.Screen.print("Flywheel rpm: %.0f", cata.velocity(rpm));
 
     if(Brain.Battery.capacity()<40){
       Controller1.rumble("*-*");
