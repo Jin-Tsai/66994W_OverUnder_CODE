@@ -87,6 +87,22 @@ void driver_control(){
 
     left_base.spin(forward);
     right_base.spin(forward);
+
+    //B catapult matchload===================
+
+    B_press = Controller1.ButtonB.pressing();
+
+    if(B_press && !Last_B){
+      B_matchload = !B_matchload;
+    }
+    Last_B = B_press;
+
+    if((B_matchload == true)){
+      cata.spin(fwd, 12, volt);
+    }
+    else if(B_matchload == false){
+      cata.stop(coast);
+    }
     
 
     //R1 R2 INTAKE CONTROLLER CODE===================

@@ -51,3 +51,7 @@ bool left_back_wing = false;
 bool Right_press = Controller1.ButtonRight.pressing();
 bool Last_Right = Right_press;
 bool side_hang = false;
+
+bool B_press = Controller1.ButtonB.pressing();
+bool Last_B = B_press;
+bool B_matchload = false;

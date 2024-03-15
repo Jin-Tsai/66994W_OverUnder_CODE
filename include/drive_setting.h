@@ -38,3 +38,7 @@ extern bool left_back_wing;
 extern bool Right_press;
 extern bool Last_Right;
 extern bool side_hang;
+
+extern bool B_press;
+extern bool Last_B;
+extern bool B_matchload;
