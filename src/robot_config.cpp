@@ -18,8 +18,8 @@ motor right_back = motor(PORT20, ratio6_1, true);
 
 triport Expander = triport(PORT8);
 
-digital_out r_back = digital_out(Brain.ThreeWirePort.G);
-digital_out l_back = digital_out(Expander.E);
+digital_out l_back = digital_out(Brain.ThreeWirePort.G);
+digital_out r_back = digital_out(Expander.E);
 digital_out r_front = digital_out(Expander.A);
 digital_out l_front = digital_out(Expander.G);
 digital_out side_hang_piston = digital_out(Expander.F);

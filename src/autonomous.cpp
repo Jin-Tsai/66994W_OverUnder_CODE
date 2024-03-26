@@ -15,92 +15,210 @@ int task_cata_pos(){
 void far_6_elevation() {
 
   // 前進吸桿子底下的之後後退推triball
-  cata.spin(fwd, 8, volt);
-  wait(300, msec);
-  intake.spin(fwd, 600, rpm);
+  intake.spin(fwd, 12, volt);
   move_new_deg(100, 40, 30, 0, 0.34);
   // wait(1000, msec); //測試用wait
-  wait(300, msec);
+  wait(150, msec);
 
-  move_no_stop(180, -30, -30, 0);
-  move_new_deg(-430, 40, 30, 0, 0.4);
-  wait(500, msec);
+  r_back.set(true);
+  move_no_stop(150, -50, -50, 0);
+  move_no_stop(450, -70, -70, 0);
+  // wait(300, msec);
   // move_no_stop(750, -70, -70, 0);
-  move_new_deg(-900, 60, 40, -50, 0.45);
+  move_new_deg(-920, 80, 40, -45, 0.45);
   
   wait(50, msec);
   // wait(1000, msec); //測試用wait
 
   l_back.set(true);
-  wait(100, msec);
-  move_new_deg(-400, 70, 50, 270, 0.7);
+  wait(50, msec);
+  move_new_deg(-600, 70, 50, 270, 0.55);
   // wait(1000, msec); //測試用wait
   l_back.set(false);
-  wait(100, msec);
-  r_back.set(true);
-  wait(100, msec);
+  wait(200, msec);
   // wait(1000, msec); //測試用wait
   move_new_deg(-550, 70, 80, 260, 0.8);
-  cata.stop(brake);
   intake.stop(brake);
   TankMove(70, 70);
   wait(400, msec);
   drivertrainStop(brake);
-  move_new_deg(200, 70, 40, 270, 0.4);
-  TankMove(85, 80);
-  wait(400, msec);
+
+  move_new_deg(400, 70, 80, 260, 0.8);
+  r_back.set(false);
+  move_turn(105, 0.45);
+  intake.spin(reverse, 12, volt);
+  TankMove(-80, -80);
+  wait(500, msec);
   drivertrainStop(brake);
   wait(100, msec);
 
   // wait(1000, msec); //測試用wait
 
   //轉彎吸中左
-  move_new_deg(900, 65, 80, 320, 0.85);
-  wait(10000000, msec);
-  r_back.set(false);
+  move_new_deg(-450, 40, 40, 90, 0.4);
   wait(100, msec);
-  move_turn(39, 0.33);
-  wait(100, msec);
-  // wait(1000, msec); //測試用wait
-  move_new_deg(2100, 80, 30, 39, 0.4);
-  cata.spin(fwd, 8.4, volt);
-  // intake.spin(fwd, 12, volt);
-  move_turn(-26, 0.41);
-  // wait(1000, msec); //測試用wait
-  move_new_deg(250, 70, 30, 334, 0.4);
-  wait(400, msec);
-  // wait(1000000000, msec); //測試用wait
-
-  //吸中間上面那顆
-  move_new_deg(-470, 50, 30, 350, 0.4);
-  // wait(1000, msec); //測試用wait
+  move_turn(18, 0.4);
   intake.spin(fwd, 12, volt);
-  move_turn(38, 0.45);
+  wait(100, msec);
   // wait(1000, msec); //測試用wait
-  move_new_deg(500, 70, 30, 38, 0.4);
-  // wait(1000, msec); //測試用wait
-  TankMove(0, -40);
+  move_no_stop(200, 30, 30, 18);
+  move_no_stop(1750, 80, 80, 18);
+  move_new_deg(300, 50, 50, 18, 0.4);
+  wait(50,msec);
+  move_new_deg(-150, 70, 40, 18, 0.4);
+  move_turn(150, 0.45);
+  intake.stop(brake);
+  intake.spin(reverse, 12, volt);
+  move_new_deg(700, 70, 55, 180, 0.3);
+  TankMove(-90, -80);
   wait(500, msec);
   drivertrainStop(brake);
-  TankMove(-30, -30);
-  wait(150, msec);
+  wait(100, msec);
+
+  move_new_deg(-300, 70, 40, 180, 0.4);
+  move_turn(0, 0.45);
+  intake.spin(fwd, 12, volt);
+  move_new_deg(600, 50, 40, 0, 0.4);
+  move_turn(33, 0.45);
+  move_new_deg(580, 70, 40, 33, 0.4);
+  move_turn(0, 0.49);
+  move_no_stop(600, -80, -80, 0);
+  TankMove(80, 80);
+  wait(200, msec);
   drivertrainStop(brake);
+  move_new_deg(200, 70, 80, 0, 0.8);
+  move_turn(180, 0.45);
+  intake.spin(reverse, 12, volt);
+  TankMove(-80, -80);
+  wait(350, msec);
+  drivertrainStop(brake);
+  move_new_deg(-250, 70, 40, 180, 0.4);
+
+  wait(100000, sec);
+
+
+  move_new_deg(400, 70, 40, 150, 0.4);
+  wait(100, msec);
+  move_turn(90, 0.41);
+  intake.stop(brake);
+  intake.spin(fwd, 12, volt);
+  move_new_deg(450, 70, 40, 90, 0.4);
+  move_turn(180, 0.45);
+  intake.stop(brake);
+  intake.spin(reverse, 12, volt);
+  r_front.set(true);
+  l_front.set(true);
+  move_no_stop(200, 60, 60, 180);
+  TankMove(-80, -80);
+  wait(300, msec);
+  drivertrainStop(brake);
+  wait(100, msec);
+
+  r_front.set(false);
+  l_front.set(false);
+  move_new_deg(-300, 70, 40, 180, 0.4);
+  move_turn(17, 0.45);
+  intake.spin(fwd, 12, volt);
+  move_new_deg(800, 70, 40, 17, 0.4);
+
+  move_new_deg(-150, 70, 40, 17, 0.4);
+  move_turn(180, 0.45);
+  move_no_stop(200, 60, 60, 180);
+  TankMove(-100, -100);
+  wait(350, msec);
+  drivertrainStop(brake);
+  move_new_deg(-250, 70, 40, 180, 0.4);
+
+}
+
+void far_6_elevation_safe3() {
+
+  // 前進吸桿子底下的之後後退推triball
+  intake.spin(fwd, 12, volt);
+  move_new_deg(100, 40, 30, 0, 0.34);
+  // wait(1000, msec); //測試用wait
+  wait(150, msec);
+
+  r_back.set(true);
+  move_no_stop(150, -50, -50, 0);
+  move_no_stop(450, -70, -70, 0);
   // wait(300, msec);
+  // move_no_stop(750, -70, -70, 0);
+  move_new_deg(-920, 80, 40, -45, 0.45);
+  
+  wait(50, msec);
+  // wait(1000, msec); //測試用wait
 
   l_back.set(true);
-  r_back.set(true);
+  wait(50, msec);
+  move_new_deg(-600, 70, 50, 270, 0.55);
+  // wait(1000, msec); //測試用wait
+  l_back.set(false);
   wait(200, msec);
-  move_new_deg(-1250, 90, 30, 0, 0.4);
-  wait(100, msec);
-  move_new_deg(300, 70, 30, 0, 0.4);
-  wait(200, msec);
-  TankMove(40, 40);
+  // wait(1000, msec); //測試用wait
+  move_new_deg(-550, 70, 80, 260, 0.8);
+  intake.stop(brake);
+  TankMove(70, 70);
+  wait(400, msec);
+  drivertrainStop(brake);
+
+  move_new_deg(400, 70, 80, 260, 0.8);
+  r_back.set(false);
+  move_turn(105, 0.45);
+  intake.spin(reverse, 12, volt);
+  TankMove(-80, -80);
   wait(500, msec);
   drivertrainStop(brake);
-  cata.stop(brake);
+  wait(100, msec);
+
+  // wait(1000, msec); //測試用wait
+
+  //轉彎吸中左
+  move_new_deg(-450, 50, 40, 90, 0.4);
+  wait(50, msec);
+  move_turn(18, 0.4);
+  intake.spin(fwd, 12, volt);
+  wait(100, msec);
+  // wait(1000, msec); //測試用wait
+  move_no_stop(200, 30, 30, 18);
+  move_no_stop(1750, 80, 80, 18);
+  move_new_deg(300, 50, 50, 18, 0.4);
+  wait(50,msec);
+  move_new_deg(-150, 70, 40, 18, 0.4);
+  move_turn(150, 0.45);
   intake.stop(brake);
-  move_new_deg(300, 70, 30, 0, 0.4);
-  wait(1000000000, msec); //測試用wait
+  intake.spin(reverse, 12, volt);
+  move_new_deg(400, 70, 40, 150, 0.4);
+  wait(100, msec);
+  move_turn(90, 0.41);
+  intake.stop(brake);
+  intake.spin(fwd, 12, volt);
+  move_new_deg(450, 70, 40, 90, 0.4);
+  move_turn(180, 0.45);
+  intake.stop(brake);
+  intake.spin(reverse, 12, volt);
+  r_front.set(true);
+  l_front.set(true);
+  move_no_stop(200, 60, 60, 180);
+  TankMove(-80, -80);
+  wait(300, msec);
+  drivertrainStop(brake);
+  wait(100, msec);
+
+  r_front.set(false);
+  l_front.set(false);
+  move_new_deg(-300, 70, 40, 180, 0.4);
+  move_turn(17, 0.45);
+  intake.spin(fwd, 12, volt);
+  move_new_deg(800, 70, 40, 17, 0.4);
+
+  move_new_deg(-150, 70, 40, 17, 0.4);
+  move_turn(180, 0.45);
+  move_no_stop(200, 60, 60, 180);
+  TankMove(-100, -100);
+  wait(350, msec);
+  drivertrainStop(brake);
+  move_new_deg(-250, 70, 40, 180, 0.4);
 
 }
 
