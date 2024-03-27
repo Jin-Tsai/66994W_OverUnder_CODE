@@ -80,7 +80,7 @@ void autonomous(void)
   auto_bool = false;
   Brain.Screen.clearScreen();
   Brain.Timer.clear();
-  far_6_elevation();
+  far_6_middle();
   // auto_skills();
   switch (auto_select)
   {

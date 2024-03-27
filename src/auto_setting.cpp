@@ -3,7 +3,7 @@
 
 double current_speed;
 double integral, derivative;
-double kp = 0.0011;
+double kp = 0.4;
 double ki = 0.0000025;
 double kd = 0.00002; 
 

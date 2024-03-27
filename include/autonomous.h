@@ -24,6 +24,7 @@ void near_stop_middle();
 //  
 
 void far_6_elevation();
+void far_6_elevation_safe3();
 void far_awp_no_bar();
 void far_4_bar();
 void far_6_middle();
