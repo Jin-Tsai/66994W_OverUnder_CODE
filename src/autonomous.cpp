@@ -912,25 +912,39 @@ void near_final_shoot(){
 
 void near_awp_only(){
 
-  Inertial.setHeading(40,deg);
-  move_new_deg(300, 50, 40, 40, 0.4);
+  Inertial.setHeading(103,deg);
+  Brain.resetTimer();
+  cata.spin(fwd, 12, volt);
+  wait(600, msec);
+  cata.stop(coast);
+  move_turn(30, 0.4);
+
+  move_new_deg(950, 50, 40, 30, 0.4);
+  // wait(2000, msec); //測試用wait
+  wait(100, msec);
+  move_turn(55, 0.4);
   wait(500, msec); //測試用wait
   l_back.set(true);
   wait(200, msec); //測試用wait
-  move_new_deg(-300, 70, 70, 10, 1.2);
+  move_new_deg(-440, 50, 50, 10, 0.28);
   // wait(200, msec); //測試用wait
   // wait(1000, msec); //測試用wait
   r_back.set(true);
+  wait(200, msec); //測試用wait
   l_back.set(false);
-  wait(100, msec); //測試用wait
   // wait(1000, msec); //測試用wait
 
   // move_new_deg(-800, 50, 70, 0, 0.6);
-  move_new_deg(-350, 30, 30, 10, 1.2);
-  move_turn(0, 0.5);
+  move_new_deg(-800, 30, 70, 0, 0.3);
+  r_back.set(false);
+  move_turn(180, 0.5);
   // wait(1000, msec); //測試用wait
   wait(100, msec);
-  move_new_deg(-1420, 30, 20, 0, 0.4);//1150
+  l_front.set(true);
+  waitUntil(Brain.timer(sec)>13);
+  intake.spin(reverse, 12, volt);
+  move_new_deg(780, 80, 20, 160, 0.4);//1150
+  l_front.set(false);
 
 }
 
